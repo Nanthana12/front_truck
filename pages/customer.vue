@@ -97,18 +97,18 @@
     <!-- Dialog Update Customer -->
     <v-dialog v-model="showModalUpdateCustomer" persistent width="700">
       <v-card>
+        <v-card-title style="display:flex;background-color:#568fb3;color:white">
+
+          <v-spacer></v-spacer>
+          ແກ້ໄຂຂໍ້ມູນລູກຄ້າ
+          <v-spacer></v-spacer>
+          <v-btn fab elevation="0" dark width="30" height="30" small color="white"
+            @click="showModalUpdateCustomer = false">
+            <v-icon color="#338ABF">mdi-close</v-icon>
+          </v-btn> 
+        </v-card-title>
         <v-container>
-          <v-row class="pl-4 pr-4">
-            <v-col class="pl-3">
-              <h3>ແກ້ໄຂຂໍ້ມູນລູກຄ້າ</h3>
-            </v-col>
-            <v-spacer></v-spacer>
-            <v-btn icon class="mt-2 mr-2" @click="showModalUpdateCustomer = false"><v-icon>mdi-close</v-icon>
-            </v-btn>
-          </v-row>
-          <Height />
-          <v-divider></v-divider>
-          <Height />
+         
           <Height />
           <v-card-text>
             <div>
@@ -233,7 +233,7 @@
             <v-card elevation="1" class="mt-2 pl-8 pa-6">
               <div>
                 <v-row>
-                  <span><span class="boldtext">ອີແມວ: </span>{{ Update_cus_email }}</span>
+                  <span><span class="boldtext">ອີເມວ: </span>{{ Update_cus_email }}</span>
                 </v-row>
               </div>
             </v-card>
@@ -309,14 +309,10 @@ export default {
             this.customer_data_list = []
             this.loading_processing = false
             console.log('customer_list:', data)
-
-            this.loading_processing = false
           } else {
             this.customer_data_list = data?.data
             this.loading_processing = false
             console.log('customer_list:', data)
-
-            this.loading_processing = false
           }
         })
       } catch (error) {

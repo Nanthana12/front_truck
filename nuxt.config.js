@@ -62,13 +62,13 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    // baseURL: 'https://uatenv.ldblao.la/dev/v1/truck',
-    //baseURL: 'http://10.0.94.130:9988/api/prod/v1/truck',
-    baseURL: 'http://localhost:9988/api/prod/v1/truck',
+    // baseURL: '/api-prod/v1/truck/',
+    baseURL: 'http://khounkham.com/api-prod/v1/truck',
+    // baseURL: 'http://localhost:9988/api/prod/v1/truck'
   },
   // server: {
-  //   host: '10.0.10.52',
-  //   port: '3000' // optional
+  //   // host: '10.0.10.52',
+  //   port: '3200' // optional
   // },
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

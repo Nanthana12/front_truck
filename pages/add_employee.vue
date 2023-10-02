@@ -5,133 +5,148 @@
         <v-progress-circular :width="3" color="primary" indeterminate></v-progress-circular>
       </v-card>
     </v-dialog>
-    <v-card color="pl-10 pt-10 pr-10" width="1000" class="mx-auto" flat style="border:1px solid #e0e0e0">
-      <v-row class="pa-2">
-        <!-- <v-btn fab outlined small color="indigo" to="employee">
-          <v-icon>mdi-arrow-left</v-icon>
-        </v-btn> -->
-        <v-btn fab small width="30" height="30" color="#338ABF" to="employee">
-          <v-icon color="white">mdi-arrow-left</v-icon>
+
+    <v-card class="card-shadow mx-auto" width="1200">
+      <v-card-title style="display:flex;background-color:#568fb3;color:white">
+        <v-btn fab elevation="0" dark width="30" height="30" small color="white " to="employee">
+          <v-icon color="#338ABF">mdi-arrow-left</v-icon>
         </v-btn>
-        <span class="mt-1 ml-2">ເພີ່ມຂໍ້ມູນພະນັກງານ</span>
-      </v-row>
-      <Height />
-      <Height />
-      <Height />
-      <v-form v-model="valid" lazy-validation ref="form">
-        <v-row>
-          <v-col cols="6" md="4" sm="4">
-            <v-text-field :rules="nameRules" label="ລະຫັດພະນັກງານ" outlined dense v-model="emp_id"></v-text-field>
-            <div class="tops">
-              <span class="red--text pl-1">{{ id_mess }}</span>
-            </div>
-          </v-col>
-          <v-col cols="6" md="4" sm="4"><v-text-field :rules="nameRules" label="ຊື່" outlined dense
-              v-model="emp_name"></v-text-field>
-            <div class="tops">
-              <span class="red--text pl-1">{{ name_mess }}</span>
-            </div>
-          </v-col><v-col cols="6" md="4" sm="4">
-            <v-text-field :rules="nameRules" label="ນາມສະກຸນ" outlined dense v-model="emp_surname"></v-text-field>
-            <div class="tops">
-              <span class="red--text pl-1">{{ sur_mess }}</span>
-            </div>
-          </v-col>
-        </v-row>
-        <div class="margintops">
+        <v-spacer></v-spacer>
+        ເພີ່ມຂໍ້ມູນພະນັກງານ
+        <v-spacer></v-spacer>
+      </v-card-title>
+      <v-card-text class="pa-8 mx-auto" width="1200" style="border:0px solid #e0e0e0">
+        <v-form v-model="valid" lazy-validation ref="form">
           <v-row>
-            <v-col cols="6" md="4" sm="4">
-              <v-text-field :rules="nameRules" label="ບ້ານເກີດ" outlined dense v-model="emp_village"></v-text-field>
-              <div class="tops">
-                <span class="red--text pl-1">{{ vill_mess }}</span>
+            <v-col cols="3" class="text-center">
+              <height />
+              <div class="text-center">
+                <div v-if="imagePreview == ''">
+                  <img src="../assets/images/profile.png" class="preview-image" v-on:click="openUpload" height="200px"
+                    cover>
+                </div>
+                <div v-else>
+                  <img v-bind:src="imagePreview" class="preview-image" v-on:click="openUpload" height="200px" cover>
+                </div>
               </div>
+              <input name="image" type="file" id="file-field" v-on:change="updagePreview" style="display: none;">
+
             </v-col>
-            <v-col cols="6" md="4" sm="4"><v-text-field :rules="nameRules" label="ເມືອງ" outlined dense
-                v-model="emp_district"></v-text-field>
-              <div class="tops">
-                <span class="red--text pl-1">{{ dist_mess }}</span>
-              </div>
-            </v-col><v-col cols="6" md="4" sm="4">
-              <v-text-field :rules="nameRules" label="ແຂວງ" outlined dense v-model="emp_province"></v-text-field>
-              <div class="tops">
-                <span class="red--text pl-1">{{ prov_mess }}</span>
-              </div>
+            <v-col cols="9">
+              <v-row>
+                <v-col clos="6" md="6" sm="6">
+                  <v-text-field :rules="nameRules" label="ລະຫັດພະນັກງານ" outlined dense v-model="emp_id"></v-text-field>
+                  <div class="tops">
+                    <span class="red--text">{{ id_mess }}</span>
+                  </div>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col clos="6" md="6" sm="6">
+                  <v-text-field :rules="nameRules" label="ຊື່" outlined dense v-model="emp_name"></v-text-field>
+                  <div class="tops">
+                    <span class="red--text">{{ name_mess }}</span>
+                  </div>
+                </v-col>
+                <v-col clos="6" md="6" sm="6">
+                  <v-text-field :rules="nameRules" label="ນາມສະກຸນ" outlined dense v-model="emp_surname"></v-text-field>
+                  <div class="tops">
+                    <span class="red--text">{{ sur_mess }}</span>
+                  </div>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col clos="6" md="4" sm="4">
+                  <v-text-field :rules="nameRules" label="ບ້ານເກີດ" outlined dense v-model="emp_village"></v-text-field>
+                  <div class="tops">
+                    <span class="red--text">{{ vill_mess }}</span>
+                  </div>
+                </v-col>
+                <v-col clos="6" md="4" sm="4">
+                  <v-text-field :rules="nameRules" label="ເມືອງ" outlined dense v-model="emp_district"></v-text-field>
+                  <div class="tops">
+                    <span class="red--text">{{ dist_mess }}</span>
+                  </div>
+                </v-col>
+                <v-col clos="6" md="4" sm="4">
+                  <v-text-field :rules="nameRules" label="ແຂວງ" outlined dense v-model="emp_province"></v-text-field>
+                  <div class="tops">
+                    <span class="red--text">{{ prov_mess }}</span>
+                  </div>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col clos="6" md="4" sm="4">
+                  <v-radio-group inline v-model="emp_gender" :rules="nameRules">
+                    <v-row class="pl-3">
+                      <span class="mt-1">ເພດ</span>
+                      <Width />
+                      <v-radio label="ຊາຍ" value="ຊາຍ" class="mt-1"></v-radio>
+                      <Width />
+                      <v-radio label="ຍິງ" value="ຍິງ"></v-radio>
+                    </v-row>
+                  </v-radio-group>
+                  <div class="tops">
+                  </div>
+                </v-col>
+                <v-col clos="6" md="4" sm="4">
+                  <v-text-field :rules="nameRules" label="ສະຖານະ" outlined dense
+                    v-model="emp_gender_status"></v-text-field>
+                  <div class="tops">
+                  </div>
+                </v-col>
+                <v-col clos="6" md="4" sm="4">
+                  <v-text-field :rules="nameRules" label="ເລກທີໃບຂັບຂີ່" outlined dense type="number"
+                    v-model="emp_licens_number"></v-text-field>
+                  <div class="tops">
+                  </div>
+                </v-col>
+              </v-row>
             </v-col>
           </v-row>
-        </div>
-        <div class="margintops">
           <v-row>
-            <v-col cols="6" md="4" sm="4">
-              <v-radio-group inline v-model="emp_gender" :rules="nameRules">
-                <v-row class="pl-3">
-                  <span class="mt-1">ເພດ</span>
-                  <Width />
-                  <v-radio label="ຊາຍ" value="ຊາຍ" class="mt-1"></v-radio>
-                  <Width />
-                  <v-radio label="ຍິງ" value="ຍິງ"></v-radio>
-                </v-row>
-              </v-radio-group>
-
+            <v-col clos="6" md="3" sm="3">
+              <v-text-field :rules="nameRules" label="ໃບຂັບຂີ່ອອກທີ" outlined dense v-model="emp_verby"></v-text-field>
+              <div class="tops">
+              </div>
             </v-col>
-            <v-col cols="6" md="4" sm="4">
-              <v-text-field :rules="nameRules" label="ສະຖານະ" outlined dense v-model="emp_gender_status"></v-text-field>
-
-            </v-col>
-            <v-col cols="6" md="4" sm="4">
-              <v-text-field :rules="nameRules" label="ເລກທີໃບຂັບຂີ່" outlined dense type="number"
-                v-model="emp_licens_number"></v-text-field>
-
-            </v-col>
-          </v-row>
-        </div>
-        <div class="margintops">
-          <v-row>
-
-            <v-col cols="6" md="4" sm="4"><v-text-field :rules="nameRules" label="ໃບຂັບຂີ່ອອກທີ" outlined dense
-                v-model="emp_verby"></v-text-field>
-
-            </v-col>
-            <v-col cols="6" md="4" sm="4">
+            <v-col clos="6" md="3" sm="3">
               <v-text-field :rules="nameRules" label="ໃບຂັບຂີ່ໝົດອາຍຸ" outlined dense
                 v-model="emp_licens_expire_date"></v-text-field>
-
+              <div class="tops">
+              </div>
             </v-col>
-            <v-col cols="6" md="4" sm="4">
-              <!-- <v-text-field :rules="nameRules" label="ເລກທີບັດປະຈຳຕົວ" outlined dense type="number" v-model="emp_card_number"></v-text-field> -->
-
-            </v-col>
-          </v-row>
-        </div>
-        <div class="margintops">
-          <v-row>
-            <v-col cols="6" md="4" sm="4">
+            <v-col clos="6" md="3" sm="3">
               <v-text-field :rules="nameRules" label="ເບີໂທ1" outlined dense type="number"
                 v-model="emp_mobile"></v-text-field>
+              <div class="tops">
+              </div>
             </v-col>
-            <v-col cols="6" md="4" sm="4">
+            <v-col clos="6" md="3" sm="3">
               <v-text-field :rules="nameRules" label="ເບີໂທ2" outlined dense type="number"
                 v-model="emp_mobile1"></v-text-field>
+              <div class="tops">
+              </div>
             </v-col>
           </v-row>
-        </div>
-      </v-form>
-
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="red" @click="onClearData">
-          <v-icon color="white">mdi-close</v-icon>
-          <span class="white--text">ລ້າງຂໍ້ມູນ</span>
-        </v-btn>
-        <v-btn color="#338ABF" @click="onInserEmpInfo">
-          <v-icon color="white">mdi-check</v-icon>
-          <span class="white--text">ບັນທຶກ</span>
-        </v-btn>
-      </v-card-actions>
-
-      <Height />
-      <Height />
-      <Height />
+        </v-form>
+        <Height />
+        <Height />
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="red" @click="onClearData">
+            <v-icon color="white">mdi-close</v-icon>
+            <span class="white--text">ລ້າງຂໍ້ມູນ</span>
+          </v-btn>
+          <v-btn color="#338ABF" @click="onInserEmpInfo">
+            <v-icon color="white">mdi-check</v-icon>
+            <span class="white--text">ບັນທຶກ</span>
+          </v-btn>
+        </v-card-actions>
+        <Height />
+      </v-card-text>
     </v-card>
+
   </div>
 </template>
 <script>
@@ -144,6 +159,7 @@ export default {
       driver_licens_issued: false,
       driver_licens_expire: false,
       //inser state
+      imagePreview: '',
       emp_id: '',
       emp_name: '',
       emp_surname: '',
@@ -158,6 +174,7 @@ export default {
       emp_mobile: '',
       emp_mobile1: '',
       emp_verby: '',
+      image: '',
       /////////////
       em_userId: '',
       loading_processing: false,
@@ -168,18 +185,45 @@ export default {
     }
   },
   methods: {
-    onGetEmpImage(file) {
+    openUpload() {
+      document.getElementById('file-field').click()
+    },
+
+    updagePreview(e, file) {
+      var reader, files = e.target.files
+
+      if (files.length === 0) {
+        console.log('empty')
+      }
+
+      reader = new FileReader()
+
+      reader.onload = (e) => {
+        this.imagePreview = e.target.result
+      }
+
+      reader.readAsDataURL(files[0])
+
       if (file) {
-        this.url = URL.createObjectURL(this.image)
-        console.log(this.url)
+        this.image = URL.createObjectURL(this.image)
+        console.log(this.image)
       } else {
-        this.url = null
+        this.image = null
       }
     },
+    // onGetEmpImage(file) {
+    //   if (file) {
+    //     this.url = URL.createObjectURL(this.image)
+    //     console.log(this.url)
+    //   } else {
+    //     this.url = null
+    //   }
+    // },
     onClearData() {
       this.$refs.form.reset();
       setTimeout(() => this.emp_gender = 'ຊາຍ', 1000)
     },
+
     async onInserEmpInfo() {
       if (!this.$refs.form.validate()) return null
       try {
@@ -254,4 +298,10 @@ export default {
 .tops {
   margin-top: -25px;
   font-size: 14px;
-}</style>
+}
+
+.preview-image {
+  width: 220px;
+  height: 220px;
+}
+</style>

@@ -75,10 +75,7 @@
                             <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" class="font-weight-bold">
                                 ລວມລາຄາທັງໝົດ</td>
                         </tr>
-
-
-
-
+                        
                         <tr style="padding:5px;border: 0.5px solid #999;" v-for="(item, i) in this.report_payment_debt"
                             :key="i">
                             <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" class="text-center">{{ i + 1 }}

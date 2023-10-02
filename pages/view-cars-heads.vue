@@ -6,414 +6,567 @@
             </v-card>
         </v-dialog>
         <!-- General car info -->
-        <v-card color="pl-10 pr-10" class="card-shadow">
-
-            <v-form v-model="valid" ref="form" lazy-validation>
-                <!-- ຂໍ້ມູນຫົວລົດ================== -->
-                <v-card flat>
-                    <div class="pa-2 pl-6 pt-4 d-flex">
-                        <v-btn fab dark elevation="0" width="40" height="40" color="#338ABF" to="cars_14">
-                            <v-icon color="white">mdi-arrow-left</v-icon>
-                        </v-btn>
-                        <h3 class="top">ເບີ່ງຂໍ້ມູນຫົວລົດ</h3>
-                        <v-spacer></v-spacer>
-                        <div v-if="alert === true"
-                            style="border:1px solid red;height:40px;border-radius:3px;display:flex;align-items:center"
-                            class="ml-2 pl-2 pr-10 mr-4">
-                            <v-icon color="red">mdi-alert-outline</v-icon>
-                            <span class="ml-2 red--text">ນໍ້າມັນເຄື່ອງໝົດກຳນົດແລ້ວ!</span>
-                        </div>
-                    </div>
-
-                    <v-card-text>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
-
-                            <div style="width:100%" class="px-2">
-                                <span>ທະບຽນລົດ</span>
-                                <v-text-field label="ທະບຽນລົດ" dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_NUMBER"></v-text-field>
+        <v-card class="card-shadow mx-auto" width="1400">
+            <v-card-title style="display:flex;background-color:#568fb3;color:white">
+                <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="cars_14">
+                    <v-icon color="#338ABF">mdi-arrow-left</v-icon>
+                </v-btn>
+                <v-spacer></v-spacer>
+                ເບີ່ງຂໍ້ມູນຫົວລົດ
+                <v-spacer></v-spacer>
+            </v-card-title>
+            <v-card-text>
+                <v-form v-model="valid" ref="form" lazy-validation>
+                    <!-- ຂໍ້ມູນຫົວລົດ================== -->
+                    <v-card flat>
+                        <div class="pa-2 pl-6 pt-4 d-flex">
+                            <v-spacer></v-spacer>
+                            <div v-if="alert === true"
+                                style="border:1px solid red;height:40px;border-radius:3px;display:flex;align-items:center"
+                                class="ml-2 pl-2 pr-10 mr-4">
+                                <v-icon color="red">mdi-alert-outline</v-icon>
+                                <span class="ml-2 red--text">ນໍ້າມັນເຄື່ອງໝົດກຳນົດແລ້ວ!</span>
                             </div>
-                            <div class="px-2" style="width:100%">
-                                <span>ປະກັນໄພ</span>
-                                <v-text-field label="ປະກັນໄພ" dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_GALATY"></v-text-field>
+                            <div v-if="toBatRowStatus === 'W'"
+                                style="border:1px solid #F9A825;height:40px;border-radius:3px;display:flex;align-items:center"
+                                class="ml-2 pl-2 pr-10 mr-4">
+                                <v-icon color="#F9A825">mdi-alert-outline</v-icon>
+                                <span class="ml-2" style="color: #F9A825;">ໝໍ້ໄຟໃກ້ຈະໝົດອາຍຸການໃຊ້ງານ</span>
                             </div>
-                            <div class="px-2" style="width:100%">
-                                <span>ວັນທີປະກັນໄພໝົດ</span>
-                                <v-text-field label="ວັນທີປະກັນໄພໝົດ" dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_DATE_GALATY"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%">
-                                <span>ເຂັມກີໂລແມັດ</span>
-
-                                <v-text-field label="ເຂັມກີໂລແມັດ" dense flat solo readonly v-model="kim_KM"
-                                    :background-color="alert === true ? 'red' : '#f5f5f5'"></v-text-field>
-                            </div>
-
-                        </div>
-                        <div class="d-flex align-center">
-
-                            <div style="width:100%" class="px-2"><span>ຍີ່ຫໍ້ລົດ</span>
-                                <v-text-field label="ຍີ່ຫໍ້ລົດ" dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_BRANCH"></v-text-field>
-                            </div>
-                            <div style="width:100%" class="px-2"><span>ລົດປີ</span>
-                                <v-text-field label="ລົດປີ" dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_YEARLEVEL"></v-text-field>
-                            </div>
-                            <div style="width:100%" class="px-2"><span>ປະເພດລົດ</span>
-                                <v-text-field label="ປະເພດລົດ" dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_BRANCHTYPE"></v-text-field>
-                            </div>
-                            <div style="width:100%" class="px-2"><span>ເລກໄມປ່ຽນນໍ້າມັນເຄື່ອງຮອບຕໍ່ໄປ</span>
-                                <v-text-field label="ເລກໄມປ່ຽນນໍ້າມັນເຄື່ອງຮອບຕໍ່ໄປ" dense flat solo readonly
-                                    v-model="h_LEK_NUMMUNKHG"
-                                    :background-color="alert === true ? 'red' : '#f5f5f5'"></v-text-field>
-                            </div>
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
-
-                            <div style="width:100%" class="px-2"><span>ເລກຈັກ</span>
-                                <v-text-field label="ເລກຈັກ" dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_LEKJUK"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"><span>ເລກຖັງ</span><v-text-field label="ເລກຖັງ" dense
-                                    flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_LEKTHUNG"></v-text-field></div>
-                            <div class="px-2" style="width:100%"><span>GPS</span><v-text-field label="GPS" dense flat
-                                    solo background-color="#f5f5f5" readonly v-model="h_VICIVLE_GPS"></v-text-field></div>
-                            <div class="px-2" style="width:100%"><span>ຝອຍປັດນໍ້າຝົນ</span><v-text-field label="ຝອຍປັດນໍ້າຝົນ"
-                                    dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_POYPUDNUMFON"></v-text-field>
-                            </div>
-
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
-
-                            <div style="width:100%" class="px-2"><span>ໝໍ້ໄຟ</span>
-                                <v-text-field label="ໝໍ້ໄຟ" dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_MORFAI"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"><span>ບັງຕົມ</span><v-text-field label="ບັງຕົມ" dense
-                                    flat solo background-color="#f5f5f5" readonly v-model="h_VICIVLE_BGTOM"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"><span>ຈານລາກ</span><v-text-field label="ຈານລາກ" dense
-                                    flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_JANLARK"></v-text-field></div>
-                            <div class="px-2" style="width:100%"><span>ໄຟໜ້າ</span><v-text-field label="ໄຟໜ້າ" dense flat
-                                    solo background-color="#f5f5f5" readonly v-model="h_VICIVLE_FAINAR"></v-text-field>
-                            </div>
-
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
-
-                            <div style="width:100%" class="px-2"><span>ໄຟທ້າຍ</span>
-                                <v-text-field label="ໄຟທ້າຍ" dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_FAITHAIY"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"><span>ໄຟຂ້າງ</span><v-text-field label="ໄຟຂ້າງ" dense
-                                    flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_FAIYKHANG"></v-text-field></div>
-                            <div class="px-2" style="width:100%"><span>ແວ່ນມອງໜ້າ</span><v-text-field label="ແວ່ນມອງໜ້າ" dense
-                                    flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_VENMONGNAR"></v-text-field></div>
-                            <div class="px-2" style="width:100%"><span>ແວ່ນມອງຫຼັງ</span><v-text-field label="ແວ່ນມອງຫຼັງ"
-                                    dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_VENMONGLHG"></v-text-field></div>
-
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
-
-                            <div style="width:100%" class="px-2"><span>ແວ່ນຂ້າງ</span>
-                                <v-text-field label="ແວ່ນຂ້າງ" dense flat solo background-color="#f5f5f5" readonly
-                                    v-model="h_VICIVLE_VENKHANG"></v-text-field>
+                            <div v-else-if="toBatRowStatus === 'E'"
+                                style="border:1px solid red;height:40px;border-radius:3px;display:flex;align-items:center"
+                                class="ml-2 pl-2 pr-10 mr-4">
+                                <v-icon color="red">mdi-alert-outline</v-icon>
+                                <span class="ml-2" style="color: r;">ກະລຸນາປ່ຽນໝໍ້ໄຟ</span>
                             </div>
 
                         </div>
 
+                        <v-card-text>
+                            <v-row>
+                                <v-col cols="3">
+                                    <Height />
+                                    <Height />
+                                    <v-card class="text-center" max-width="344">
+                                        <img src="../assets/images/cargo-truck.png" height="200px" cover>
+                                    </v-card>
+                                </v-col>
+                                <v-col cols="9">
+                                    <v-row>
+                                        <v-col clos="6" md="4" sm="4">
+                                            <span>ທະບຽນລົດ</span>
+                                            <v-text-field label="ທະບຽນລົດ" dense flat solo background-color="#f5f5f5"
+                                                readonly v-model="h_VICIVLE_NUMBER"></v-text-field>
+                                            <div class="tops">
+                                            </div>
+                                        </v-col>
+                                        <v-col clos="6" md="4" sm="4">
+                                            <span>ວັນໝົດອາຍຸທະບຽນລົດ</span>
+                                            <v-text-field :rules="nameRules" dense flat solo background-color="#f5f5f5"
+                                                v-model="numberlad"></v-text-field>
+                                            <div class="tops">
+                                            </div>
+                                        </v-col>
+                                        <v-col clos="6" md="4" sm="4">
+                                            <span>ປະກັນໄພ</span>
+                                            <v-text-field label="ປະກັນໄພ" dense flat solo background-color="#f5f5f5"
+                                                readonly v-model="h_VICIVLE_GALATY"></v-text-field>
+                                            <div class="tops">
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col clos="6" md="4" sm="4">
+                                            <span>ວັນທີປະກັນໄພໝົດ</span>
+                                            <v-menu ref="start_galaty" v-model="start_galaty"
+                                                :close-on-content-click="false" :return-value.sync="h_VICIVLE_DATE_GALATY"
+                                                transition="scale-transition" offset-y min-width="auto">
+                                                <template v-slot:activator="{ on, attrs }">
+                                                    <v-text-field dense outlined v-model="h_VICIVLE_DATE_GALATY"
+                                                        background-color="#f5f5f5" required append-icon="mdi-calendar"
+                                                        readonly v-bind="attrs" v-on="on" :rules="nameRules"></v-text-field>
+                                                </template>
+                                                <v-date-picker v-model="h_VICIVLE_DATE_GALATY" no-title scrollable
+                                                    @input="$refs.start_galaty.save(h_VICIVLE_DATE_GALATY)">
+                                                    <v-spacer></v-spacer>
+                                                </v-date-picker>
+                                            </v-menu>
+                                            <div class="tops">
+                                            </div>
+                                        </v-col>
+                                        <v-col clos="6" md="4" sm="4">
+                                            <span>ຍີ່ຫໍ້ລົດ</span>
+                                            <v-text-field :rules="nameRules" label="ຍີ່ຫໍ້ລົດ" dense flat solo
+                                                background-color="#f5f5f5" v-model="h_VICIVLE_BRANCH"></v-text-field>
+                                            <div class="tops">
+                                            </div>
+                                        </v-col>
+                                        <v-col clos="6" md="4" sm="4">
+                                            <span>ເຂັມກີໂລແມັດ</span>
+                                            <v-text-field :rules="nameRules" label="ເຂັມກີໂລແມັດ" dense flat solo
+                                                v-model="kim_KM"
+                                                :background-color="alert === true ? 'red' : '#f5f5f5'"></v-text-field>
+                                            <div class="tops">
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row>
+                                        <v-col clos="6" md="4" sm="4">
+                                            <span>ລົດປີ</span>
+                                            <v-text-field :rules="nameRules" label="ລົດປີ" dense flat solo
+                                                background-color="#f5f5f5" v-model="h_VICIVLE_YEARLEVEL"></v-text-field>
+                                            <div class="tops">
+                                            </div>
+                                        </v-col>
+                                        <v-col clos="6" md="4" sm="4">
+                                            <span>ສີລົດ</span>
+                                            <v-text-field :rules="nameRules" dense outlined background-color="#f5f5f5"
+                                                v-model="silad"></v-text-field>
+                                            <div class="tops">
+                                            </div>
+                                        </v-col>
+                                        <v-col clos="6" md="4" sm="4">
+                                            <span>ເລກໄມປ່ຽນນໍ້າມັນເຄື່ອງຮອບຕໍ່ໄປ</span>
+                                            <v-text-field :rules="nameRules" label="ເລກໄມປ່ຽນນໍ້າມັນເຄື່ອງຮອບຕໍ່ໄປ" dense
+                                                flat solo v-model="h_LEK_NUMMUNKHG"
+                                                :background-color="alert === true ? 'red' : '#f5f5f5'"></v-text-field>
+                                            <div class="tops">
+                                            </div>
+                                        </v-col>
 
-                        <div class="margintop d-flex align-center mt-4">
-
-                            <div class="d-flex align-center pt-2 ml-2 pr-2"
-                                style="background-color:#f7f7f7;border-radius:5px;height:40px">
-                                <v-radio-group inline v-model="h_VICIVLE_GLASS">
-                                    <div class="pl-4 d-flex align-center">
-                                        <span>ນໍ້າມັນລົດໃຊ້</span>
-                                        <Width />
-                                        <v-radio label="ແອັດຊັງ" value="ແອັດຊັງ"></v-radio>
-                                        <Width />
-                                        <v-radio label="ກະຊວນ" value="ກະຊວນ"></v-radio>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ປະເພດລົດ</span>
+                                    <v-text-field label="ປະເພດລົດ" dense flat solo background-color="#f5f5f5" readonly
+                                        v-model="h_VICIVLE_BRANCHTYPE"></v-text-field>
+                                    <div class="tops">
                                     </div>
-                                </v-radio-group>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ເລກຈັກ</span>
+                                    <v-text-field label="ເລກຈັກ" dense flat solo background-color="#f5f5f5" readonly
+                                        v-model="h_VICIVLE_LEKJUK"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ເລກຖັງ</span><v-text-field label="ເລກຖັງ" dense flat solo
+                                        background-color="#f5f5f5" readonly v-model="h_VICIVLE_LEKTHUNG"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>GPS</span><v-text-field label="GPS" dense flat solo background-color="#f5f5f5"
+                                        readonly v-model="h_VICIVLE_GPS"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+
+                            </v-row>
+                            <v-row>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ຝອຍປັດນໍ້າຝົນ</span><v-text-field label="ຝອຍປັດນໍ້າຝົນ" dense flat solo
+                                        background-color="#f5f5f5" readonly v-model="h_VICIVLE_POYPUDNUMFON"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ໝໍ້ໄຟ</span>
+                                    <v-text-field label="ໝໍ້ໄຟ" dense flat solo background-color="#f5f5f5" readonly
+                                        v-model="h_VICIVLE_MORFAI"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ວັນທີໃສ່ໝໍ້ໄຟ</span>
+                                    <v-menu ref="start_bat" v-model="start_bat" :close-on-content-click="false"
+                                        :return-value.sync="start_bat_date" transition="scale-transition" offset-y
+                                        min-width="auto">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-text-field v-if="toBatRowStatus === 'W'" dense outlined
+                                                v-model="start_bat_date" background-color="#FFF176" required
+                                                append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
+                                                :rules="nameRules"></v-text-field>
+                                            <v-text-field v-else-if="toBatRowStatus === 'E'" dense outlined
+                                                v-model="start_bat_date" background-color="red" required
+                                                append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
+                                                :rules="nameRules"></v-text-field>
+                                            <v-text-field v-else dense outlined v-model="start_bat_date"
+                                                background-color="#f5f5f5" required append-icon="mdi-calendar" readonly
+                                                v-bind="attrs" v-on="on" :rules="nameRules"></v-text-field>
+                                        </template>
+                                        <v-date-picker v-model="start_bat_date" no-title scrollable
+                                            @input="$refs.start_bat.save(start_bat_date)">
+                                            <v-spacer></v-spacer>
+                                        </v-date-picker>
+                                    </v-menu>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ວັນທີໝົດອາຍຸໝໍ້ໄຟ</span>
+                                    <v-menu ref="end_bat" v-model="end_bat" :close-on-content-click="false"
+                                        :return-value.sync="end_bat_date" transition="scale-transition" offset-y
+                                        min-width="auto">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-text-field v-if="toBatRowStatus === 'W'" dense outlined
+                                                background-color="#FFF176" v-model="end_bat_date" required
+                                                append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
+                                                :rules="nameRules"></v-text-field>
+                                            <v-text-field v-else-if="toBatRowStatus === 'E'" dense outlined
+                                                background-color="red" v-model="end_bat_date" required
+                                                append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
+                                                :rules="nameRules"></v-text-field>
+                                            <v-text-field v-else dense outlined background-color="#f5f5f5"
+                                                v-model="end_bat_date" required append-icon="mdi-calendar" readonly
+                                                v-bind="attrs" v-on="on" :rules="nameRules"></v-text-field>
+                                        </template>
+                                        <v-date-picker v-model="end_bat_date" no-title scrollable
+                                            @input="$refs.end_bat.save(end_bat_date)">
+                                            <v-spacer></v-spacer>
+                                        </v-date-picker>
+                                    </v-menu>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ບັງຕົມ</span><v-text-field label="ບັງຕົມ" dense flat solo
+                                        background-color="#f5f5f5" readonly v-model="h_VICIVLE_BGTOM"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ຈານລາກ</span><v-text-field label="ຈານລາກ" dense flat solo
+                                        background-color="#f5f5f5" readonly v-model="h_VICIVLE_JANLARK"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ໄຟໜ້າ</span><v-text-field label="ໄຟໜ້າ" dense flat solo background-color="#f5f5f5"
+                                        readonly v-model="h_VICIVLE_FAINAR"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ໄຟທ້າຍ</span>
+                                    <v-text-field label="ໄຟທ້າຍ" dense flat solo background-color="#f5f5f5" readonly
+                                        v-model="h_VICIVLE_FAITHAIY"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ໄຟຂ້າງ</span><v-text-field label="ໄຟຂ້າງ" dense flat solo
+                                        background-color="#f5f5f5" readonly v-model="h_VICIVLE_FAIYKHANG"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ແຮງມ້າ</span><v-text-field label="ບັງຕົມ" dense flat solo
+                                        background-color="#f5f5f5" readonly v-model="h_VICIVLE_BGTOM"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ແວ່ນມອງໜ້າ</span><v-text-field label="ແວ່ນມອງໜ້າ" dense flat solo
+                                        background-color="#f5f5f5" readonly v-model="h_VICIVLE_VENMONGNAR"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ແວ່ນມອງຫຼັງ</span><v-text-field label="ແວ່ນມອງຫຼັງ" dense flat solo
+                                        background-color="#f5f5f5" readonly v-model="h_VICIVLE_VENMONGLHG"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col clos="6" md="3" sm="3">
+                                    <span>ແວ່ນຂ້າງ</span>
+                                    <v-text-field label="ແວ່ນຂ້າງ" dense flat solo background-color="#f5f5f5" readonly
+                                        v-model="h_VICIVLE_VENKHANG"></v-text-field>
+                                    <div class="tops">
+                                    </div>
+                                </v-col>
+                            </v-row>
+                            <Height />
+                            <Height />
+                            <div class="margintop d-flex align-center mt-4">
+
+                                <div class="d-flex align-center pt-2 pr-2"
+                                    style="background-color:#f7f7f7;border-radius:5px;height:40px">
+                                    <v-radio-group inline v-model="h_VICIVLE_GLASS">
+                                        <div class="pl-4 d-flex align-center">
+                                            <span>ນໍ້າມັນລົດໃຊ້</span>
+                                            <Width />
+                                            <v-radio label="ແອັດຊັງ" value="ແອັດຊັງ"></v-radio>
+                                            <Width />
+                                            <v-radio label="ກະຊວນ" value="ກະຊວນ"></v-radio>
+                                        </div>
+                                    </v-radio-group>
+                                </div>
+
+                                <div class="d-flex align-center pt-2 ml-2 pr-2"
+                                    style="background-color:#f7f7f7;border-radius:5px;height:40px">
+                                    <v-radio-group inline v-model="h_STATUS">
+                                        <div class="pl-4 d-flex align-center">
+                                            <span>ສະຖານະລົດ</span>
+                                            <Width />
+                                            <v-radio label="ວ່າງ" value="Y" color="#55CE63"></v-radio>
+                                            <Width />
+                                            <v-radio label="ບໍ່ວ່າງ" value="N" color="red"></v-radio>
+                                        </div>
+                                    </v-radio-group>
+                                </div>
                             </div>
+                        </v-card-text>
+                    </v-card>
+                    <v-card flat>
 
-                            <div class="d-flex align-center pt-2 ml-2 pr-2"
-                                style="background-color:#f7f7f7;border-radius:5px;height:40px">
-                                <v-radio-group inline v-model="h_STATUS">
-                                    <div class="pl-4 d-flex align-center">
-                                        <span>ສະຖານະລົດ</span>
-                                        <Width />
-                                        <v-radio label="ວ່າງ" value="Y" color="#55CE63"></v-radio>
-                                        <Width />
-                                        <v-radio label="ບໍ່ວ່າງ" value="N" color="red"></v-radio>
-                                    </div>
-                                </v-radio-group>
+                        <v-card-text class="px-7">
+                            <div class="d-flex">
+                                <span style="font-size:14pt">ຂໍ້ມູນຢາງລົດ:</span>
                             </div>
-                        </div>
-                    </v-card-text>
-                </v-card>
+                            <Height />
+                            <div class="d-flex">
+                                <div style="width:100%">
 
-                <!-- ຂໍ້ມູນຢາງລົດ -->
-                <v-card flat>
+                                    <!-- Left -->
+                                    <div style="background-color:#f5f5f5;height:85px;padding-top:5px;border-radius:5px"
+                                        class="px-2">
+                                        <div class="d-flex pt-1">
+                                            <v-text-field flat dense label="ລະຫັດຢາງລົດ"
+                                                v-model="ll_TIRE_NO_1"></v-text-field>
 
-                    <v-card-text class="px-7">
-                        <div class="d-flex">
-                            <span style="font-size:14pt">ຂໍ້ມູນຢາງລົດ:</span>
-                        </div>
-                        <div class="d-flex">
-                            <div style="width:100%">
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="ll_TIRE_DATE_1"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="ll_TIRE_KM_1"></v-text-field>
+                                        </div>
+                                        <div class="d-flex">
+                                            <v-text-field style="margin-top:0px" flat dense label="ເລກໄມລ່າສຸດ"
+                                                v-model="h_KM1"></v-text-field>
+                                            <v-text-field style="margin-top:0px" class="ml-2" flat dense
+                                                label="ເລກໄມປະຈຸບັນ" v-model="h_KML_1"></v-text-field>
 
-                                <!-- Left -->
-                                <div style="background-color:#f5f5f5;height:85px;padding-top:5px;border-radius:5px"
-                                    class="px-2">
-                                    <div class="d-flex pt-1">
-                                        <v-text-field   flat dense label="ລະຫັດຢາງລົດ"
-                                            v-model="ll_TIRE_NO_1"></v-text-field>
-
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="ll_TIRE_DATE_1"></v-text-field>
-                                        <v-text-field class="ml-2" dense   flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="ll_TIRE_KM_1"></v-text-field>
+                                        </div>
                                     </div>
-                                    <div class="d-flex">
-                                        <v-text-field style="margin-top:0px"    flat dense
-                                            label="ເລກໄມລ່າສຸດ" v-model="h_KM1"></v-text-field>
-                                        <v-text-field style="margin-top:0px" class="ml-2"   flat dense
-                                            label="ເລກໄມປະຈຸບັນ" v-model="h_KML_1"></v-text-field>
+                                    <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
+                                        class="px-2 mt-1 pt-1" v-if="ll_TIRE_NO_2">
+                                        <div class="d-flex">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="ll_TIRE_NO_2"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="ll_TIRE_DATE_2"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="ll_TIRE_KM_2"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM2"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_2"></v-text-field>
+                                        </div>
+                                    </div>
+                                    <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
+                                        class="px-2 mt-1">
+                                        <div class="d-flex pt-1">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="ll_TIRE_NO_3"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="ll_TIRE_DATE_3"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="ll_TIRE_KM_3"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM3"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_3"></v-text-field>
+                                        </div>
+                                    </div>
+                                    <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
+                                        class="px-2 mt-1 pt-2">
+                                        <div class="d-flex">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="ll_TIRE_NO_4"></v-text-field>
 
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="ll_TIRE_DATE_4"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="ll_TIRE_KM_4"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM4"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_4"></v-text-field>
+                                        </div>
+                                    </div>
+                                    <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
+                                        class="px-2 mt-1 pt-2">
+                                        <div style="padding-top: 0px" class="d-flex">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="ll_TIRE_NO_5"></v-text-field>
+
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="ll_TIRE_DATE_5"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="ll_TIRE_KM_5"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM5"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_5"></v-text-field>
+                                        </div>
+                                    </div>
+                                    <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
+                                        class="px-2 mt-1 pt-2">
+                                        <div class="d-flex">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="ll_TIRE_NO_6"></v-text-field>
+
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="ll_TIRE_DATE_6"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="ll_TIRE_KM_6"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM6"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_6"></v-text-field>
+                                        </div>
                                     </div>
                                 </div>
-                                <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
-                                    class="px-2 mt-1 pt-1" v-if="ll_TIRE_NO_2">
-                                    <div class="d-flex">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="ll_TIRE_NO_2"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="ll_TIRE_DATE_2"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="ll_TIRE_KM_2"></v-text-field>
-                                    </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM2"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_2"></v-text-field>
-                                    </div>
-                                </div>
-                                <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
-                                    class="px-2 mt-1">
-                                    <div class="d-flex pt-1">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="ll_TIRE_NO_3"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="ll_TIRE_DATE_3"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="ll_TIRE_KM_3"></v-text-field>
-                                    </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM3"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_3"></v-text-field>
-                                    </div>
-                                </div>
-                                <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
-                                    class="px-2 mt-1 pt-2">
-                                    <div class="d-flex">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="ll_TIRE_NO_4"></v-text-field>
 
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="ll_TIRE_DATE_4"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="ll_TIRE_KM_4"></v-text-field>
-                                    </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM4"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_4"></v-text-field>
-                                    </div>
+                                <div class="text-center">
+                                    <img v-if="r_TIRE_NO_2" class="mx-auto" src="../assets/images/head12.png" width="150"
+                                        height="450" />
+                                    <img v-else class="mx-auto" src="../assets/images/head10.png" width="150"
+                                        height="390" />
                                 </div>
-                                <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
-                                    class="px-2 mt-1 pt-2">
-                                    <div style="padding-top: 0px" class="d-flex">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="ll_TIRE_NO_5"></v-text-field>
 
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="ll_TIRE_DATE_5"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="ll_TIRE_KM_5"></v-text-field>
-                                    </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM5"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_5"></v-text-field>
-                                    </div>
-                                </div>
-                                <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
-                                    class="px-2 mt-1 pt-2">
-                                    <div class="d-flex">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="ll_TIRE_NO_6"></v-text-field>
+                                <!-- Right -->
+                                <div style="width:100%">
+                                    <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
+                                        class="px-2 pt-2">
+                                        <div class="d-flex">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="r_TIRE_NO_1"></v-text-field>
 
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="ll_TIRE_DATE_6"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="ll_TIRE_KM_6"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="r_TIRE_DATE_1"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="r_TIRE_KM_1"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM7"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_7"></v-text-field>
+                                        </div>
                                     </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM6"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_6"></v-text-field>
+                                    <!-- =========12 los========== -->
+                                    <div v-if="r_TIRE_NO_2"
+                                        style="background-color:#f5f5f5;height:80px;padding-top:0px;border-radius:5px"
+                                        class="px-2 mt-1">
+                                        <div class="d-flex pt-2">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="r_TIRE_NO_2"></v-text-field>
+
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="r_TIRE_DATE_2"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="r_TIRE_KM_2"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM8"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_8"></v-text-field>
+                                        </div>
                                     </div>
+
+                                    <!-- /////////////////////////////// -->
+                                    <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
+                                        class="px-2 mt-1">
+                                        <div class="d-flex pt-1">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="r_TIRE_NO_3"></v-text-field>
+
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="r_TIRE_DATE_3"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="r_TIRE_KM_3"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM9"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_9"></v-text-field>
+                                        </div>
+                                    </div>
+                                    <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
+                                        class="px-2 mt-1 pt-2">
+                                        <div class="d-flex">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="r_TIRE_NO_4"></v-text-field>
+
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="r_TIRE_DATE_4"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="r_TIRE_KM_4"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM10"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_10"></v-text-field>
+                                        </div>
+                                    </div>
+                                    <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
+                                        class="px-2 pt-2 mt-1 ">
+                                        <div class="d-flex">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="r_TIRE_NO_5"></v-text-field>
+
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="r_TIRE_DATE_5"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="r_TIRE_KM_5"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM11"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_11"></v-text-field>
+                                        </div>
+                                    </div>
+                                    <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
+                                        class="px-2 mt-1 pt-2">
+                                        <div class="d-flex">
+                                            <v-text-field dense flat label="ລະຫັດຢາງລົດ"
+                                                v-model="r_TIRE_NO_6"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ວັນທີປ່ຽນຢາງ"
+                                                v-model="r_TIRE_DATE_6"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ກຳນົດແລ່ນໄດ້ km"
+                                                v-model="r_TIRE_KM_6"></v-text-field>
+                                        </div>
+                                        <div class="d-flex" style="margin-top:-10px">
+                                            <v-text-field dense flat label="ເລກໄມລ່າສຸດ" v-model="h_KM12"></v-text-field>
+                                            <v-text-field class="ml-2" dense flat label="ເລກໄມປະຈຸບັນ"
+                                                v-model="h_KML_12"></v-text-field>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
+                        </v-card-text>
+                    </v-card>
 
-                            <div class="text-center">
-                                <img v-if="r_TIRE_NO_2" class="mx-auto" src="../assets/images/head12.png" width="150"
-                                    height="450" />
-                                <img v-else class="mx-auto" src="../assets/images/head10.png" width="150" height="390" />
-                            </div>
-
-                            <!-- Right -->
-                            <div style="width:100%">
-                                <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
-                                    class="px-2 pt-2">
-                                    <div class="d-flex">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="r_TIRE_NO_1"></v-text-field>
-
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="r_TIRE_DATE_1"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="r_TIRE_KM_1"></v-text-field>
-                                    </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM7"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_7"></v-text-field>
-                                    </div>
-                                </div>
-                                <!-- =========12 los========== -->
-                                <div v-if="r_TIRE_NO_2"
-                                    style="background-color:#f5f5f5;height:80px;padding-top:0px;border-radius:5px"
-                                    class="px-2 mt-1">
-                                    <div class="d-flex pt-2">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="r_TIRE_NO_2"></v-text-field>
-
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="r_TIRE_DATE_2"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="r_TIRE_KM_2"></v-text-field>
-                                    </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM8"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_8"></v-text-field>
-                                    </div>
-                                </div>
-
-                                <!-- /////////////////////////////// -->
-                                <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
-                                    class="px-2 mt-1">
-                                    <div class="d-flex pt-1">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="r_TIRE_NO_3"></v-text-field>
-
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="r_TIRE_DATE_3"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="r_TIRE_KM_3"></v-text-field>
-                                    </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM9"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_9"></v-text-field>
-                                    </div>
-                                </div>
-                                <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
-                                    class="px-2 mt-1 pt-2">
-                                    <div class="d-flex">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="r_TIRE_NO_4"></v-text-field>
-
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="r_TIRE_DATE_4"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="r_TIRE_KM_4"></v-text-field>
-                                    </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM10"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_10"></v-text-field>
-                                    </div>
-                                </div>
-                                <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
-                                    class="px-2 pt-2 mt-1 ">
-                                    <div class="d-flex">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="r_TIRE_NO_5"></v-text-field>
-
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="r_TIRE_DATE_5"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="r_TIRE_KM_5"></v-text-field>
-                                    </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM11"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_11"></v-text-field>
-                                    </div>
-                                </div>
-                                <div style="background-color:#f5f5f5;height:80px;padding-top:5px;border-radius:5px"
-                                    class="px-2 mt-1 pt-2">
-                                    <div class="d-flex">
-                                        <v-text-field  dense  flat label="ລະຫັດຢາງລົດ"
-                                            v-model="r_TIRE_NO_6"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ວັນທີປ່ຽນຢາງ"
-                                            v-model="r_TIRE_DATE_6"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ກຳນົດແລ່ນໄດ້ km"
-                                            v-model="r_TIRE_KM_6"></v-text-field>
-                                    </div>
-                                    <div class="d-flex" style="margin-top:-10px">
-                                        <v-text-field  dense  flat label="ເລກໄມລ່າສຸດ"
-                                            v-model="h_KM12"></v-text-field>
-                                        <v-text-field class="ml-2" dense  flat label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_12"></v-text-field>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </v-card-text>
-                </v-card>
-
-            </v-form>
-
-            <Height />
-            <Height />
-            <Height />
+                </v-form>
+            </v-card-text>
         </v-card>
+
         <Height />
         <Height />
         <Height />
@@ -434,7 +587,8 @@ export default {
             h_VICIVLE_GLASS: 'ກະຊວນ',
             h_VICIVLE_NUMBER: '',
             h_VICIVLE_GALATY: '',
-            h_VICIVLE_DATE_GALATY: '',
+            start_galaty: false,
+            h_VICIVLE_DATE_GALATY: null,
             h_VICIVLE_TNGLOD: '',
             h_VICIVLE_BRANCH: '',
             h_VICIVLE_YEARLEVEL: '',
@@ -445,6 +599,11 @@ export default {
             h_VICIVLE_GPS: '',
             h_VICIVLE_POYPUDNUMFON: '',
             h_VICIVLE_MORFAI: '',
+            //start and end bat
+            start_bat: false,
+            end_bat: false,
+            start_bat_date: null,
+            end_bat_date: null,
             h_VICIVLE_BGTOM: '',
             h_VICIVLE_JANLARK: '',
             h_VICIVLE_FAINAR: '',
@@ -575,6 +734,9 @@ export default {
                         this.h_VICIVLE_VENMONGNAR = data?.data[0]?.h_VICIVLE_VENMONGNAR,
                         this.h_VICIVLE_VENMONGLHG = data?.data[0]?.h_VICIVLE_VENMONGLHG,
                         this.h_VICIVLE_VENKHANG = data?.data[0]?.h_VICIVLE_VENKHANG,
+                        this.toBatRowStatus = data?.data[0]?.toBatRowStatus,
+                        this.start_bat_date = data?.data[0]?.bat_StartDate,
+                        this.end_bat_date = data?.data[0]?.bat_EndDate,
                         this.r_TIRE_NO_1 = data?.data[0]?.r_TIRE_NO_1,
                         this.r_TIRE_NO_2 = data?.data[0]?.r_TIRE_NO_2,
                         this.r_TIRE_NO_3 = data?.data[0]?.r_TIRE_NO_3,
@@ -665,5 +827,10 @@ export default {
     justify-content: center;
     background-color: red;
     justify-items: center;
+}
+
+.tops {
+    margin-top: -30px;
+    font-size: 14px;
 }</style>
   

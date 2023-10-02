@@ -7,7 +7,7 @@
         </v-dialog>
         <v-card class="card-shadow mb-6" rounded="lg">
             <v-card-title
-                style="border-bottom:0.5px solid #e0e0e0;background-color:#568fb3;color:white">ລາຍງານພະນັກງານ</v-card-title>
+                style="border-bottom:0.5px solid #e0e0e0;background-color:#568fb3;color:white">ລາຍງານລາຍຮັບ - ລາຍຈ່າຍຂອງລົດ</v-card-title>
             <v-form ref="form" v-model="valid" lazy-validation>
                 <v-card-text>
                     <div class="row">
@@ -63,7 +63,7 @@
                         <h3>ທັງໝົດ: <span class="green--text">{{ staft_data_list.length }}</span></h3>
                     </div>
                     <div>
-                        <v-data-table :items="staft_data_list" :headers="staft_headers" :search="search">
+                        <v-data-table :items="staft_data_list" :headers="staft_headers" :search="search" >
                             <template v-slot:item="row">
                                 <tr>
                                     <td><span>{{ row?.index + 1 }}</span></td>
@@ -77,6 +77,8 @@
                                         row?.item?.staff02_Beforepay?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}
                                     </td>
                                     <td class="red--text">{{
+                                        row?.item?.staff02_Notpay?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
+                                            <td class="red--text">{{
                                         row?.item?.staff02_Notpay?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                                     <td class="red--text">
                                         <v-btn small color="#1976D2" class="white--text card-shadow"
@@ -117,11 +119,12 @@ export default {
             staft_data_list: [],
             staft_headers: [
                 { text: 'ລ/ດ', value: ''},
-                { text: 'ຊື່ ແລະ ນາມສະກຸນ', value: '' },
-                { text: 'ຈໍານວນທ່ຽວ', value: '' },
-                { text: 'ບ້ຽງລ້ຽງທັງມົດ', value: '' },
-                { text: 'ບ້ຽງລ້ຽງຈ່າຍກ່ອນ', value: '' },
-                { text: 'ບ້ຽງລ້ຽງຄ້າງຈ່າຍ', value: '' },
+                { text: 'ທະບຽນລົດ', value: '' },
+                { text: 'ຍີ່ຫໍ້', value: '' },
+                { text: 'ປະເພດລົດ', value: '' },
+                { text: 'ລາຍຮັບທັງໝົດ', value: '' },
+                { text: 'ລາຍຈ່າຍທັງໝົດ', value: '' },
+                { text: 'ຍອດທີ່ຍັງເຫຼືອ', value: '' },
                 { text: '', value: '' }
             ],
             valid: true,
@@ -134,7 +137,7 @@ export default {
     methods: {
         edit(key) {
       // this.$router.push({path: '/edit_cars_head', params: {key: 'he'}});
-      this.$router.push({ path: '/staft_report', query: { key: key } })
+      this.$router.push({ path: '/report_income_empeanses_car', query: { key: key } })
     },
         onSearcReport() {
 

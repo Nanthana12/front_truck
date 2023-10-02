@@ -75,6 +75,7 @@
                 </v-snackbar>
             </v-card-text>
         </v-card>
+        
         <!-- dialog invoice -->
         <v-dialog v-model="invoice" fullscreen>
             <v-card class="mx-auto">

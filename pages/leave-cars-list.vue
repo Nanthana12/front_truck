@@ -23,7 +23,7 @@
                     <v-data-table :items="report_leave_car_list" :headers="report_leave_car_header" :search="search">
                         <template v-slot:item="row">
 
-                            <tr :style="{ 'color': row?.item?.totalDay >= '7' ? 'yellow' : 'black' }"
+                            <tr :style="{ 'background-color': row?.item?.totalDay >= '7' ? '#FFCDD2' : '#fff' }"
                                 @mouseover="active = row?.index" @mouseleave="active = ''">
                                 <td>{{ row?.item?.lahud_POYLOD }}</td>
                                 <td>{{ row?.item?.h_VICIVLE_NUMBER }}</td>

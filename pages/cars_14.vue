@@ -27,11 +27,12 @@
       </v-card-title>
       <v-card-text>
         <div style="display:flex;height: 90px;">
-          <div class="d-flex align-center"><h3>ທັງໝົດ: {{ truck_data_list.length }}</h3 >
+          <div class="d-flex align-center">
+            <h3>ທັງໝົດ: {{ truck_data_list.length }}</h3>
           </div>
           <div style="display:flex;align-items:center" class="ml-4">
             <div>
-              <v-btn dark color="#558FB3"  to="add_cars_14" class="card-shadow" rounded>
+              <v-btn dark color="#558FB3" to="add_cars_14" class="card-shadow" rounded>
                 <v-icon color="white">mdi-plus</v-icon>
                 <span class="white--text">ເພີ່ມຂໍ້ມູນ</span>
               </v-btn>
@@ -42,19 +43,21 @@
               <span>ປະຫວັດການແກ້ໄຂຂໍ້ມູນ</span>
             </v-btn>
             <div class="pt-8 ml-4" style="width: 500px;">
-              <v-text-field  background-color="#f5f5f5" solo flat dense label="ຄົ້ນຫາ..." v-model="search"
-              prepend-inner-icon="mdi-magnify" clearable> </v-text-field>
+              <v-text-field background-color="#f5f5f5" solo flat dense label="ຄົ້ນຫາ..." v-model="search"
+                prepend-inner-icon="mdi-magnify" clearable> </v-text-field>
             </div>
-           
+
           </div>
         </div>
 
-
-
-
         <v-data-table :headers="truck_table_headers" :items="truck_data_list" :search="search" class="mt-4">
           <template v-slot:item="row">
-            <tr>
+            <tr v-if="row?.item.toBatRowStatus === 'W'" style="background-color:#FFF59D">
+              <td>
+                <v-avatar>
+                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                </v-avatar>
+              </td>
               <td>{{ row.item.h_VICIVLE_NUMBER }}</td>
               <td>{{ row.item.h_VICIVLE_BRANCH }}</td>
               <td>{{ row.item.h_VICIVLE_BRANCHTYPE }}</td>
@@ -64,16 +67,77 @@
               <td v-if="row?.item.h_STATUS === 'Y'" style="color:#55CE63"><v-icon color="#55CE63">mdi-check</v-icon> ວ່າງ
               </td>
               <td v-else class="red--text"><v-icon color="red">mdi-close</v-icon> ບໍ່ວ່າງ</td>
-              <td><v-btn small color="#338ABF"  class="white--text card-shadow" @click="edit(row?.item?.key_id)"><v-icon
+              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="edit(row?.item?.key_id)"><v-icon
                     color="white">mdi-pencil</v-icon>ແກ້ໄຂ</v-btn></td>
-              <td><v-btn small color="#338ABF"  class="white--text card-shadow" @click="view(row?.item?.key_id)"><v-icon
+              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="view(row?.item?.key_id)"><v-icon
                     color="white">mdi-magnify</v-icon>ເບີ່ງ</v-btn></td>
-              <td><v-btn small color="red"  class="white--text card-shadow"
+              <td><v-btn small color="red" class="white--text card-shadow"
                   @click="askBeforeDeleteTruct(row?.item?.key_id)"><v-icon color="white">mdi-delete </v-icon>ລຶບ</v-btn>
               </td>
-              <!-- <td v-if="row?.item.h_STATUS === 'Y'" style="color:#55CE63"><v-icon color="#55CE63">mdi-check</v-icon> ວ່າງ
+              <td v-if="row?.item.toBatRowStatus === 'W'"><v-icon color="#FBC02D"
+                  font-size="10px">mdi-alert-outline</v-icon>
               </td>
-              <td v-else class="red--text"><v-icon color="red">mdi-close</v-icon> ບໍ່ວ່າງ</td> -->
+              <td v-else-if="row?.item.toBatRowStatus === 'E'" class="red--text"><v-icon
+                  color="#F4511E">mdi-alert-circle</v-icon> </td>
+              <td v-else class="red--text"><v-icon color="#4CAF50">mdi-circle</v-icon> </td>
+            </tr>
+            <tr v-else-if="row?.item.toBatRowStatus === 'E'" style="background-color:#FFCDD2">
+              <td>
+                <v-avatar>
+                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                </v-avatar>
+              </td>
+              <td>{{ row.item.h_VICIVLE_NUMBER }}</td>
+              <td>{{ row.item.h_VICIVLE_BRANCH }}</td>
+              <td>{{ row.item.h_VICIVLE_BRANCHTYPE }}</td>
+              <td>{{ row.item.h_VICIVLE_GALATY }}</td>
+              <td>{{ row.item.h_VICIVLE_DATE_GALATY }}</td>
+              <td>{{ row.item.h_VICIVLE_YEARLEVEL }}</td>
+              <td v-if="row?.item.h_STATUS === 'Y'" style="color:#55CE63"><v-icon color="#55CE63">mdi-check</v-icon> ວ່າງ
+              </td>
+              <td v-else class="red--text"><v-icon color="red">mdi-close</v-icon> ບໍ່ວ່າງ</td>
+              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="edit(row?.item?.key_id)"><v-icon
+                    color="white">mdi-pencil</v-icon>ແກ້ໄຂ</v-btn></td>
+              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="view(row?.item?.key_id)"><v-icon
+                    color="white">mdi-magnify</v-icon>ເບີ່ງ</v-btn></td>
+              <td><v-btn small color="red" class="white--text card-shadow"
+                  @click="askBeforeDeleteTruct(row?.item?.key_id)"><v-icon color="white">mdi-delete </v-icon>ລຶບ</v-btn>
+              </td>
+              <td v-if="row?.item.toBatRowStatus === 'W'"><v-icon color="#FBC02D"
+                  font-size="10px">mdi-alert-outline</v-icon>
+              </td>
+              <td v-else-if="row?.item.toBatRowStatus === 'E'" class="red--text"><v-icon
+                  color="#F4511E">mdi-alert-circle</v-icon> </td>
+              <td v-else class="red--text"><v-icon color="#4CAF50">mdi-circle</v-icon> </td>
+            </tr>
+            <tr v-else>
+              <td>
+                <v-avatar>
+                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                </v-avatar>
+              </td>
+              <td>{{ row.item.h_VICIVLE_NUMBER }}</td>
+              <td>{{ row.item.h_VICIVLE_BRANCH }}</td>
+              <td>{{ row.item.h_VICIVLE_BRANCHTYPE }}</td>
+              <td>{{ row.item.h_VICIVLE_GALATY }}</td>
+              <td>{{ row.item.h_VICIVLE_DATE_GALATY }}</td>
+              <td>{{ row.item.h_VICIVLE_YEARLEVEL }}</td>
+              <td v-if="row?.item.h_STATUS === 'Y'" style="color:#55CE63"><v-icon color="#55CE63">mdi-check</v-icon> ວ່າງ
+              </td>
+              <td v-else class="red--text"><v-icon color="red">mdi-close</v-icon> ບໍ່ວ່າງ</td>
+              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="edit(row?.item?.key_id)"><v-icon
+                    color="white">mdi-pencil</v-icon>ແກ້ໄຂ</v-btn></td>
+              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="view(row?.item?.key_id)"><v-icon
+                    color="white">mdi-magnify</v-icon>ເບີ່ງ</v-btn></td>
+              <td><v-btn small color="red" class="white--text card-shadow"
+                  @click="askBeforeDeleteTruct(row?.item?.key_id)"><v-icon color="white">mdi-delete </v-icon>ລຶບ</v-btn>
+              </td>
+              <td v-if="row?.item.toBatRowStatus === 'W'"><v-icon color="#FBC02D"
+                  font-size="10px">mdi-alert-outline</v-icon>
+              </td>
+              <td v-else-if="row?.item.toBatRowStatus === 'E'" class="red--text"><v-icon
+                  color="#F4511E">mdi-alert-circle</v-icon> </td>
+              <td v-else class="red--text"><v-icon color="#4CAF50">mdi-circle</v-icon> </td>
             </tr>
           </template>
         </v-data-table>
@@ -94,6 +158,7 @@ export default {
       showDialogUpdate: false,
       showDialogViewTruct: false,
       truck_table_headers: [
+        { text: 'ຮູບພາບ', value: '' },
         { text: 'ທະບຽນລົດ', value: 'h_VICIVLE_NUMBER' },
         { text: 'ຍີ່ຫໍ້ລົດ', value: 'h_VICIVLE_BRANCH' },
         { text: 'ປະເພດລົດ', value: 'h_VICIVLE_BRANCHTYPE' },
@@ -142,6 +207,23 @@ export default {
     onGetDataForUpdateStatus() {
       this.showDialogUpStatus = true
     },
+
+    onViewnoti() {
+      try {
+        this.loading_processing = true;
+        this.$axios.$post('/noti.service').then((data) => {
+          this.loading_processing = false
+        })
+      } catch (error) {
+        this.loading_processing = false
+        swal.fire({
+          icon: 'error',
+          text: error
+        })
+        console.log(error)
+      }
+    },
+
     onViewTruckInfo(
       vehiNameder,
       chassNo,
@@ -292,6 +374,7 @@ export default {
       this.bACK_TRUCK_FAITHAIY = bACK_TRUCK_FAITHAIY
       this.showDialogViewTruct = true
     },
+
     async onGetTruckList() {
       try {
         this.loading_processing = true

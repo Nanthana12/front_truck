@@ -71,16 +71,15 @@
     <!-- Modal add products -->
     <v-dialog v-model="showModalAddProduct" persistent width="400">
       <v-card>
+        <v-card-title style="display:flex;background-color:#568fb3;color:white">
+          <v-spacer></v-spacer>
+          ເພີ່ມຂໍ້ມູນສິນຄ້າ
+          <v-spacer></v-spacer>
+          <v-btn fab elevation="0" dark width="30" height="30" small color="white" @click="onCloseDialogAdd">
+            <v-icon color="#338ABF">mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
         <v-container>
-          <v-row>
-            <v-col class="pl-3">
-              <span>ເພີ່ມຂໍ້ມູນສິນຄ້າ</span>
-            </v-col>
-            <v-spacer></v-spacer>
-            <v-btn icon class="mt-2 mr-2" @click="onCloseDialogAdd"><v-icon>mdi-close</v-icon></v-btn>
-          </v-row>
-          <Height />
-          <v-divider></v-divider>
           <v-card-text>
             <v-text-field label="ລະຫັດສິນຄ້າ" outlined dense v-model="ins_pro_id"></v-text-field>
             <div class="tops">
@@ -123,14 +122,16 @@
     <!-- Modal Update products -->
     <v-dialog v-model="showModalUpdateProd" persistent width="400">
       <v-card>
+        <v-card-title style="display:flex;background-color:#568fb3;color:white">
+          <v-spacer></v-spacer>
+          ແກ້ໄຂຂໍ້ມູນສິນຄ້າ
+          <v-spacer></v-spacer>
+          <v-btn fab elevation="0" dark width="30" height="30" small color="white" @click="showModalUpdateProd = false">
+            <v-icon color="#338ABF">mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
+
         <v-container>
-          <v-row>
-            <v-col class="pl-3">
-              <h3>ແກ້ໄຂຂໍ້ມູນສິນຄ້າ</h3>
-            </v-col>
-            <v-spacer></v-spacer>
-            <v-btn icon class="mt-2 mr-2" @click="showModalUpdateProd = false"><v-icon>mdi-close</v-icon></v-btn>
-          </v-row>
           <Height />
           <v-divider></v-divider>
           <v-card-text>
@@ -146,11 +147,11 @@
             <div class="tops">
               <span class="red--text pl-1">{{ pro_type_mess }}</span>
             </div>
-            <v-file-input label="ອັບໂຫຼດຮູູບ" outlined dense v-model="ins_pro_image"
+            <!-- <v-file-input label="ອັບໂຫຼດຮູູບ" outlined dense v-model="ins_pro_image"
               @change="onGetEmpImage"></v-file-input>
             <div class="tops">
               <span class="red--text pl-1">{{ pro_url_mess }}</span>
-            </div>
+            </div> -->
           </v-card-text>
 
           <v-divider></v-divider>

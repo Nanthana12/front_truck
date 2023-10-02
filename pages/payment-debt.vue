@@ -594,7 +594,7 @@ export default {
                     amount: this.sum?.sumNoPayAmount,
                     payAmount: this.amount,
                     status: this.totalDebt === 0 ? 'N' : 'O',
-                    noPayAmount: this.amount
+                    noPayAmount: this.totalDebt
                 }
                 this.$axios.$post('/storePayOwe.service', data).then((data) => {
                     this.onGetInvoiceList()

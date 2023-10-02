@@ -6,105 +6,95 @@
             </v-card>
         </v-dialog>
         <!-- General car info -->
-        <v-card class="pt-4 pa-4 card-shadow">
+        <v-card class="card-shadow mx-auto" width="1400">
+            <v-card-title style="display:flex;background-color:#568fb3;color:white">
+                <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="cars_footer">
+                    <v-icon color="#338ABF">mdi-arrow-left</v-icon>
+                </v-btn>
+                <v-spacer></v-spacer>
+                ເບີ່ງຂໍ້ມູນຫາງລົດ
+                <v-spacer></v-spacer>
+            </v-card-title>
+            <v-card-text>
+        <Height />
+        <Height />
 
-            <v-form v-model="valid" ref="form" lazy-validation>
-                <!-- ຂໍ້ມູນຫົວລົດ================== -->
-
-                <v-card class="mt-2" flat>
-
-                    <v-row class="pa-2 pl-6 pt-4">
-                        <v-btn fab elevation="0" dark width="30" height="30" small color="#338ABF" to="cars_footer">
-                            <v-icon color="white">mdi-arrow-left</v-icon>
-                        </v-btn>
-                        <h3 class="top">ເບີ່ງຂໍ້ມູນຫາງລົດ</h3>
-                    </v-row>
-                    <v-card-text>
-                        <div class="d-flex align-center">
-                            <div style="width:100%" class="pr-2">
-                                <span>ຍີ່ຫໍ້ລົດ</span>
-                                <v-text-field :rules="nameRules" label="ຍີ່ຫໍ້ລົດ" dense readonly flat solo
-                                    background-color="#f5f5f5" v-model="f_BRANCH"></v-text-field>
-                            </div>
-                            <div style="width:100%" class="px-2"><span>ລົດປີ</span>
-                                <v-text-field :rules="nameRules" label="ລົດປີ" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_YEAR"></v-text-field>
-                            </div>
-                            <div style="width:100%" class="px-2"><span>ປະເພດລົດ</span>
-                                <v-text-field :rules="nameRules" label="ປະເພດລົດ" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_CAR_TYPE"></v-text-field>
-                            </div>
-                            <div style="width:100%" class="px-2">
-                                <!-- <v-text-field :rules="nameRules" label="ວັນທີເຕັກນິກໝົດ"  dense readonly flat solo background-color="#f5f5f5"
+                <div class="d-flex align-center">
+                    <div style="width:100%" class="pr-2">
+                        <span>ຍີ່ຫໍ້ລົດ</span>
+                        <v-text-field :rules="nameRules" label="ຍີ່ຫໍ້ລົດ" dense readonly flat solo
+                            background-color="#f5f5f5" v-model="f_BRANCH"></v-text-field>
+                    </div>
+                    <div style="width:100%" class="px-2"><span>ລົດປີ</span>
+                        <v-text-field :rules="nameRules" label="ລົດປີ" dense readonly flat solo background-color="#f5f5f5"
+                            v-model="f_YEAR"></v-text-field>
+                    </div>
+                    <div style="width:100%" class="px-2"><span>ປະເພດລົດ</span>
+                        <v-text-field :rules="nameRules" label="ປະເພດລົດ" dense readonly flat solo
+                            background-color="#f5f5f5" v-model="f_CAR_TYPE"></v-text-field>
+                    </div>
+                    <div style="width:100%" class="px-2">
+                        <!-- <v-text-field :rules="nameRules" label="ວັນທີເຕັກນິກໝົດ"  dense readonly flat solo background-color="#f5f5f5"
                                     v-model="f_DATEEXPRIED"></v-text-field> -->
-                            </div>
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
+                    </div>
+                </div>
+                <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
 
-                            <div style="width:100%" class="pr-2"><span>ທະບຽນລົດ</span>
-                                <v-text-field :rules="nameRules" label="ທະບຽນລົດ" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_CARD_NO"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"><span>ຍີ່ຫໍ້ລົດ</span><v-text-field :rules="nameRules"
-                                    label="ເລກຄັນຊີ" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_LEKKUNZEE"></v-text-field></div>
-                            <div class="px-2" style="width:100%"><span>ເຜົາ</span><v-text-field :rules="nameRules"
-                                    label="ເຜົາ" dense readonly flat solo background-color="#f5f5f5" v-model="f_PAO"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"><span>ຂໍເກາະ</span><v-text-field :rules="nameRules"
-                                    label="ຂໍເກາະ" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_KORKC"></v-text-field></div>
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
-                            <div class="pr-2" style="width:100%"><span>ໂຕລັອກຕູ້</span><v-text-field :rules="nameRules"
-                                    label="ໂຕລັອກຕູ້" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_TOLOCKTU"></v-text-field></div>
-                            <div style="width:100%" class="px-2"><span>ໂສ້</span>
-                                <v-text-field :rules="nameRules" label="ໂສ້" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_SO"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"><span>ຜ້າບັດ</span><v-text-field :rules="nameRules"
-                                    label="ຜ້າບັດ" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_PABUD"></v-text-field></div>
-                            <div class="px-2" style="width:100%"><span>ໄຟຂ້າງ</span><v-text-field :rules="nameRules"
-                                    label="ໄຟຂ້າງ" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_FAIKHANG"></v-text-field></div>
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
+                    <div style="width:100%" class="pr-2"><span>ທະບຽນລົດ</span>
+                        <v-text-field :rules="nameRules" label="ທະບຽນລົດ" dense readonly flat solo
+                            background-color="#f5f5f5" v-model="f_CARD_NO"></v-text-field>
+                    </div>
+                    <div class="px-2" style="width:100%"><span>ຍີ່ຫໍ້ລົດ</span><v-text-field :rules="nameRules"
+                            label="ເລກຄັນຊີ" dense readonly flat solo background-color="#f5f5f5"
+                            v-model="f_LEKKUNZEE"></v-text-field></div>
+                    <div class="px-2" style="width:100%"><span>ເຜົາ</span><v-text-field :rules="nameRules" label="ເຜົາ"
+                            dense readonly flat solo background-color="#f5f5f5" v-model="f_PAO"></v-text-field>
+                    </div>
+                    <div class="px-2" style="width:100%"><span>ຂໍເກາະ</span><v-text-field :rules="nameRules" label="ຂໍເກາະ"
+                            dense readonly flat solo background-color="#f5f5f5" v-model="f_KORKC"></v-text-field></div>
+                </div>
+                <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
+                    <div class="pr-2" style="width:100%"><span>ໂຕລັອກຕູ້</span><v-text-field :rules="nameRules"
+                            label="ໂຕລັອກຕູ້" dense readonly flat solo background-color="#f5f5f5"
+                            v-model="f_TOLOCKTU"></v-text-field></div>
+                    <div style="width:100%" class="px-2"><span>ໂສ້</span>
+                        <v-text-field :rules="nameRules" label="ໂສ້" dense readonly flat solo background-color="#f5f5f5"
+                            v-model="f_SO"></v-text-field>
+                    </div>
+                    <div class="px-2" style="width:100%"><span>ຜ້າບັດ</span><v-text-field :rules="nameRules" label="ຜ້າບັດ"
+                            dense readonly flat solo background-color="#f5f5f5" v-model="f_PABUD"></v-text-field></div>
+                    <div class="px-2" style="width:100%"><span>ໄຟຂ້າງ</span><v-text-field :rules="nameRules" label="ໄຟຂ້າງ"
+                            dense readonly flat solo background-color="#f5f5f5" v-model="f_FAIKHANG"></v-text-field></div>
+                </div>
+                <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
 
 
-                            <div class="pr-2" style="width:100%"><span>ໄຟທ້າຍ</span><v-text-field :rules="nameRules"
-                                    label="ໄຟທ້າຍ" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_FAITHAIY"></v-text-field></div>
-                            <div style="width:100%" class="px-2"><span>ບັງຕົມ</span>
-                                <v-text-field :rules="nameRules" label="ບັງຕົມ" dense readonly flat solo background-color="#f5f5f5"
-                                    v-model="f_BGTHOM"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"><span>ເລກປະກັນໄພ</span>
-                                <v-text-field :rules="nameRules" label="ເລກປະກັນໄພ" dense readonly flat solo
-                                    background-color="#f5f5f5" v-model="f_GALATY_NO"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"><span>ວັນທີປະກັນໄພໝົດ</span>
-                                <v-text-field :rules="nameRules" label="ວັນທີປະກັນໄພໝົດ" dense readonly flat solo
-                                    background-color="#f5f5f5" v-model="f_GALATY_DEP"></v-text-field>
-                            </div>
+                    <div class="pr-2" style="width:100%"><span>ໄຟທ້າຍ</span><v-text-field :rules="nameRules" label="ໄຟທ້າຍ"
+                            dense readonly flat solo background-color="#f5f5f5" v-model="f_FAITHAIY"></v-text-field></div>
+                    <div style="width:100%" class="px-2"><span>ບັງຕົມ</span>
+                        <v-text-field :rules="nameRules" label="ບັງຕົມ" dense readonly flat solo background-color="#f5f5f5"
+                            v-model="f_BGTHOM"></v-text-field>
+                    </div>
+                    <div class="px-2" style="width:100%"><span>ເລກປະກັນໄພ</span>
+                        <v-text-field :rules="nameRules" label="ເລກປະກັນໄພ" dense readonly flat solo
+                            background-color="#f5f5f5" v-model="f_GALATY_NO"></v-text-field>
+                    </div>
+                    <div class="px-2" style="width:100%"><span>ວັນທີປະກັນໄພໝົດ</span>
+                        <v-text-field :rules="nameRules" label="ວັນທີປະກັນໄພໝົດ" dense readonly flat solo
+                            background-color="#f5f5f5" v-model="f_GALATY_DEP"></v-text-field>
+                    </div>
+                </div>
+                <div class="d-flex align-center pt-2 pr-2" style="background-color:#f7f7f7;border-radius:5px;height:50px">
+                    <v-radio-group inline v-model="f_STATUS">
+                        <div class="pl-4 d-flex align-center">
+                            <span>ສະຖານະລົດ</span>
+                            <Width />
+                            <v-radio label="ວ່າງ" value="Y" color="#55CE63"></v-radio>
+                            <Width />
+                            <v-radio label="ບໍ່ວ່າງ" value="N" color="red"></v-radio>
                         </div>
-                        <div class="d-flex align-center pt-2 pr-2"
-                            style="background-color:#f7f7f7;border-radius:5px;height:50px">
-                            <v-radio-group inline v-model="f_STATUS">
-                                <div class="pl-4 d-flex align-center">
-                                    <span>ສະຖານະລົດ</span>
-                                    <Width />
-                                    <v-radio label="ວ່າງ" value="Y" color="#55CE63"></v-radio>
-                                    <Width />
-                                    <v-radio label="ບໍ່ວ່າງ" value="N" color="red"></v-radio>
-                                </div>
-                            </v-radio-group>
-                        </div>
-
-                    </v-card-text>
-                </v-card>
-
+                    </v-radio-group>
+                </div>
                 <!-- ຂໍ້ມູນຢາງລົດ -->
                 <v-card flat>
                     <v-card-title>
@@ -258,8 +248,8 @@
 
                                         <v-text-field class="ml-2" :rules="nameRules" dense readonly label="ວັນທີປ່ຽນຢາງs"
                                             v-model="l_TRIES_DATE_8"></v-text-field>
-                                        <v-text-field class="ml-2" :rules="nameRules" dense readonly label="ກຳນົດແລ່ນໄດ້ kms"
-                                            v-model="l_TRIES_KM_8"></v-text-field>
+                                        <v-text-field class="ml-2" :rules="nameRules" dense readonly
+                                            label="ກຳນົດແລ່ນໄດ້ kms" v-model="l_TRIES_KM_8"></v-text-field>
                                     </div>
                                     <!-- <div class="d-flex">
                                         <div style="width:100%"><v-text-field :rules="nameRules" dense readonly label="ເລກໄມລ່າສຸດ"
@@ -421,8 +411,8 @@
                                             v-model="r_TRIES_8"></v-text-field>
                                         <v-text-field class="ml-2" :rules="nameRules" dense readonly label="ວັນທີປ່ຽນຢາງs"
                                             v-model="r_TRIES_DATE_8"></v-text-field>
-                                        <v-text-field class="ml-2" :rules="nameRules" dense readonly label="ກຳນົດແລ່ນໄດ້ kms"
-                                            v-model="r_TRIES_KM_8"></v-text-field>
+                                        <v-text-field class="ml-2" :rules="nameRules" dense readonly
+                                            label="ກຳນົດແລ່ນໄດ້ kms" v-model="r_TRIES_KM_8"></v-text-field>
                                     </div>
                                     <!-- <div class="d-flex">
                                         <div style="width:100%"><v-text-field :rules="nameRules" dense readonly label="ເລກໄມລ່າສຸດ"
@@ -432,30 +422,19 @@
                                                 label="ເລກໄມປະຈຸບັນ" v-model="f_KM_LL16"></v-text-field></div>
                                         <div style="width:100%"></div>
                                     </div> -->
+                                    <!-- <v-card class="pa-4 mt-2" flat>
+                    <span>ໝາຍເຫດ</span>
+                    <v-textarea outlined dense readonly placeholder="ຕົວຢ່າງ: ປ່ຽນນໍ້າມັນເຄື່ອງ..."
+                        v-model="his_REASON"></v-textarea>
+                </v-card> -->
                                 </div>
                             </div>
                         </div>
                     </v-card-text>
                 </v-card>
-                <!-- <v-card class="pa-4 mt-2" flat>
-                    <span>ໝາຍເຫດ</span>
-                    <v-textarea outlined dense readonly placeholder="ຕົວຢ່າງ: ປ່ຽນນໍ້າມັນເຄື່ອງ..."
-                        v-model="his_REASON"></v-textarea>
-                </v-card> -->
-            </v-form>
-            <!-- <v-card-actions>
-                <v-spacer></v-spacer>
-
-                <v-btn color="#338ABF" @click="onInserTruct">
-                    <v-icon color="white">mdi-check</v-icon>
-                    <span class="white--text">ບັນທຶກ</span>
-                </v-btn>
-            </v-card-actions> -->
-
-            <Height />
-            <Height />
-            <Height />
+            </v-card-text>
         </v-card>
+
         <Height />
         <Height />
         <Height />
@@ -877,5 +856,6 @@ export default {
     justify-content: center;
     background-color: red;
     justify-items: center;
-}</style>
+}
+</style>
   

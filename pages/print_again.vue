@@ -8,8 +8,8 @@
         <v-form ref="form" v-model="valid" lazy-validation>
             <v-card class="mb-8 card-shadow" rounded="lg">
                 <v-card-title style="display:flex;background-color:#568fb3;color:white">
-                    <v-btn fab elevation="0" dark width="30" height="30" small color="#338ABF" to="leave-cars-list">
-                        <v-icon color="white">mdi-arrow-left</v-icon>
+                    <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="leave-cars-list">
+                        <v-icon color="#338ABF">mdi-arrow-left</v-icon>
                     </v-btn>
                     <v-spacer></v-spacer>
                     <span class="ml-2">ແກ້ໄຂໃບປ່ອຍລົດ</span>
@@ -355,7 +355,8 @@
                 <!-- truck -->
 
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                    <div style="width:80%;display:flex;align-items:end"><span style="font-size:12pt">ວັນທີອອກ: {{
+                    <div style="width:80%;display:flex;align-items:end">
+                    <span style="font-size:12pt">ວັນທີອອກ: {{
                         start_go_date
                     }}</span>
                     </div>

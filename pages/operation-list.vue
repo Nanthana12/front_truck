@@ -19,7 +19,7 @@
                     <v-data-table :items="report_peration_list" :headers="report_operation_header" :search="search"
                         style="border-radius:10px">
                         <template v-slot:item="row">
-                            <tr :style="{ 'color': row?.item?.totalDay >= '7' ? 'red' : 'black' }">
+                            <tr :style="{ 'background-color': row?.item?.totalDay >= '7' ? '#FFCDD2' : '#fff' }">
                                 <td>{{ row?.item?.key_ID }}</td>
                                 <td>{{ row?.item?.performancebillno }}</td>
                                 <td>{{ row?.item?.customer_NAME }}</td>

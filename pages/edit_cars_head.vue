@@ -6,16 +6,19 @@
             </v-card>
         </v-dialog>
         <!-- General car info -->
-        <v-card class="pl-10 pr-10 card-shadow">
-
+        <v-card class="card-shadow mx-auto" width="1400">
+            <v-card-title style="display:flex;background-color:#568fb3;color:white">
+                <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="cars_14">
+                    <v-icon color="#338ABF">mdi-arrow-left</v-icon>
+                </v-btn>
+                <v-spacer></v-spacer>
+                ອັບເດດຂໍ້ມູນຫົວລົດ
+                <v-spacer></v-spacer>
+            </v-card-title>
             <v-form v-model="valid" ref="form" lazy-validation>
                 <!-- ຂໍ້ມູນຫົວລົດ================== -->
                 <v-card flat>
                     <div class="pa-2 pl-6 pt-4 d-flex">
-                        <v-btn fab dark elevation="0" width="40" height="40" color="#338ABF" to="cars_14">
-                            <v-icon color="white">mdi-arrow-left</v-icon>
-                        </v-btn>
-                        <h3 class="top">ອັບເດດຂໍ້ມູນຫົວລົດ</h3>
                         <v-spacer></v-spacer>
                         <div v-if="alert === true"
                             style="border:1px solid red;height:40px;border-radius:3px;display:flex;align-items:center"
@@ -23,112 +26,301 @@
                             <v-icon color="red">mdi-alert-outline</v-icon>
                             <span class="ml-2 red--text">ນໍ້າມັນເຄື່ອງໝົດກຳນົດແລ້ວ!</span>
                         </div>
+
+                        <div v-if="toBatRowStatus === 'W'"
+                            style="border:1px solid #F9A825;height:40px;border-radius:3px;display:flex;align-items:center"
+                            class="ml-2 pl-2 pr-10 mr-4">
+                            <v-icon color="#F9A825">mdi-alert-outline</v-icon>
+                            <span class="ml-2" style="color: #F9A825;">ໝໍ້ໄຟໃກ້ຈະໝົດອາຍຸການໃຊ້ງານ</span>
+                        </div>
+                        <div v-else-if="toBatRowStatus === 'E'"
+                            style="border:1px solid red;height:40px;border-radius:3px;display:flex;align-items:center"
+                            class="ml-2 pl-2 pr-10 mr-4">
+                            <v-icon color="red">mdi-alert-circle</v-icon>
+                            <span class="ml-2" style="color: red;">ກະລຸນາປ່ຽນໝໍ້ໄຟ</span>
+                        </div>
                     </div>
 
                     <v-card-text>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
+                        <v-row>
+                            <v-col cols="3">
+                                <Height />
+                                <Height />
+                                <div>
+                                    <div v-if="imagePreview == ''">
+                                        <img src="../assets/images/cargo-truck.png" class="preview-image"
+                                            v-on:click="openUpload" height="200px" cover>
+                                    </div>
+                                    <div v-else>
+                                        <img v-bind:src="imagePreview" class="preview-image" v-on:click="openUpload"
+                                            height="200px" cover>
+                                    </div>
+                                </div>
+                                <input name="image" type="file" id="file-field" v-on:change="updagePreview"
+                                    style="display: none;">
 
-                            <div style="width:100%" >
-                                <span>ທະບຽນລົດ</span>
-                                <v-text-field :rules="nameRules" label="ທະບຽນລົດ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_NUMBER"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"> <span>ປະກັນໄພ</span><v-text-field :rules="nameRules"
-                                    label="ປະກັນໄພ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_GALATY"></v-text-field></div>
-                            <div class="px-2" style="width:100%"> <span>ວັນທີປະກັນໄພໝົດ</span><v-text-field
-                                    :rules="nameRules" label="ວັນທີປະກັນໄພໝົດ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_DATE_GALATY"></v-text-field></div>
-                            <div class="px-2" style="width:100%"> <span>ເຂັມກີໂລແມັດ</span>
-                                <v-text-field :rules="nameRules" label="ເຂັມກີໂລແມັດ" dense flat solo v-model="kim_KM"
-                                    :background-color="alert === true ? 'red' : '#f5f5f5'"></v-text-field>
-                            </div>
+                            </v-col>
+                            <v-col cols="9">
+                                <v-row>
+                                    <v-col clos="6" md="4" sm="4">
+                                        <span>ທະບຽນລົດ</span>
+                                        <v-text-field :rules="nameRules" dense flat solo background-color="#f5f5f5"
+                                            v-model="h_VICIVLE_NUMBER"></v-text-field>
+                                        <div class="tops">
+                                        </div>
+                                    </v-col>
+                                    <v-col clos="6" md="4" sm="4">
+                                        <span>ວັນໝົດອາຍຸທະບຽນລົດ</span>
+                                        <v-menu ref="end_number" v-model="end_number" :close-on-content-click="false"
+                                            :return-value.sync="end_h_VICIVLE_number" transition="scale-transition" offset-y
+                                            min-width="auto">
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <v-text-field dense outlined v-model="end_h_VICIVLE_number"
+                                                    background-color="#f5f5f5" required label=""
+                                                    append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
+                                                    :rules="nameRules"></v-text-field>
+                                            </template>
+                                            <v-date-picker v-model="end_h_VICIVLE_number" no-title scrollable
+                                                @input="$refs.end_number.save(end_h_VICIVLE_number)">
+                                                <v-spacer></v-spacer>
+                                            </v-date-picker>
+                                        </v-menu>
 
-                        </div>
-                        <div class="d-flex align-center">
+                                        <div class="tops">
+                                        </div>
+                                    </v-col>
+                                    <v-col clos="6" md="4" sm="4">
+                                        <span>ປະກັນໄພ</span>
+                                        <v-text-field :rules="nameRules" label="ປະກັນໄພ" dense flat solo
+                                            background-color="#f5f5f5" v-model="h_VICIVLE_GALATY"></v-text-field>
+                                        <div class="tops">
+                                        </div>
+                                    </v-col>
+                                </v-row>
+                                <v-row>
+                                    <v-col clos="6" md="4" sm="4">
+                                        <span>ວັນທີປະກັນໄພໝົດ</span>
+                                        <v-menu ref="start_galaty" v-model="start_galaty" :close-on-content-click="false"
+                                            :return-value.sync="h_VICIVLE_DATE_GALATY" transition="scale-transition"
+                                            offset-y min-width="auto">
+                                            <template v-slot:activator="{ on, attrs }">
+                                                <v-text-field dense outlined v-model="h_VICIVLE_DATE_GALATY"
+                                                    background-color="#f5f5f5" required append-icon="mdi-calendar" readonly
+                                                    v-bind="attrs" v-on="on" :rules="nameRules"></v-text-field>
+                                            </template>
+                                            <v-date-picker v-model="h_VICIVLE_DATE_GALATY" no-title scrollable
+                                                @input="$refs.start_galaty.save(h_VICIVLE_DATE_GALATY)">
+                                                <v-spacer></v-spacer>
+                                            </v-date-picker>
+                                        </v-menu>
+                                        <div class="tops">
+                                        </div>
+                                    </v-col>
+                                    <v-col clos="6" md="4" sm="4">
+                                        <span>ຍີ່ຫໍ້ລົດ</span>
+                                        <v-text-field :rules="nameRules" label="ຍີ່ຫໍ້ລົດ" dense flat solo
+                                            background-color="#f5f5f5" v-model="h_VICIVLE_BRANCH"></v-text-field>
+                                        <div class="tops">
+                                        </div>
+                                    </v-col>
+                                    <v-col clos="6" md="4" sm="4">
+                                        <span>ເຂັມກີໂລແມັດ</span>
+                                        <v-text-field :rules="nameRules" label="ເຂັມກີໂລແມັດ" dense flat solo
+                                            v-model="kim_KM"
+                                            :background-color="alert === true ? 'red' : '#f5f5f5'"></v-text-field>
+                                        <div class="tops">
+                                        </div>
+                                    </v-col>
+                                </v-row>
+                                <v-row>
+                                    <v-col clos="6" md="4" sm="4">
+                                        <span>ລົດປີ</span>
+                                        <v-text-field :rules="nameRules" label="ລົດປີ" dense flat solo
+                                            background-color="#f5f5f5" v-model="h_VICIVLE_YEARLEVEL"></v-text-field>
+                                        <div class="tops">
+                                        </div>
+                                    </v-col>
+                                    <v-col clos="6" md="4" sm="4">
+                                        <span>ປ້ອນສີລົດ</span>
+                                        <v-text-field :rules="nameRules" dense outlined background-color="#f5f5f5"
+                                            v-model="silad"></v-text-field>
+                                        <div class="tops">
+                                        </div>
+                                    </v-col>
+                                    <v-col clos="6" md="4" sm="4">
+                                        <span>ເລກໄມປ່ຽນນໍ້າມັນເຄື່ອງຮອບຕໍ່ໄປ</span>
+                                        <v-text-field :rules="nameRules" label="ເລກໄມປ່ຽນນໍ້າມັນເຄື່ອງຮອບຕໍ່ໄປ" dense flat
+                                            solo v-model="h_LEK_NUMMUNKHG"
+                                            :background-color="alert === true ? 'red' : '#f5f5f5'"></v-text-field>
+                                        <div class="tops">
+                                        </div>
+                                    </v-col>
 
-                            <div style="width:100%" > <span>ຍີ່ຫໍ້ລົດ</span>
-                                <v-text-field :rules="nameRules" label="ຍີ່ຫໍ້ລົດ" dense flat solo
-                                    background-color="#f5f5f5" v-model="h_VICIVLE_BRANCH"></v-text-field>
-                            </div>
-                            <div style="width:100%" class="px-2"> <span>ລົດປີ</span>
-                                <v-text-field :rules="nameRules" label="ລົດປີ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_YEARLEVEL"></v-text-field>
-                            </div>
-                            <div style="width:100%" class="px-2"> <span>ປະເພດລົດ</span>
+                                </v-row>
+
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ປະເພດລົດ</span>
                                 <v-text-field :rules="nameRules" label="ປະເພດລົດ" dense flat solo background-color="#f5f5f5"
                                     v-model="h_VICIVLE_BRANCHTYPE"></v-text-field>
-                            </div>
-                            <div style="width:100%" class="px-2"> <span>ເລກໄມປ່ຽນນໍ້າມັນເຄື່ອງຮອບຕໍ່ໄປ</span>
-                                <v-text-field :rules="nameRules" label="ເລກໄມປ່ຽນນໍ້າມັນເຄື່ອງຮອບຕໍ່ໄປ" dense flat solo
-                                    v-model="h_LEK_NUMMUNKHG"
-                                    :background-color="alert === true ? 'red' : '#f5f5f5'"></v-text-field>
-                            </div>
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
-
-                            <div style="width:100%" > <span>ເລກຈັກ</span>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ເລກຈັກ</span>
                                 <v-text-field :rules="nameRules" label="ເລກຈັກ" dense flat solo background-color="#f5f5f5"
                                     v-model="h_VICIVLE_LEKJUK"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"> <span>ເລກຖັງ</span><v-text-field :rules="nameRules"
-                                    label="ເລກຖັງ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_LEKTHUNG"></v-text-field></div>
-                            <div class="px-2" style="width:100%"> <span>GPS</span><v-text-field :rules="nameRules"
-                                    label="GPS" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_GPS"></v-text-field></div>
-                            <div class="px-2" style="width:100%"> <span>ຝອຍປັດນໍ້າຝົນ</span><v-text-field :rules="nameRules"
-                                    label="ຝອຍປັດນໍ້າຝົນ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_POYPUDNUMFON"></v-text-field></div>
-
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
-
-                            <div style="width:100%" > <span>ໝໍ້ໄຟ</span>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ເລກຖັງ</span>
+                                <v-text-field :rules="nameRules" label="ເລກຖັງ" dense flat solo background-color="#f5f5f5"
+                                    v-model="h_VICIVLE_LEKTHUNG"></v-text-field>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>GPS</span><v-text-field :rules="nameRules" label="GPS" dense flat solo
+                                    background-color="#f5f5f5" v-model="h_VICIVLE_GPS"></v-text-field>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ຝອຍປັດນໍ້າຝົນ</span><v-text-field :rules="nameRules" label="ຝອຍປັດນໍ້າຝົນ" dense flat
+                                    solo background-color="#f5f5f5" v-model="h_VICIVLE_POYPUDNUMFON"></v-text-field>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ໝໍ້ໄຟ</span>
                                 <v-text-field :rules="nameRules" label="ໝໍ້ໄຟ" dense flat solo background-color="#f5f5f5"
                                     v-model="h_VICIVLE_MORFAI"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"> <span>ບັງຕົມ</span><v-text-field :rules="nameRules"
-                                    label="ບັງຕົມ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_BGTOM"></v-text-field></div>
-                            <div class="px-2" style="width:100%"> <span>ຈານລາກ</span><v-text-field :rules="nameRules"
-                                    label="ຈານລາກ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_JANLARK"></v-text-field></div>
-                            <div class="px-2" style="width:100%"> <span>ໄຟໜ້າ</span><v-text-field :rules="nameRules"
-                                    label="ໄຟໜ້າ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_FAINAR"></v-text-field></div>
-
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
-
-                            <div style="width:100%" > <span>ໄຟທ້າຍ</span>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ວັນທີໃສ່ໝໍ້ໄຟ</span>
+                                <v-menu ref="start_bat" v-model="start_bat" :close-on-content-click="false"
+                                    :return-value.sync="start_bat_date" transition="scale-transition" offset-y
+                                    min-width="auto">
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-text-field v-if="toBatRowStatus === 'W'" dense outlined v-model="start_bat_date"
+                                            background-color="#FFF176" required append-icon="mdi-calendar" readonly
+                                            v-bind="attrs" v-on="on" :rules="nameRules"></v-text-field>
+                                        <v-text-field v-else-if="toBatRowStatus === 'E'" dense outlined
+                                            v-model="start_bat_date" background-color="red" required
+                                            append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
+                                            :rules="nameRules"></v-text-field>
+                                        <v-text-field v-else dense outlined v-model="start_bat_date"
+                                            background-color="#f5f5f5" required append-icon="mdi-calendar" readonly
+                                            v-bind="attrs" v-on="on" :rules="nameRules"></v-text-field>
+                                    </template>
+                                    <v-date-picker v-model="start_bat_date" no-title scrollable
+                                        @input="$refs.start_bat.save(start_bat_date)">
+                                        <v-spacer></v-spacer>
+                                    </v-date-picker>
+                                </v-menu>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ວັນທີໝົດອາຍຸໝໍ້ໄຟ</span>
+                                <v-menu ref="end_bat" v-model="end_bat" :close-on-content-click="false"
+                                    :return-value.sync="end_bat_date" transition="scale-transition" offset-y
+                                    min-width="auto">
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-text-field v-if="toBatRowStatus === 'W'" dense outlined
+                                            background-color="#FFF176" v-model="end_bat_date" required
+                                            append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
+                                            :rules="nameRules"></v-text-field>
+                                        <v-text-field v-else-if="toBatRowStatus === 'E'" dense outlined
+                                            background-color="red" v-model="end_bat_date" required
+                                            append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
+                                            :rules="nameRules"></v-text-field>
+                                        <v-text-field v-else dense outlined background-color="#f5f5f5"
+                                            v-model="end_bat_date" required append-icon="mdi-calendar" readonly
+                                            v-bind="attrs" v-on="on" :rules="nameRules"></v-text-field>
+                                    </template>
+                                    <v-date-picker v-model="end_bat_date" no-title scrollable
+                                        @input="$refs.end_bat.save(end_bat_date)">
+                                        <v-spacer></v-spacer>
+                                    </v-date-picker>
+                                </v-menu>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ບັງຕົມ</span><v-text-field :rules="nameRules" label="ບັງຕົມ" dense flat solo
+                                    background-color="#f5f5f5" v-model="h_VICIVLE_BGTOM"></v-text-field>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ຈານລາກ</span><v-text-field :rules="nameRules" label="ຈານລາກ" dense flat solo
+                                    background-color="#f5f5f5" v-model="h_VICIVLE_JANLARK"></v-text-field>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ແຮງມ້າ</span><v-text-field :rules="nameRules"  dense flat solo
+                                    background-color="#f5f5f5" v-model="h_VICIVLE"></v-text-field>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ໄຟໜ້າ</span><v-text-field :rules="nameRules" label="ໄຟໜ້າ" dense flat solo
+                                    background-color="#f5f5f5" v-model="h_VICIVLE_FAINAR"></v-text-field>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ໄຟທ້າຍ</span>
                                 <v-text-field :rules="nameRules" label="ໄຟທ້າຍ" dense flat solo background-color="#f5f5f5"
                                     v-model="h_VICIVLE_FAITHAIY"></v-text-field>
-                            </div>
-                            <div class="px-2" style="width:100%"> <span>ໄຟຂ້າງ</span><v-text-field :rules="nameRules"
-                                    label="ໄຟຂ້າງ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_FAIYKHANG"></v-text-field></div>
-                            <div class="px-2" style="width:100%"> <span>ແວ່ນມອງໜ້າ</span><v-text-field :rules="nameRules"
-                                    label="ແວ່ນມອງໜ້າ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_VENMONGNAR"></v-text-field></div>
-                            <div class="px-2" style="width:100%"> <span>ແວ່ນມອງຫຼັງ</span><v-text-field :rules="nameRules"
-                                    label="ແວ່ນມອງຫຼັງ" dense flat solo background-color="#f5f5f5"
-                                    v-model="h_VICIVLE_VENMONGLHG"></v-text-field></div>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ໄຟຂ້າງ</span><v-text-field :rules="nameRules" label="ໄຟຂ້າງ" dense flat solo
+                                    background-color="#f5f5f5" v-model="h_VICIVLE_FAIYKHANG"></v-text-field>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ແວ່ນມອງໜ້າ</span><v-text-field :rules="nameRules" label="ແວ່ນມອງໜ້າ" dense flat solo
+                                    background-color="#f5f5f5" v-model="h_VICIVLE_VENMONGNAR"></v-text-field>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                            <v-col clos="6" md="3" sm="3">
+                                <span>ແວ່ນມອງຫຼັງ</span><v-text-field :rules="nameRules" label="ແວ່ນມອງຫຼັງ" dense flat solo
+                                    background-color="#f5f5f5" v-model="h_VICIVLE_VENMONGLHG"></v-text-field>
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
 
-                        </div>
-                        <div class="" style="display:flex;flex-direction:row;justify-content:space-between">
-
-                            <div style="width:100%">
+                            <v-col clos="6" md="3" sm="3">
                                 <span>ແວ່ນຂ້າງ</span>
                                 <v-text-field :rules="nameRules" label="ແວ່ນຂ້າງ" dense flat solo background-color="#f5f5f5"
                                     v-model="h_VICIVLE_VENKHANG"></v-text-field>
-                            </div>
-
-                        </div>
-
+                                <div class="tops">
+                                </div>
+                            </v-col>
+                        </v-row>
+                        <Height />
 
                         <div class="margintop d-flex align-center mt-4">
-
                             <div class="d-flex align-center pt-2  pr-2"
                                 style="background-color:#f7f7f7;border-radius:5px;height:40px">
                                 <v-radio-group inline v-model="h_VICIVLE_GLASS">
@@ -156,15 +348,19 @@
                             </div>
                         </div>
                     </v-card-text>
+                    <Height />
+                    <v-divider></v-divider>
+                    <Height />
                 </v-card>
 
                 <!-- ຂໍ້ມູນຢາງລົດ -->
                 <v-card flat>
-
                     <v-card-text>
                         <div class="d-flex">
                             <span style="font-size:14pt">ຂໍ້ມູນຢາງລົດ:</span>
                         </div>
+                        <Height />
+
                         <div class="d-flex">
                             <div style="width:100%">
 
@@ -185,10 +381,11 @@
                                             background-color="#fff" dense label="ເລກໄມລ່າສຸດ"
                                             v-model="h_KM1"></v-text-field>
                                         <v-text-field style="margin-top:-6px" :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ເລກໄມປະຈຸບັນ"
-                                            v-model="h_KML_1" readonly></v-text-field>
+                                            background-color="#fff" dense label="ເລກໄມປະຈຸບັນ" v-model="h_KML_1"
+                                            readonly></v-text-field>
                                         <v-text-field style="margin-top:-6px" :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun1"></v-text-field>
+                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly
+                                            v-model="canRun1"></v-text-field>
 
                                     </div>
                                 </div>
@@ -207,8 +404,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM2"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_2" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun2"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun2"></v-text-field>
                                     </div>
                                 </div>
                                 <div style="background-color:#f2ebeb;height:80px;padding-top:5px;border-radius:5px"
@@ -226,8 +423,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM3"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_3" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun3"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun3"></v-text-field>
                                     </div>
                                 </div>
                                 <div style="background-color:#f2ebeb;height:80px;padding-top:5px;border-radius:5px"
@@ -246,8 +443,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM4"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_4" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun4"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun4"></v-text-field>
                                     </div>
                                 </div>
                                 <div style="background-color:#f2ebeb;height:80px;padding-top:5px;border-radius:5px"
@@ -266,8 +463,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM5"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_5" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun5"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun5"></v-text-field>
                                     </div>
                                 </div>
                                 <div style="background-color:#f2ebeb;height:80px;padding-top:5px;border-radius:5px"
@@ -286,8 +483,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM6"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_6" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun6"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun6"></v-text-field>
                                     </div>
                                 </div>
                             </div>
@@ -316,8 +513,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM7"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_7" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun7"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun7"></v-text-field>
                                     </div>
                                 </div>
                                 <!-- =========12 los========== -->
@@ -338,8 +535,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM8"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_8" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun8"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun8"></v-text-field>
                                     </div>
                                 </div>
 
@@ -360,8 +557,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM9"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_9" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun9"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun9"></v-text-field>
                                     </div>
                                 </div>
                                 <div style="background-color:#f2ebeb;height:80px;padding-top:5px;border-radius:5px"
@@ -380,8 +577,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM10"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_10" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun10"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun10"></v-text-field>
                                     </div>
                                 </div>
                                 <div style="background-color:#f2ebeb;height:80px;padding-top:5px;border-radius:5px"
@@ -400,8 +597,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM11"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_11" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun11"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun11"></v-text-field>
                                     </div>
                                 </div>
                                 <div style="background-color:#f2ebeb;height:80px;padding-top:5px;border-radius:5px"
@@ -419,8 +616,8 @@
                                             label="ເລກໄມລ່າສຸດ" v-model="h_KM12"></v-text-field>
                                         <v-text-field :rules="nameRules" rounded dense background-color="#fff"
                                             label="ເລກໄມປະຈຸບັນ" v-model="h_KML_12" readonly></v-text-field>
-                                        <v-text-field  :rules="nameRules" rounded
-                                            background-color="#fff" dense label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun12"></v-text-field>
+                                        <v-text-field :rules="nameRules" rounded background-color="#fff" dense
+                                            label="ແລ່ນໄປແລ້ວ km" readonly v-model="canRun12"></v-text-field>
                                     </div>
                                 </div>
 
@@ -457,6 +654,7 @@ import swal from 'sweetalert2'
 export default {
     data() {
         return {
+            imagePreview: '',
             canRun1: '',
             canRun2: '',
             canRun3: '',
@@ -479,7 +677,8 @@ export default {
             h_VICIVLE_GLASS: 'ກະຊວນ',
             h_VICIVLE_NUMBER: '',
             h_VICIVLE_GALATY: '',
-            h_VICIVLE_DATE_GALATY: '',
+            start_galaty: false,
+            h_VICIVLE_DATE_GALATY: null,
             h_VICIVLE_TNGLOD: '',
             h_VICIVLE_BRANCH: '',
             h_VICIVLE_YEARLEVEL: '',
@@ -490,6 +689,11 @@ export default {
             h_VICIVLE_GPS: '',
             h_VICIVLE_POYPUDNUMFON: '',
             h_VICIVLE_MORFAI: '',
+            //start and end bat
+            start_bat: false,
+            end_bat: false,
+            start_bat_date: null,
+            end_bat_date: null,
             h_VICIVLE_BGTOM: '',
             h_VICIVLE_JANLARK: '',
             h_VICIVLE_FAINAR: '',
@@ -573,8 +777,8 @@ export default {
             } else {
                 this.alert = false
             }
-        const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        this.h_LEK_NUMMUNKHG = result
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_LEK_NUMMUNKHG = result
         },
         kim_KM: function (value) {
             if (parseFloat(value?.split(',').join('')) >= parseFloat(this.h_LEK_NUMMUNKHG?.split(',').join(''))) {
@@ -674,67 +878,67 @@ export default {
             this.r_TIRE_KM_6 = result
         },
         h_KM1: function (value) {
-           
+
             const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
             this.h_KM1 = result
         },
         h_KM2: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM2 = result
-       },
-       h_KM3: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM3 = result
-       },
-       h_KM4: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM4 = result
-       },
-       h_KM5: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM5 = result
-       },
-       h_KM6: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM6 = result
-       },
-       h_KM7: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM7 = result
-       },
-       h_KM8: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM8 = result
-       },
-       h_KM9: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM9 = result
-       },
-       h_KM10: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM10 = result
-       },
-       h_KM11: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM11 = result
-       },
-       h_KM12: function (value) {
-           
-           const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-           this.h_KM12 = result
-       },
-       
-        
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM2 = result
+        },
+        h_KM3: function (value) {
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM3 = result
+        },
+        h_KM4: function (value) {
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM4 = result
+        },
+        h_KM5: function (value) {
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM5 = result
+        },
+        h_KM6: function (value) {
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM6 = result
+        },
+        h_KM7: function (value) {
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM7 = result
+        },
+        h_KM8: function (value) {
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM8 = result
+        },
+        h_KM9: function (value) {
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM9 = result
+        },
+        h_KM10: function (value) {
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM10 = result
+        },
+        h_KM11: function (value) {
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM11 = result
+        },
+        h_KM12: function (value) {
+
+            const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.h_KM12 = result
+        },
+
+
     },
     mounted() {
         // console.log(this.$router.params.foo)
@@ -743,6 +947,25 @@ export default {
         }
     },
     methods: {
+        openUpload() {
+            document.getElementById('file-field').click()
+        },
+
+        updagePreview(e) {
+            var reader, files = e.target.files
+
+            if (files.length === 0) {
+                console.log('empty')
+            }
+
+            reader = new FileReader()
+
+            reader.onload = (e) => {
+                this.imagePreview = e.target.result
+            }
+
+            reader.readAsDataURL(files[0])
+        },
         async ongetData() {
             try {
                 // this.loading_processing = true;
@@ -766,6 +989,9 @@ export default {
                         this.h_VICIVLE_GPS = data?.data[0]?.h_VICIVLE_GPS,
                         this.h_VICIVLE_POYPUDNUMFON = data?.data[0]?.h_VICIVLE_POYPUDNUMFON,
                         this.h_VICIVLE_MORFAI = data?.data[0]?.h_VICIVLE_MORFAI,
+                        this.toBatRowStatus = data?.data[0]?.toBatRowStatus,
+                        this.start_bat_date = data?.data[0]?.bat_StartDate,
+                        this.end_bat_date = data?.data[0]?.bat_EndDate,
                         this.h_VICIVLE_BGTOM = data?.data[0]?.h_VICIVLE_BGTOM,
                         this.h_VICIVLE_JANLARK = data?.data[0]?.h_VICIVLE_JANLARK,
                         this.h_VICIVLE_FAINAR = data?.data[0]?.h_VICIVLE_FAINAR,
@@ -1011,6 +1237,11 @@ export default {
     justify-content: center;
     background-color: red;
     justify-items: center;
+}
+
+.tops {
+    margin-top: -30px;
+    font-size: 14px;
 }
 </style>
   

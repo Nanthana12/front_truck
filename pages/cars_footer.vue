@@ -81,6 +81,7 @@ export default {
                 { text: 'ສະຖານະລົດ', value: 'f_YEAR' },
                 { text: '', value: '' },
                 { text: '', value: '' },
+                { text: '', value: '' },
 
             ],
             nameRules: [(v) => !!v || ''],

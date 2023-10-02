@@ -5,18 +5,17 @@
         <v-progress-circular :width="3" color="primary" indeterminate></v-progress-circular>
       </v-card>
     </v-dialog>
-
-    <v-card color="pl-10 pt-5 pr-10" width="1000" class="mx-auto">
-      <div class="d-flex align-center">
-        <v-btn fab small width="30" height="30" color="#338ABF" to="customer">
-          <v-icon color="white">mdi-arrow-left</v-icon>
+    <v-card class="card-shadow mx-auto" width="1000">
+      <v-card-title style="display:flex;background-color:#568fb3;color:white">
+        <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="customer">
+          <v-icon color="#338ABF">mdi-arrow-left</v-icon>
         </v-btn>
-
-        <h3 class="ml-2">ເພີ່ມຂໍ້ມູນລູກຄ້າ</h3>
-      </div>
-
-      <Height />
-      <!-- <v-divider></v-divider> -->
+        <v-spacer></v-spacer>
+        ເພີ່ມຂໍ້ມູນລູກຄ້າ
+        <v-spacer></v-spacer>
+      </v-card-title>
+      <v-card-text>
+        <!-- <v-divider></v-divider> -->
       <Height />
       <Height />
       <v-form v-model="valid" lazy-validation ref="form">
@@ -86,8 +85,10 @@
       <Height />
       <Height />
       <Height />
-    </v-card>
+      </v-card-text>
 
+    </v-card>
+   
   </div>
 </template>
 <script>
@@ -187,4 +188,5 @@ export default {
 
 .margintops {
   margin-top: -20px;
-}</style>
+}
+</style>

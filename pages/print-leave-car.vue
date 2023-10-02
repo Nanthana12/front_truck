@@ -52,7 +52,7 @@
                                 <span class="ml-4">{{ product_name }}</span>
                             </div>
                             <div class="d-flex align-center" style="width:100%">
-                                
+
                                 <v-text-field label="ລາຄາ" style="width:100%" readonly outlined dense
                                     v-model="product_price"></v-text-field>
                                 <v-spacer></v-spacer>
@@ -206,12 +206,13 @@
                             </div>
                             <div class="d-flex align-center">
                                 <div style="width:100%" class="d-flex align-center">
-                                    <v-text-field dense outlined label="ໄລຍະທາງຂົນສົ່ງ"
-                                        v-model="road_send_km" readonly></v-text-field>
+                                    <v-text-field dense outlined label="ໄລຍະທາງຂົນສົ່ງ" v-model="road_send_km"
+                                        readonly></v-text-field>
                                 </div>
                                 <div class="d-flex align-center pl-2" style="width: 100%">
                                     <!-- <v-text-field dense outlined label="ເລກໄມປ່ຽນລີນກົ້ນ" v-model="let_mai_pian_lin_kund"></v-text-field> -->
-                                    <v-text-field dense outlined readonly  label="ໃສ່ນໍ້າມັນ" v-model="truck_glass"></v-text-field>
+                                    <v-text-field dense outlined readonly label="ໃສ່ນໍ້າມັນ"
+                                        v-model="truck_glass"></v-text-field>
                                 </div>
                             </div>
 
@@ -220,11 +221,13 @@
                         <div style="width:100%;background-color:#f5f5f5;border-radius:5px" class="pa-4 ">
                             <div class="d-flex align-center">
                                 <div style="width:100%">
-                                    <v-text-field dense outlined label="ນໍ້າໜັກລົດ" readonly v-model="truck_weight"></v-text-field>
+                                    <v-text-field dense outlined label="ນໍ້າໜັກລົດ" readonly
+                                        v-model="truck_weight"></v-text-field>
 
                                 </div>
                                 <div style="width:100%" class="d-flex align-center pl-2">
-                                    <v-text-field dense outlined label="ກ້ອງໜ້າລົດ" readonly v-model="start_camera"></v-text-field>
+                                    <v-text-field dense outlined label="ກ້ອງໜ້າລົດ" readonly
+                                        v-model="start_camera"></v-text-field>
                                 </div>
                             </div>
                             <div class="d-flex align-center">
@@ -260,19 +263,118 @@
                     </div>
                 </div>
                 <!-- customer -->
+                <div style="display:flex;flex-direction:row;justify-content:space-between;padding-top:20px">
+                    <table style="padding:2px;border: 0.5px solid #999;border-collapse: collapse;width:100%" class="mt-4">
+                        <tr style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px">
+                            <td colspan="4"
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
+                                <div style="width:100%;display:flex;justify-content:space-between;">
+                                    <span style="font-size:14px"> <b>ຊື່ລູກຄ້າ:</b> {{ customer_name }}</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between">
+                                    <span style="font-size:14px"><b> ເບີໂທ: </b>{{ customer_mobile }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
+                                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+
+                                    <div style="width:100%"><span style="font-size:14px">ແຂວງທີ່ສົ່ງ: {{ loca_send_province
+                                    }}</span></div>
+
+                                </div>
+                                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+                                    <div style="width:100%"><span style="font-size:14px">ສະຖານທີສົ່ງ: {{ loca_send_station
+                                    }}</span></div>
+                                </div>
+                            </td>
+                            <td colspan="2"
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
+                                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+                                    <div style="width:100%;display:flex;align-items:end"><span
+                                            style="font-size:14px">ແຂວງຮັບ: {{
+                                                loca_recieve_province }}</span>
+                                    </div>
+                                </div>
+                                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+
+                                    <div style="width:100%"><span style="font-size:14px">ສະຖານທີຮັບ: {{ loca_revieve_station
+                                    }}</span></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+                            <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
+                                class="font-weight-bold">
+                                <div style="width:100%;display:flex;justify-content:center;align-items:center">
+                                    <span>ສິນຄ້າ</span>
+                                </div>
+                            </td>
+                            <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
+                                class="font-weight-bold">
+                                <div style="width:100%;display:flex;justify-content:center;align-items:center">
+                                    <span>ນໍ້າໜັກ</span>
+                                </div>
+                            </td>
+                            <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
+                                class="font-weight-bold">
+                                <div style="width:100%;display:flex;justify-content:center;align-items:center">
+                                    <span>ລາຄາ</span>
+                                </div>
+                            </td>
+                            <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
+                                class="font-weight-bold">
+                                <div style="width:100%;display:flex;justify-content:center;align-items:center">
+                                    <span>ລວມ</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
+                                <div style="width:100%;display:flex;justify-content:center;">
+                                    <span style="font-size:14px"> {{ product_name }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
+                                <div style="width:100%;display:flex;justify-content:center;">
+                                    <span style="font-size:14px"> {{ product_weight }} ໂຕນ</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
+                                <div style="width:100%;display:flex;justify-content:end;">
+                                    <span style="font-size:14px"> {{ product_price }} {{ currency }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
+                                <div style="width:100%;display:flex;justify-content:end;">
+                                    <span style="font-size:14px"> {{ total_price }} {{ currency }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- 
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
+
                     <div style="width:80%;display:flex;align-items:end"><span style="font-size:12pt">ລະຫັດໃບປ່ອຍລົດ: {{
                         leave_card_no
                     }}</span>
                     </div>
                     <div style="width:100%"><span style="font-size:12pt">ລະຫັດລູກຄ້າ: {{ customer_id }}</span></div>
-                    
+
                 </div>
-                <div style="width:100%;display:flex;justify-content:space-between"><span
-                            style="font-size:12pt">ຊື່ລູກຄ້າ: {{
-                                customer_name }}</span></div>
+                <div style="width:100%;display:flex;justify-content:space-between"><span style="font-size:12pt">ຊື່ລູກຄ້າ:
+                        {{
+                            customer_name }}</span></div> -->
                 <!-- products -->
-                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+                <!-- <div style="display:flex;flex-direction:row;justify-content:space-between;">
                     <div style="width:100%;display:flex;align-items:end"><span style="font-size:12pt">ຊື່ສິນຄ້າ: {{
                         product_name
                     }}</span>
@@ -283,11 +385,12 @@
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
                     <div style="width:100%;display:flex;align-items:end"><span style="font-size:12pt">ລາຄາ: {{ product_price
                     }} {{ currency }}</span>
+                    </div> -->
+                <!-- <div style="width:100%"><span style="font-size:12pt">ຈຳນວນ: {{ product_quality }}</span></div> -->
+                <!-- <div style="width:100%"><span style="font-size:12pt">ລາຄາລວມ: {{ total_price }} {{ currency }}</span>
                     </div>
-                    <!-- <div style="width:100%"><span style="font-size:12pt">ຈຳນວນ: {{ product_quality }}</span></div> -->
-                    <div style="width:100%"><span style="font-size:12pt">ລາຄາລວມ: {{ total_price }} {{ currency }}</span></div>
-                </div>
-                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+                </div> -->
+                <!-- <div style="display:flex;flex-direction:row;justify-content:space-between;">
 
                     <div style="width:100%"><span style="font-size:12pt">ແຂວງທີ່ສົ່ງ: {{ loca_send_province }}</span></div>
                     <div style="width:100%"><span style="font-size:12pt">ສະຖານທີສົ່ງ: {{ loca_send_station }}</span></div>
@@ -297,8 +400,57 @@
                         loca_recieve_province }}</span>
                     </div>
                     <div style="width:100%"><span style="font-size:12pt">ສະຖານທີຮັບ: {{ loca_revieve_station }}</span></div>
-                </div>
+                </div> -->
                 <!-- employee -->
+                <div style="display:flex;flex-direction:row;justify-content:space-between;padding-top:20px">
+                    <table style="padding:2px;border: 0.5px solid #999;border-collapse: collapse;width:100%" class="mt-4">
+                        <tr style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px">
+                            <td colspan="4"
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
+                                <div style="width:100%;display:flex;justify-content:center;">
+                                    <span style="font-size:16px"> <b>ຂໍ້ມູນພະນັກງານຂັບລົດ</b></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
+                                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+
+                                    <div style="width:100%"><span style="font-size:14px">ຄົນຂັບ1: {{ emp_name }} </span>
+                                    </div>
+
+                                </div>
+                                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+                                    <div style="width:100%"><span style="font-size:14px">ເບີໂທ: {{ emp_mobile }}</span>
+                                    </div>
+                                </div>
+                                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+                                    <div style="width:100%"><span style="font-size:14px"> ເລກໃບຂັບຂີ່: {{ emp_id_card
+                                    }}</span></div>
+                                </div>
+                            </td>
+                            <td colspan="2"
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
+                                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+
+                                    <div style="width:100%"><span style="font-size:14px">ຄົນຂັບ1: {{ emp_name1 }} </span>
+                                    </div>
+
+                                </div>
+                                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+                                    <div style="width:100%"><span style="font-size:14px">ເບີໂທ: {{ emp_mobile1 }}</span>
+                                    </div>
+                                </div>
+                                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+                                    <div style="width:100%"><span style="font-size:14px"> ເລກໃບຂັບຂີ່: {{ emp_id_card1
+                                    }}</span></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- 
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
                     <div style="width:80%;display:flex;align-items:end"><span style="font-size:12pt">ຊື່ຄົນຂັບລົດ1: {{
                         emp_realName
@@ -317,23 +469,25 @@
                     <div style="width:80%;display:flex;align-items:end"><span style="font-size:12pt">ບ້ຽງລ້ຽງ: {{ money
                     }} {{ staff_cur }}</span>
                     </div>
-                    <div style="width:100%"><span style="font-size:12pt">ບ້ຽງລ້ຽງຈ່າຍກ່ອນ: {{ money_aready_pay }} {{ staff_cur }}</span>
+                    <div style="width:100%"><span style="font-size:12pt">ບ້ຽງລ້ຽງຈ່າຍກ່ອນ: {{ money_aready_pay }} {{
+                        staff_cur }}</span>
                     </div>
-                    <div style="width:100%"><span style="font-size:12pt">ຄ້າງຈ່າຍ: {{ money_still_pay }} {{ staff_cur }}</span></div>
-                </div>
+                    <div style="width:100%"><span style="font-size:12pt">ຄ້າງຈ່າຍ: {{ money_still_pay }} {{ staff_cur
+                    }}</span></div>
+                </div> -->
 
 
                 <!-- truck -->
 
-                <div style="display:flex;flex-direction:row;justify-content:space-between;">
+                <!-- <div style="display:flex;flex-direction:row;justify-content:space-between;">
                     <div style="width:80%;display:flex;align-items:end"><span style="font-size:12pt">ວັນທີອອກ: {{
                         start_go_date
                     }}</span>
                     </div>
                     <div style="width:100%"><span style="font-size:12pt">ວັນທີກັບ: {{ end_date }}</span></div>
-                    <div style="width:100%">
-                        <!-- <span style="font-size:12pt">ເລກໄມປ່ຽນລີນກົ້ນ: {{ let_mai_pian_lin_kund }}</span> -->
-                    </div>
+                    <div style="width:100%"> -->
+                <!-- <span style="font-size:12pt">ເລກໄມປ່ຽນລີນກົ້ນ: {{ let_mai_pian_lin_kund }}</span> -->
+                <!-- </div>
                 </div>
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
                     <div style="width:80%;display:flex;align-items:end"><span style="font-size:12pt">ໄລຍະທາງຂົນສົ່ງ: {{
@@ -348,202 +502,717 @@
                             {{ let_next }}</span></div>
                 </div>
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                    <div style="width:80%;display:flex;align-items:end">
-                        <!-- <span style="font-size:12pt">ໝໍ້ໄຟ: {{ mong_fai }}</span> -->
-                        <span style="font-size:12pt">ເຂັມກິໂລແມັດ: {{ truck_kilomen }}</span>
-                    </div>
-                    <!-- <div style="width:100%">
+                    <div style="width:80%;display:flex;align-items:end"> -->
+                <!-- <span style="font-size:12pt">ໝໍ້ໄຟ: {{ mong_fai }}</span> -->
+                <!-- <span style="font-size:12pt">ເຂັມກິໂລແມັດ: {{ truck_kilomen }}</span> -->
+                <!-- </div> -->
+                <!-- <div style="width:100%">
                         <span style="font-size:12pt">ເຄື່ອງມືຕິດລົດ: {{
                             digital_with_car }}</span>
                     </div> -->
-                    <div style="width:100%"><span style="font-size:12pt">ກ້ອງໜ້າລົດ: {{ start_camera }}</span></div>
+                <!-- <div style="width:100%"><span style="font-size:12pt">ກ້ອງໜ້າລົດ: {{ start_camera }}</span></div>
                 </div>
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                </div>
+                </div> -->
 
 
 
                 <!-- head and footer general data -->
                 <div style="display:flex;flex-direction:row;justify-content:space-between;padding-top:20px">
-                    <div style="width:100%;padding-right:20px" class="pr-2">
-                        <span style="font-size:12pt;font-weight:bold">ຂໍ້ມູນຫົວລົດ</span><br />
-                        <div style="display:flex;justify-content:space-between">
-                            <span style="font-size:12pt">ທະບຽນລົດ: {{ h_VICIVLE_NUMBER }}</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between">
-                            <span style="font-size:12pt">ຍີ່ຫໍ້: {{ h_VICIVLE_BRANCH }}</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between">
-                            <span style="font-size:12pt">ລົດປີ: {{ h_VICIVLE_YEARLEVEL }}</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between">
-                            <span style="font-size:12pt">ເລກປະກັນໄພ: {{ h_VICIVLE_GALATY }}</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between">
-                            <span style="font-size:12pt">ປະກັນໄພໝົດ: {{ h_VICIVLE_DATE_GALATY }}</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;flex-direction:column">
-                            <span style="font-size:12pt">ເລກຈັກ: {{ h_VICIVLE_LEKJUK }}</span>
-                            <span style="font-size:12pt">ເລກຖັງ: {{ h_VICIVLE_LEKTHUNG }}</span>
-                        </div>
-                    </div>
-                    <div style="width:100%;padding-left:20px">
-                        <span style="font-size:12pt;font-weight:bold">ຂໍ້ມູນຫາງລົດ</span><br />
-                        <div style="display:flex;justify-content:space-between">
-                            <span style="font-size:12pt">ທະບຽນລົດ: {{ f_CARD_NO }}</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between">
-                            <span style="font-size:12pt">ຍີ່ຫໍ້: {{ f_BRANCH }}</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between">
-                            <span style="font-size:12pt">ລົດປີ: {{ f_YEAR }}</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between">
-                            <span style="font-size:12pt">ເລກປະກັນໄພ: {{ f_GALATY_NO }}</span>
-                        </div>
-                        <div style="display:flex;justify-content:start">
-                            <span style="font-size:12pt">ປະກັນໄພໝົດ: </span>
-                            <span style="font-size:12pt;margin-left:5px"> {{ f_GALATY_DEP }}</span>
-                        </div>
-                        <div style="display:flex;justify-content:start">
+                    <table style="padding:2px;border: 0.5px solid #999;border-collapse: collapse;width:100%">
+                        <tr style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px">
+                            <td colspan="3"
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px; ">
+                                <div style="width:100%;display:flex;justify-content:center;align-items:center; font-size: 18px;"
+                                    class="font-weight-bold ">
+                                    <span><b>ຂໍ້ມູນຫົວລົດ</b> </span>
+                                </div>
+                                <div style="width:100%;display:flex;justify-content:space-between;" class="mt-2">
+                                    <span style="font-size:14px">ທະບຽນລົດ: {{ h_VICIVLE_NUMBER }}</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between">
+                                    <span style="font-size:14px">ຍີ່ຫໍ້: {{ h_VICIVLE_BRANCH }}</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between">
+                                    <span style="font-size:14px">ລົດປີ: {{ h_VICIVLE_YEARLEVEL }}</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between">
+                                    <span style="font-size:14px">ເລກປະກັນໄພ: {{ h_VICIVLE_GALATY }}</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between">
+                                    <span style="font-size:14px">ປະກັນໄພໝົດ: {{ h_VICIVLE_DATE_GALATY }}</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;flex-direction:column">
+                                    <span style="font-size:14px">ເລກຈັກ: {{ h_VICIVLE_LEKJUK }}</span>
+                                    <span style="font-size:14px">ເລກຖັງ: {{ h_VICIVLE_LEKTHUNG }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+                            <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
+                                class="font-weight-bold">
+                                <div style="width:100%;display:flex;justify-content:center;align-items:center">
+                                    <span>ລະຫັດຢາງລົດ</span>
+                                </div>
+                            </td>
+                            <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
+                                class="font-weight-bold">
+                                <div style="width:100%;display:flex;justify-content:center;align-items:center">
+                                    <span>ວັນທີປ່ຽນ</span>
+                                </div>
+                            </td>
+                            <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
+                                class="font-weight-bold">
+                                <div style="width:100%;display:flex;justify-content:center;align-items:center">
+                                    <span>ກຳນົດແລ່ນໄດ້</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_NO_1 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_DATE_1 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_KM_1 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_NO_2 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_DATE_2 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_KM_2 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_NO_3 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_DATE_3 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_KM_3 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_NO_4 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_DATE_4 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_KM_4 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_NO_5 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_DATE_5 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_KM_5 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_NO_6 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_DATE_6 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ ll_TIRE_KM_6 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_NO_1 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_DATE_1 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_KM_1 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_NO_2 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_DATE_2 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_KM_2 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_NO_3 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_DATE_3 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_KM_3 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_NO_4 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_DATE_4 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_KM_4 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_NO_5 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_DATE_5 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_KM_5 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr
+                            style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_NO_6 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_DATE_6 }}</span>
+                                </div>
+                            </td>
+                            <td
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                <div style="width:100%;display:flex;justify-content:space-between">
+                                    <span>{{ r_TIRE_KM_6 }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
 
-                            <span style="font-size:12pt">ເລກຄັນຊີ: {{ f_LEKKUNZEE }}</span>
-                        </div>
+                    <div style="width:100%;padding-left:10px">
+                        <table style="padding:2px;border: 0.5px solid #999;border-collapse: collapse;width:100%">
+                            <tr style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px">
+                                <td colspan="3"
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px; ">
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center; font-size: 18px;"
+                                        class="font-weight-bold ">
+                                        <span><b>ຂໍ້ມູນຫາງລົດ</b> </span>
+                                    </div>
+                                    <div style="width:100%;display:flex;justify-content:space-between;" class="mt-2">
+                                        <span style="font-size:14px">ທະບຽນລົດ: {{ f_CARD_NO }}</span>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between">
+                                        <span style="font-size:14px">ຍີ່ຫໍ້: {{ f_BRANCH }}</span>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between">
+                                        <span style="font-size:14px">ລົດປີ: {{ f_YEAR }}</span>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between">
+                                        <span style="font-size:14px">ເລກປະກັນໄພ: {{ h_VICIVLE_GALATY }}</span>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between">
+                                        <span style="font-size:14px">ປະກັນໄພໝົດ: {{ f_GALATY_DEP }}</span>
+                                    </div>
+                                    <div style="display:flex;justify-content:space-between;flex-direction:column">
+                                        <span style="font-size:14px">ເລກຄັນຊີ: {{ f_LEKKUNZEE }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+                                <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
+                                    class="font-weight-bold">
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center">
+                                        <span>ລະຫັດຢາງລົດ</span>
+                                    </div>
+                                </td>
+                                <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
+                                    class="font-weight-bold">
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center">
+                                        <span>ວັນທີປ່ຽນ</span>
+                                    </div>
+                                </td>
+                                <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
+                                    class="font-weight-bold">
+                                    <div style="width:100%;display:flex;justify-content:center;align-items:center">
+                                        <span>ກຳນົດແລ່ນໄດ້</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_1 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_DATE_1 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_KM_1 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_2 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_DATE_2 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_KM_1 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_3 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_DATE_3 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_KM_3 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_4 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_DATE_4 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_KM_4 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_5 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_DATE_5 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_KM_5 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_6 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_DATE_6 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_KM_6 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_7 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_DATE_7 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_KM_7 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_8 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_DATE_8 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ bl_TRIES_KM_8 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_1 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_DATE_1 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_KM_1 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_2 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_DATE_2 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_KM_2 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_3 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_DATE_3 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_KM_3 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_4 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_DATE_4 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_KM_4 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_5 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_DATE_5 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_KM_5 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_6 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_DATE_6 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_KM_6 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_7 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_DATE_7 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_KM_7 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr
+                                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_8 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_DATE_8 }}</span>
+                                    </div>
+                                </td>
+                                <td
+                                    style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
+                                    <div style="width:100%;display:flex;justify-content:space-between">
+                                        <span>{{ br_TRIES_KM_8 }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
-                <!-- cars fit -->
-                <div style="display:flex;flex-direction:row;justify-content:space-between;padding-top:20px">
-                    <!-- left fit -->
-                    <div style="width:100%">
-                        <div style="width:100%;display:flex;flex-direction:row;justify-content:space-between">
-                            <div style="width:100%;display:flex;flex-direction:column;">
-                                <span style="font-size:12pt;font-weight:bold">ຕຳແໜ່ງແລະ</span>
-                                <span style="font-size:12pt;font-weight:bold">ເກຍຢາງລົດ</span>
-                                <span>{{ ll_TIRE_NO_1 }}</span>
-                                <span>{{ ll_TIRE_NO_2 }}</span>
-                                <span>{{ ll_TIRE_NO_3 }}</span>
-                                <span>{{ ll_TIRE_NO_4 }}</span>
-                                <span>{{ ll_TIRE_NO_5 }}</span>
-                                <span>{{ ll_TIRE_NO_6 }}</span>
-
-                                <span style="margin-top:15px">{{ r_TIRE_NO_1 }}</span>
-                                <span>{{ r_TIRE_NO_2 }}</span>
-                                <span>{{ r_TIRE_NO_3 }}</span>
-                                <span>{{ r_TIRE_NO_4 }}</span>
-                                <span>{{ r_TIRE_NO_5 }}</span>
-                                <span>{{ r_TIRE_NO_6 }}</span>
-
-                            </div>
-                            <div style="width:100%;display:flex;flex-direction:column;">
-                                <span style="font-size:12pt;font-weight:bold">ວັນທີປ່ຽນ</span>
-                                <span style="font-size:12pt;font-weight:bold;color:white">..</span>
-                                <span>{{ ll_TIRE_DATE_1 }}</span>
-                                <span>{{ ll_TIRE_DATE_2 }}</span>
-                                <span>{{ ll_TIRE_DATE_3 }}</span>
-                                <span>{{ ll_TIRE_DATE_4 }}</span>
-                                <span>{{ ll_TIRE_DATE_5 }}</span>
-                                <span>{{ ll_TIRE_DATE_6 }}</span>
-
-                                <span style="margin-top:15px">{{ r_TIRE_DATE_1 }}</span>
-                                <span>{{ r_TIRE_DATE_2 }}</span>
-                                <span>{{ r_TIRE_DATE_3 }}</span>
-                                <span>{{ r_TIRE_DATE_4 }}</span>
-                                <span>{{ r_TIRE_DATE_5 }}</span>
-                                <span>{{ r_TIRE_DATE_6 }}</span>
-                            </div>
-                            <div
-                                style="width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center">
-                                <span style="font-size:12pt;font-weight:bold">ກຳນົດແລ່ນໄດ້</span>
-                                <span style="font-size:12pt;font-weight:bold">ກິໂລແມັດ</span>
-                                <span>{{ ll_TIRE_KM_1 }}</span>
-                                <span>{{ ll_TIRE_KM_2 }}</span>
-                                <span>{{ ll_TIRE_KM_3 }}</span>
-                                <span>{{ ll_TIRE_KM_4 }}</span>
-                                <span>{{ ll_TIRE_KM_5 }}</span>
-                                <span>{{ ll_TIRE_KM_6 }}</span>
-
-                                <span style="margin-top:15px">{{ r_TIRE_KM_1 }}</span>
-                                <span>{{ r_TIRE_KM_2 }}</span>
-                                <span>{{ r_TIRE_KM_3 }}</span>
-                                <span>{{ r_TIRE_KM_4 }}</span>
-                                <span>{{ r_TIRE_KM_5 }}</span>
-                                <span>{{ r_TIRE_KM_6 }}</span>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- right fit -->
-                    <div style="width:100%">
-                        <div style="width:100%;display:flex;flex-direction:row;justify-content:space-between">
-                            <div style="width:100%;display:flex;flex-direction:column;justify-content:center">
-                                <span style="font-size:12pt;font-weight:bold">ຕຳແໜ່ງແລະ</span>
-                                <span style="font-size:12pt;font-weight:bold">ເກຍຢາງລົດ</span>
-                                <span>{{ bl_TRIES_1 }}</span>
-                                <span>{{ bl_TRIES_2 }}</span>
-                                <span>{{ bl_TRIES_3 }}</span>
-                                <span>{{ bl_TRIES_4 }}</span>
-                                <span>{{ bl_TRIES_5 }}</span>
-                                <span>{{ bl_TRIES_6 }}</span>
-                                <span>{{ bl_TRIES_7 }}</span>
-                                <span>{{ bl_TRIES_8 }}</span>
-
-                                <span>{{ br_TRIES_1 }}</span>
-                                <span>{{ br_TRIES_2 }}</span>
-                                <span>{{ br_TRIES_3 }}</span>
-                                <span>{{ br_TRIES_4 }}</span>
-                                <span>{{ br_TRIES_5 }}</span>
-                                <span>{{ br_TRIES_6 }}</span>
-                                <span>{{ br_TRIES_7 }}</span>
-                                <span>{{ br_TRIES_8 }}</span>
-                            </div>
-                            <div style="width:100%;display:flex;flex-direction:column;justify-content:center">
-                                <span style="font-size:12pt;font-weight:bold">ວັນທີປ່ຽນ</span>
-                                <span style="font-size:12pt;font-weight:bold;color:white">..</span>
-                                <span>{{ bl_TRIES_DATE_1 }}</span>
-                                <span>{{ bl_TRIES_DATE_2 }}</span>
-                                <span>{{ bl_TRIES_DATE_3 }}</span>
-                                <span>{{ bl_TRIES_DATE_4 }}</span>
-                                <span>{{ bl_TRIES_DATE_5 }}</span>
-                                <span>{{ bl_TRIES_DATE_6 }}</span>
-                                <span>{{ bl_TRIES_DATE_7 }}</span>
-                                <span>{{ bl_TRIES_DATE_8 }}</span>
-
-
-                                <span>{{ br_TRIES_DATE_1 }}</span>
-                                <span>{{ br_TRIES_DATE_2 }}</span>
-                                <span>{{ br_TRIES_DATE_3 }}</span>
-                                <span>{{ br_TRIES_DATE_4 }}</span>
-                                <span>{{ br_TRIES_DATE_5 }}</span>
-                                <span>{{ br_TRIES_DATE_6 }}</span>
-                                <span>{{ br_TRIES_DATE_7 }}</span>
-                                <span>{{ br_TRIES_DATE_8 }}</span>
-                            </div>
-                            <div style="width:100%;display:flex;flex-direction:column;justify-content:center">
-                                <span style="font-size:12pt;font-weight:bold">ກຳນົດແລ່ນໄດ້</span>
-                                <span style="font-size:12pt;font-weight:bold">ກິໂລແມັດ</span>
-                                <span>{{ bl_TRIES_KM_1 }}</span>
-                                <span>{{ bl_TRIES_KM_2 }}</span>
-                                <span>{{ bl_TRIES_KM_3 }}</span>
-                                <span>{{ bl_TRIES_KM_4 }}</span>
-                                <span>{{ bl_TRIES_KM_5 }}</span>
-                                <span>{{ bl_TRIES_KM_6 }}</span>
-                                <span>{{ bl_TRIES_KM_7 }}</span>
-                                <span>{{ bl_TRIES_KM_8 }}</span>
-
-
-                                <span>{{ br_TRIES_KM_1 }}</span>
-                                <span>{{ br_TRIES_KM_2 }}</span>
-                                <span>{{ br_TRIES_KM_3 }}</span>
-                                <span>{{ br_TRIES_KM_4 }}</span>
-                                <span>{{ br_TRIES_KM_5 }}</span>
-                                <span>{{ br_TRIES_KM_6 }}</span>
-                                <span>{{ br_TRIES_KM_7 }}</span>
-                                <span>{{ br_TRIES_KM_8 }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div style="display:flex;flex-direction:row;justify-content:space-between;padding-top:100px">
                     <span style="font-size:12pt">ຜູ້ຮັບຜິດຊອບປ່ອຍລົດ</span>
                     <span style="font-size:12pt">ຜູ້ຂົນສົ່ງສິນຄ້າ</span>

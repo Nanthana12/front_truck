@@ -8,8 +8,8 @@
         <v-card class="mb-4 card-shadow" rounded="lg">
             <v-card-title style="font-size:16pt;background-color:#568fb3;color:white">
                 <div style="display:flex;align-items:center">
-                    <v-btn fab elevation="0" dark width="30" height="30" small color="#338ABF" to="operation-list">
-                        <v-icon color="white">mdi-arrow-left</v-icon>
+                    <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="operation-list">
+                        <v-icon color="#338ABF">mdi-arrow-left</v-icon>
                     </v-btn>
                 </div>
                 <v-spacer></v-spacer>
@@ -102,6 +102,27 @@
                             </v-menu>
                         </div>
                         <div style="width:100%" class="pl-2">
+                            <span>ນໍ້າໜັກລົດ</span>
+                            <v-text-field flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
+                                v-model="numnuklod"></v-text-field>
+                        </div>
+                        <div style="width:100%" class="pl-2">
+                            <span>ນໍ້າໜັກລວມ</span>
+                            <v-text-field flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
+                                v-model="numnuktotal"></v-text-field>
+                        </div>
+
+                        <!-- <div style="width:100%" class="pl-2">
+                            <span>ນໍ້າໜັກທັງໝົດ</span>
+                            <v-text-field flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາລວມ"
+                                v-model="numnuktotal"></v-text-field>
+                        </div> -->
+                        <div style="width:100%" class="pl-2">
+                            <span>ນໍ້າໜັກສິນຄ້າ</span>
+                            <v-text-field flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນນໍ້າໜັກ"
+                                append-icon="mdi-format-title" v-model="proSize"></v-text-field>
+                        </div>
+                        <div style="width:100%" class="pl-2">
                             <span>ລາຄາ</span>
                             <v-text-field flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
                                 v-model="price"></v-text-field>
@@ -117,11 +138,7 @@
                             <v-select label="ເລືອກສະກຸນເງິນ" style="width:100%" class="pl-2" flat solo dense
                                 background-color="#f5f5f5" :items="currency_items" v-model="currency"></v-select>
                         </div>
-                        <div style="width:100%" class="pl-2">
-                            <span>ນໍ້າໜັກ</span>
-                            <v-text-field flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນນໍ້າໜັກ"
-                                append-icon="mdi-format-title" v-model="proSize"></v-text-field>
-                        </div>
+                       
                     </div>
                 </div>
                 <div>
@@ -508,6 +525,8 @@ export default {
             price: '',
             price_total: '',
             proSize: '',
+            numnuktotal: '',
+            numnuklod: '',
             showDate: false,
             showLet: false,
             search: '',
@@ -588,7 +607,21 @@ export default {
             const reals = parseFloat(newValue?.split(',')?.join('')) * parseFloat(this.price ? this.price?.split(',')?.join('') : 1)
             this.price_total = reals?.toString()?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
             this.proSize = newValue
-        }
+        },
+        numnuklod: function (newValue) {
+            const result = newValue?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            const reals = parseFloat(newValue?.split(',')?.join('')) - parseFloat(this.numnuktotal?.split(',')?.join(''))
+            this.proSize = reals?.toString()?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.numnuklod = result
+        },
+
+        numnuktotal: function (newValue) {
+            const result = newValue?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            const reals = parseFloat(newValue?.split(',')?.join('')) - parseFloat(this.numnuklod?.split(',')?.join(''))
+            this.proSize = reals?.toString()?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            this.numnuktotal = result
+        },
+        
     },
     methods: {
         onGetLeacarList() {
@@ -632,6 +665,7 @@ export default {
                         this.price_total = data?.data[0]?.total_PRICE
                         this.proSize = data?.data[0]?.proSize
                         this.currency = data?.data[0]?.currency
+                        // this.numnuklod = data?.data[0]?.numnuklod
                         this.loading_processing = false
                     } else {
                         this.performance_data = data?.data

@@ -31,6 +31,12 @@
           <template v-slot:item="row">
             <tr>
               <td>{{ row.item.staftId }}</td>
+              <td><v-avatar>
+      <img
+        src="https://cdn.vuetifyjs.com/images/john.jpg"
+        alt="John"
+      >
+    </v-avatar></td>
               <td>{{ row.item.name }} {{ row.item.surname }}</td>
               <td>{{ row.item.vaillage }}</td>
               <td>{{ row.item.district }}</td>
@@ -100,44 +106,75 @@
 
     </v-card>
     <!-- Modal Update Employee -->
-    <v-dialog v-model="showModalUpdateEmployee" persistent width="900">
+    <v-dialog v-model="showModalUpdateEmployee" persistent width="1000">
       <v-card>
+        <v-card-title style="display:flex;background-color:#568fb3;color:white">
+
+          <v-spacer></v-spacer>
+          ແກ້ໄຂຂໍ້ມູນພະນັກງານ
+          <v-spacer></v-spacer>
+          <v-btn fab elevation="0" dark width="30" height="30" small color="white"
+            @click="showModalUpdateEmployee = false">
+            <v-icon color="#338ABF">mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
+
         <v-container>
-          <v-row>
-            <v-col class="pl-3">
-              <h3>ແກ້ໄຂຂໍ້ມູນພະນັກງານ</h3>
-            </v-col>
-            <v-spacer></v-spacer>
-            <v-btn icon class="mt-2 mr-2" @click="showModalUpdateEmployee = false"><v-icon>mdi-close</v-icon></v-btn>
-          </v-row>
-          <Height />
-          <v-divider></v-divider>
-          <Height />
-          <Height />
           <v-card-text>
             <v-row>
-              <v-col cols="6" md="4" sm="4">
-                <v-text-field label="ລະຫັດພະນັກງານ" outlined dense readonly v-model="up_emp_id"></v-text-field>
+              <v-col cols="3">
+                <div class="text-center">
+                  <div v-if="imagePreview == ''">
+                    <img src="../assets/images/profile.png" class="preview-image" v-on:click="openUpload">
+                  </div>
+                  <div v-else>
+                    <img v-bind:src="imagePreview" class="preview-image" v-on:click="openUpload">
+                  </div>
+                </div>
+                  <input name="image" type="file" id="file-field" v-on:change="updagePreview" style="display: none;">
+              
               </v-col>
-              <v-col cols="6" md="4" sm="4"><v-text-field label="ຊື່" outlined dense
-                  v-model="up_emp_name"></v-text-field></v-col><v-col cols="6" md="4" sm="4">
-                <v-text-field label="ນາມສະກຸນ" outlined dense v-model="up_emp_surname"></v-text-field></v-col>
-            </v-row>
-            <div class="margintops">
-              <v-row>
-                <v-col cols="6" md="4" sm="4">
-                  <v-text-field label="ບ້ານ" outlined dense v-model="up_emp_village"></v-text-field>
-                </v-col>
-                <v-col cols="6" md="4" sm="4"><v-text-field label="ເມືອງ" outlined dense
-                    v-model="up_emp_dist"></v-text-field></v-col><v-col cols="6" md="4" sm="4">
-                  <v-text-field label="ແຂວງ" outlined dense v-model="up_emp_province"></v-text-field></v-col>
-              </v-row>
-            </div>
-            <div class="margintops">
-              <v-row>
-                <v-col cols="6" md="4" sm="4" class="pl-6">
-                  <v-radio-group inline v-model="up_emp_gender">
-                    <v-row>
+              <v-col cols="9">
+                <v-row>
+                  <v-col cols="6" md="6" sm="6">
+                    <v-text-field label="ລະຫັດພະນັກງານ" outlined dense readonly v-model="up_emp_id"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="6" md="6" sm="6">
+                    <v-text-field label="ຊື່" outlined dense v-model="up_emp_name"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                  <v-col cols="6" md="6" sm="6">
+                    <v-text-field label="ນາມສະກຸນ" outlined dense v-model="up_emp_surname"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="6" md="4" sm="4">
+                    <v-text-field label="ບ້ານ" outlined dense v-model="up_emp_village"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                  <v-col cols="6" md="4" sm="4">
+                    <v-text-field label="ເມືອງ" outlined dense v-model="up_emp_dist"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                  <v-col cols="6" md="4" sm="4">
+                    <v-text-field label="ແຂວງ" outlined dense v-model="up_emp_province"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="6" md="4" sm="4" >
+                     <v-radio-group inline v-model="up_emp_gender">
+                    <v-row class="pl-3">
                       <span class="mt-1">ເພດ:</span>
                       <Width />
                       <v-radio label="ຊາຍ" value="ຊາຍ" class="mt-1"></v-radio>
@@ -145,41 +182,47 @@
                       <v-radio label="ຍິງ" value="ຍິງ"></v-radio>
                     </v-row>
                   </v-radio-group>
-                </v-col>
-                <v-col cols="6" md="4" sm="4"><v-text-field label="ສະຖານະ" outlined dense
-                    v-model="up_emp_gen_status"></v-text-field></v-col>
-              </v-row>
-            </div>
-            <div class="margintops">
-              <v-row>
-
-                <v-col cols="6" md="4" sm="4"><v-text-field label="ເລກທີໃບຂັບຂີ່" outlined dense
-                    v-model="up_emp_licence_id"></v-text-field></v-col><v-col cols="6" md="4" sm="4">
-                  <v-text-field label="ໃບຂັບຂີ່ໝົດອາຍຸ" outlined dense v-model="up_emp_licence_exp_date"></v-text-field>
-                  <v-col cols="6" md="4" sm="4">
-                    <!-- <v-text-field
-                    label="ເລກບັດປະຈຳຕົວ"
-                    outlined
-                    dense
-                    v-model="up_emp_id_card"
-                  ></v-text-field> -->
+                  <div class="tops">
+                    </div>
                   </v-col>
-                </v-col>
-              </v-row>
-            </div>
-            <div class="margintops">
-              <v-row>
-                <v-col cols="6" md="4" sm="4">
-                  <v-text-field label="ໃບຂັບຂີ່ອອກທີ" outlined dense v-model="up_emp_verBy"></v-text-field>
-                </v-col>
-                <v-col cols="6" md="4" sm="4">
-                  <v-text-field label="ເບີໂທ1" outlined dense type="number" v-model="up_emp_mobile"></v-text-field>
-                </v-col>
-                <v-col cols="6" md="4" sm="4">
-                  <v-text-field label="ເບີໂທ2" outlined dense type="number" v-model="up_emp_mobile1"></v-text-field>
-                </v-col>
-              </v-row>
-            </div>
+                  <v-col cols="6" md="4" sm="4">
+                    <v-text-field label="ສະຖານະ" outlined dense
+                    v-model="up_emp_gen_status"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                  <v-col cols="6" md="4" sm="4">
+                    <v-text-field label="ເລກທີໃບຂັບຂີ່" outlined dense
+                    v-model="up_emp_licence_id"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                </v-row>       
+              </v-col>
+            </v-row>
+            <v-row>
+                  <v-col cols="6" md="3" sm="3">
+                    <v-text-field label="ໃບຂັບຂີ່ອອກທີ" outlined dense v-model="up_emp_verBy"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                  <v-col cols="6" md="3" sm="3">
+                    <v-text-field label="ໃບຂັບຂີ່ໝົດອາຍຸ" outlined dense v-model="up_emp_licence_exp_date"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                  <v-col cols="6" md="3" sm="3">
+                    <v-text-field label="ເບີໂທ1" outlined dense type="number" v-model="up_emp_mobile"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                  <v-col cols="6" md="3" sm="3">
+                    <v-text-field label="ເບີໂທ2" outlined dense type="number" v-model="up_emp_mobile1"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                </v-row>
+          
             <!-- <div class="margintops">
               <v-row>
                 <v-col cols="6" md="4" sm="4">
@@ -326,6 +369,7 @@ export default {
       up_emp_menu: false,
       emp_table_headers: [
         { text: 'ລະຫັດ', value: 'staftId' },
+        { text: 'ຮູບພາບ', value: '' },
         { text: 'ຊື່ ແລະ ນາມສະກຸນ', value: 'name surname' },
         { text: 'ບ້ານ', value: 'vaillage' },
         { text: 'ເມືອງ', value: 'licenceId' },
@@ -338,6 +382,7 @@ export default {
       ],
       emp_data_list: [],
       //state update
+      imagePreview: '',
       key_up_emp: '',
       up_emp_id: '',
       up_emp_name: '',
@@ -353,6 +398,7 @@ export default {
       up_emp_mobile: '',
       up_emp_mobile1: '',
       up_emp_verBy: '',
+      image:'',
       ////////////////
       up_emp_dateTime: '',
       up_created_emp_id: '',
@@ -363,6 +409,33 @@ export default {
     this.onGetEmployeeList()
   },
   methods: {
+    openUpload() {
+      document.getElementById('file-field').click()
+    },
+
+    updagePreview (e, file) {
+      var reader, files = e.target.files
+
+      if(files.length === 0){
+        console.log('empty')
+      }
+
+      reader = new FileReader()
+
+      reader.onload = (e) => {
+        this.imagePreview = e.target.result
+      }
+
+      reader.readAsDataURL(files[0])
+
+      if (file) {
+        this.image = URL.createObjectURL(this.image)
+        console.log(this.image)
+      } else {
+        this.image = null
+      }
+    },
+
     async onGetEmployeeList() {
       try {
         this.loading_processing = true
@@ -629,8 +702,18 @@ export default {
 }
 </script>
 <style lang="scss">
+.tops {
+  margin-top: -25px;
+  font-size: 14px;
+}
+
 .boldtext {
   font-weight: bold;
+}
+
+.preview-image{
+  width: 220px;
+  height: 220px;
 }
 
 .margintops {
