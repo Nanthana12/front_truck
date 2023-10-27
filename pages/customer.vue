@@ -8,10 +8,10 @@
 
 
     <v-card class="card-shadow mb-6" rounded="lg">
-      <v-card-title style="background-color:#568fb3">
+      <v-card-title style="background-color:#E57373">
         <div class="d-flex align-center px-4" style="background-color:#f5f5f5;height:50px;border-radius:3px">
           <div>
-            <v-btn color="#338ABF" to="add_customer" elevation="0" rounded>
+            <v-btn color="#E57373" to="add_customer" elevation="0" rounded>
               <v-icon color="white">mdi-plus</v-icon>
               <span class="white--text">ເພີ່ມຂໍ້ມູນ</span>
             </v-btn>
@@ -46,7 +46,7 @@
               <td>{{ row.item.mobile }}</td>
               <td>{{ row.item.mobile1 }}</td>
               <td>
-                <v-btn color="#338ABF" small elevation="0" @click="
+                <v-btn color="#FFB74D" small elevation="0" @click="
                   onGetCusDataForUpdate(
                     row.item.id,
                     row.item.customerId,
@@ -97,14 +97,14 @@
     <!-- Dialog Update Customer -->
     <v-dialog v-model="showModalUpdateCustomer" persistent width="700">
       <v-card>
-        <v-card-title style="display:flex;background-color:#568fb3;color:white">
+        <v-card-title style="display:flex;background-color:#E57373;color:white">
 
           <v-spacer></v-spacer>
           ແກ້ໄຂຂໍ້ມູນລູກຄ້າ
           <v-spacer></v-spacer>
           <v-btn fab elevation="0" dark width="30" height="30" small color="white"
             @click="showModalUpdateCustomer = false">
-            <v-icon color="#338ABF">mdi-close</v-icon>
+            <v-icon color="#E57373">mdi-close</v-icon>
           </v-btn> 
         </v-card-title>
         <v-container>
@@ -166,7 +166,7 @@
             <v-btn color="#DE3333" @click="showModalUpdateCustomer = false"><v-icon color="white">mdi-close</v-icon>
               <span class="white--text">ຍົກເລິກ</span>
             </v-btn>
-            <v-btn color="primary" @click="onUpdateCusInfo"><v-icon color="white">mdi-check</v-icon> ແກ້ໄຂ
+            <v-btn color="#FFB74D" @click="onUpdateCusInfo"><v-icon color="white">mdi-check</v-icon><span style="color: white;">ແກ້ໄຂ</span> 
             </v-btn>
           </v-card-actions>
         </v-container>

@@ -7,9 +7,9 @@
     </v-dialog>
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-card class="card-shadow" rounded="lg">
-        <v-card-title style="display:flex;background-color:#568fb3;color:white">
+        <v-card-title style="display:flex;background-color:#E57373;color:white">
           <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="leave-cars-list">
-            <v-icon color="#338ABF">mdi-arrow-left</v-icon>
+            <v-icon color="#E57373">mdi-arrow-left</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
           ອອກໃບປ່ອຍລົດ
@@ -63,7 +63,7 @@
                   <v-text-field label="ປ້ອນນໍ້າໜັກ" style="width:100%" outlined dense v-model="product_weight"
                     :rules="nameRules"></v-text-field>
                   <div
-                    style="height:40px;width:45px;margin-top:-26px;display:flex;align-items:center;justify-content:center;background-color:#4AAF41;margin-left:-2px">
+                    style="height:40px;width:45px;margin-top:-26px;display:flex;align-items:center;justify-content:center;background-color:#448AFF;margin-left:-2px">
                     <span class="white--text">ໂຕນ</span>
                   </div>
                 </div>
@@ -280,7 +280,7 @@
 
         <div
           style="position:fixed;top: 97%;left: 50%;transform: translate(-50%, -50%); width:100%;background-color:#f5f5f5;display:flex;justify-content:center;height:50px;align-items:center">
-          <v-btn width="200" color="green" class="card-shadow" @click="onCreateReports">
+          <v-btn width="200" color="#448AFF" class="card-shadow" @click="onCreateReports">
             <v-icon color="white">mdi-printer</v-icon>
             <span class="white--text pl-2">ພີມບິນ</span>
           </v-btn>
@@ -288,10 +288,23 @@
       </v-card>
     </v-form>
 
-    <!--  -->
+    <!--style="display: none"  -->
     <!-- component for print -->
-    <div style="display:none;">
+    <div style="display: none">
       <div id="modalInvoice">
+        <v-row>
+          <v-col cols="3">
+            <img class="mx-auto" src="../assets/images/khounkham.png" height="70px"  cover />
+          </v-col>
+          <v-col cols="9">
+            <div style="display:flex;justify-content:start;flex-direction:column;align-items:start">
+              <span style="font-size:14px"><b>ບໍລິສັດ ຄູນຄໍາ ຂຸດຄົ້ນຫີນກາວ ດົງເຫັນ </b> </span>
+              <span style="font-size:12px">ສໍານັກງານຕັ້ງຢູ່ ອາຄານ ສະໜາມຍິງປືນ 20 ມັງກອນ, ສະໜາມກີລາກອງທັບ, ບ້ານຈອມມະນີ, ເມືອງ ໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ</span>
+              <span style="font-size:12px">ໂທລະສັບ: 020 92661111, 020 98753888 | ອີເມວ: kounkham@Mining | ເວັບໄຊ: kounkham</span>
+            </div>
+          </v-col>
+        </v-row>
+        <br>
         <div class="text-center pb-10 font-weight-bold" style="display:flex;justify-content:center;font-size:20px">
           <b>ໃບປ່ອຍລົດ</b>
         </div>
@@ -299,15 +312,15 @@
 
         <v-row>
           <v-col cols="3">
-            <img class="mx-auto" src="../assets/images/cargo-truck.png" height="110px" width="110px" cover />
+            <img class="mx-auto" :src="imageTruck" height="110px" width="110px" cover />
           </v-col>
           <v-col cols="9">
             <Height />
             <Height />
             <div style="display:flex;justify-content:end;flex-direction:column;align-items:end">
-              <span style="font-size:14px">ເລກທີ: {{ leave_id_car }}</span>
-              <span style="font-size:14px">ວັນທີອອກລົດ: {{ start_go_date }}</span>
-              <span style="font-size:14px">ວັນທີກັບ: {{ end_date }}</span>
+              <span style="font-size:12px">ເລກທີ: {{ leave_id_car }}</span>
+              <span style="font-size:12px">ວັນທີອອກລົດ: {{ start_go_date }}</span>
+              <span style="font-size:12px">ວັນທີກັບ: {{ end_date }}</span>
             </div>
           </v-col>
 
@@ -320,10 +333,10 @@
               <td colspan="4"
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
                 <div style="width:100%;display:flex;justify-content:space-between;">
-                  <span style="font-size:14px"> <b>ຊື່ລູກຄ້າ:</b> {{ customer_name }}</span>
+                  <span style="font-size:12px"> <b>ຊື່ລູກຄ້າ:</b> {{ customer_name }}</span>
                 </div>
                 <div style="display:flex;justify-content:space-between">
-                  <span style="font-size:14px"><b> ເບີໂທ: </b>{{ customer_mobile }}</span>
+                  <span style="font-size:12px"><b> ເບີໂທ: </b>{{ customer_mobile }}</span>
                 </div>
               </td>
             </tr>
@@ -332,28 +345,28 @@
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
 
-                  <div style="width:100%"><span style="font-size:14px">ແຂວງທີ່ສົ່ງ: {{ loca_send_province }}</span></div>
+                  <div style="width:100%"><span style="font-size:12px">ແຂວງທີ່ສົ່ງ: {{ loca_send_province }}</span></div>
 
                 </div>
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                  <div style="width:100%"><span style="font-size:14px">ສະຖານທີສົ່ງ: {{ loca_send_station }}</span></div>
+                  <div style="width:100%"><span style="font-size:12px">ສະຖານທີສົ່ງ: {{ loca_send_station }}</span></div>
                 </div>
               </td>
               <td colspan="2"
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                  <div style="width:100%;display:flex;align-items:end"><span style="font-size:14px">ແຂວງຮັບ: {{
+                  <div style="width:100%;display:flex;align-items:end"><span style="font-size:12px">ແຂວງຮັບ: {{
                     loca_recieve_province }}</span>
                   </div>
                 </div>
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
 
-                  <div style="width:100%"><span style="font-size:14px">ສະຖານທີຮັບ: {{ loca_revieve_station }}</span></div>
+                  <div style="width:100%"><span style="font-size:12px">ສະຖານທີຮັບ: {{ loca_revieve_station }}</span></div>
                 </div>
               </td>
             </tr>
             <tr
-              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
               <td
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                 class="font-weight-bold">
@@ -387,19 +400,19 @@
               <td
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
                 <div style="width:100%;display:flex;justify-content:center;">
-                  <span style="font-size:14px"> {{ road_send_km }} Km</span>
+                  <span style="font-size:12px"> {{ road_send_km }} Km</span>
                 </div>
               </td>
               <td
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
                 <div style="width:100%;display:flex;justify-content:center;">
-                  <span style="font-size:14px"> {{ kim_KM }} </span>
+                  <span style="font-size:12px"> {{ kim_KM }} </span>
                 </div>
               </td>
               <td colspan="2"
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
                 <div style="width:100%;display:flex;justify-content:center;">
-                  <span style="font-size:14px"> {{ let_mai_pian_num_mun_kheng_next }}</span>
+                  <span style="font-size:12px"> {{ let_mai_pian_num_mun_kheng_next }}</span>
                 </div>
               </td>
               <!-- <td
@@ -419,7 +432,7 @@
               <td colspan="4"
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
                 <div style="width:100%;display:flex;justify-content:center;">
-                  <span style="font-size:16px"> <b>ຂໍ້ມູນພະນັກງານຂັບລົດ</b></span>
+                  <span style="font-size:14px"> <b>ຂໍ້ມູນພະນັກງານຂັບລົດ</b></span>
                 </div>
               </td>
             </tr>
@@ -428,19 +441,19 @@
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
                 <v-row>
                   <v-col cols="3">
-                    <img class="mx-auto" src="../assets/images/profile.png" height="70px" width="70px" cover />
+                    <img class="mx-auto" :src="imageStaff" height="70px" width="70px" cover />
                   </v-col>
                   <v-col cols="9">
                     <div style="display:flex;flex-direction:row;justify-content:space-between;">
 
-                      <div style="width:100%"><span style="font-size:14px">ຄົນຂັບ1: {{ emp_name }} </span></div>
+                      <div style="width:100%"><span style="font-size:12px">ຄົນຂັບ1: {{ emp_name }} </span></div>
 
                     </div>
                     <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                      <div style="width:100%"><span style="font-size:14px">ເບີໂທ: {{ emp_mobile }}</span></div>
+                      <div style="width:100%"><span style="font-size:12px">ເບີໂທ: {{ emp_mobile }}</span></div>
                     </div>
                     <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                      <div style="width:100%"><span style="font-size:14px"> ເລກໃບຂັບຂີ່: {{ emp_id_card }}</span></div>
+                      <div style="width:100%"><span style="font-size:12px"> ເລກໃບຂັບຂີ່: {{ emp_id_card }}</span></div>
                     </div>
                   </v-col>
                 </v-row>
@@ -450,17 +463,17 @@
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px;">
                 <v-row>
                   <v-col cols="3">
-                    <img class="mx-auto" src="../assets/images/profile.png" height="70px" width="70px" cover />
+                    <img class="mx-auto" :src="imageStaff1" height="70px" width="70px" cover />
                   </v-col>
                   <v-col cols="9">
                     <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                      <div style="width:100%"><span style="font-size:14px">ຄົນຂັບ2: {{ emp_name1 }} </span></div>
+                      <div style="width:100%"><span style="font-size:12px">ຄົນຂັບ2: {{ emp_name1 }} </span></div>
                     </div>
                     <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                      <div style="width:100%"><span style="font-size:14px">ເບີໂທ: {{ emp_mobile1 }}</span></div>
+                      <div style="width:100%"><span style="font-size:12px">ເບີໂທ: {{ emp_mobile1 }}</span></div>
                     </div>
                     <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                      <div style="width:100%"><span style="font-size:14px"> ເລກໃບຂັບຂີ່: {{ emp_id_card1 }}</span></div>
+                      <div style="width:100%"><span style="font-size:12px"> ເລກໃບຂັບຂີ່: {{ emp_id_card1 }}</span></div>
                     </div>
                   </v-col>
                 </v-row>
@@ -468,7 +481,7 @@
               </td>
             </tr>
             <tr
-              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
               <td
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                 class="font-weight-bold">
@@ -499,7 +512,7 @@
               </td>
             </tr>
             <tr
-              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
               <td
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                 class="font-weight-bold green--text">
@@ -530,7 +543,7 @@
               </td>
             </tr>
             <tr
-              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
               <td
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                 class="font-weight-bold ">
@@ -561,7 +574,7 @@
               </td>
             </tr>
             <tr
-              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
               <td colspan="2"
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                 class="font-weight-bold">
@@ -578,7 +591,7 @@
               </td>
             </tr>
             <tr
-              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
               <td colspan="2"
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                 class="font-weight-bold">
@@ -590,12 +603,12 @@
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                 class="font-weight-bold">
                 <div style="width:100%;display:flex;justify-content:end">
-                  <span>{{ moneyareadyAll }} LAK</span>
+                  <span>{{ money_all }} LAK</span>
                 </div>
               </td>
             </tr>
             <tr
-              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+              style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
               <td colspan="2"
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                 class="font-weight-bold">
@@ -607,7 +620,7 @@
                 style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                 class="font-weight-bold">
                 <div style="width:100%;display:flex;justify-content:end">
-                  <span> LAK</span>
+                  <span>{{ total1 }} LAK</span>
                 </div>
               </td>
             </tr>
@@ -670,7 +683,7 @@
         </div> -->
 
 
-
+<br><br>
         <!-- head and footer general data -->
         <div style="display:flex;flex-direction:row;justify-content:space-between;padding-top:20px">
           <div style="width:100%;padding-right:10px" class="pr-2">
@@ -678,33 +691,33 @@
               <tr style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px">
                 <td colspan="3"
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px; ">
-                  <div style="width:100%;display:flex;justify-content:center;align-items:center; font-size: 18px;"
+                  <div style="width:100%;display:flex;justify-content:center;align-items:center; font-size: 16px;"
                     class="font-weight-bold ">
                     <span><b>ຂໍ້ມູນຫົວລົດ</b> </span>
                   </div>
                   <div style="width:100%;display:flex;justify-content:space-between;" class="mt-2">
-                    <span style="font-size:14px">ທະບຽນລົດ: {{ h_VICIVLE_NUMBER }}</span>
+                    <span style="font-size:12px">ທະບຽນລົດ: {{ h_VICIVLE_NUMBER }}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:14px">ຍີ່ຫໍ້: {{ h_VICIVLE_BRANCH }}</span>
+                    <span style="font-size:12px">ຍີ່ຫໍ້: {{ h_VICIVLE_BRANCH }}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:14px">ລົດປີ: {{ h_VICIVLE_YEARLEVEL }}</span>
+                    <span style="font-size:12px">ລົດປີ: {{ h_VICIVLE_YEARLEVEL }}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:14px">ເລກປະກັນໄພ: {{ h_VICIVLE_GALATY }}</span>
+                    <span style="font-size:12px">ເລກປະກັນໄພ: {{ h_VICIVLE_GALATY }}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:14px">ປະກັນໄພໝົດ: {{ h_VICIVLE_DATE_GALATY }}</span>
+                    <span style="font-size:12px">ປະກັນໄພໝົດ: {{ h_VICIVLE_DATE_GALATY }}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;flex-direction:column">
-                    <span style="font-size:14px">ເລກຈັກ: {{ h_VICIVLE_LEKJUK }}</span>
-                    <span style="font-size:14px">ເລກຖັງ: {{ h_VICIVLE_LEKTHUNG }}</span>
+                    <span style="font-size:12px">ເລກຈັກ: {{ h_VICIVLE_LEKJUK }}</span>
+                    <span style="font-size:12px">ເລກຖັງ: {{ h_VICIVLE_LEKTHUNG }}</span>
                   </div>
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                   class="font-weight-bold">
@@ -728,7 +741,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -749,7 +762,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -770,7 +783,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -791,7 +804,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -812,7 +825,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -833,7 +846,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -854,7 +867,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -875,7 +888,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -896,7 +909,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -917,7 +930,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -938,7 +951,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -959,7 +972,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -986,32 +999,32 @@
               <tr style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px">
                 <td colspan="3"
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px; ">
-                  <div style="width:100%;display:flex;justify-content:center;align-items:center; font-size: 18px;"
+                  <div style="width:100%;display:flex;justify-content:center;align-items:center; font-size: 16px;"
                     class="font-weight-bold ">
                     <span><b>ຂໍ້ມູນຫາງລົດ</b> </span>
                   </div>
                   <div style="width:100%;display:flex;justify-content:space-between;" class="mt-2">
-                    <span style="font-size:14px">ທະບຽນລົດ: {{ f_CARD_NO }}</span>
+                    <span style="font-size:12px">ທະບຽນລົດ: {{ f_CARD_NO }}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:14px">ຍີ່ຫໍ້: {{ f_BRANCH }}</span>
+                    <span style="font-size:12px">ຍີ່ຫໍ້: {{ f_BRANCH }}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:14px">ລົດປີ: {{ f_YEAR }}</span>
+                    <span style="font-size:12px">ລົດປີ: {{ f_YEAR }}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:14px">ເລກປະກັນໄພ: {{ h_VICIVLE_GALATY }}</span>
+                    <span style="font-size:12px">ເລກປະກັນໄພ: {{ h_VICIVLE_GALATY }}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:14px">ປະກັນໄພໝົດ: {{ f_GALATY_DEP }}</span>
+                    <span style="font-size:12px">ປະກັນໄພໝົດ: {{ f_GALATY_DEP }}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;flex-direction:column">
-                    <span style="font-size:14px">ເລກຄັນຊີ: {{ f_LEKKUNZEE }}</span>
+                    <span style="font-size:12px">ເລກຄັນຊີ: {{ f_LEKKUNZEE }}</span>
                   </div>
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 14px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                   class="font-weight-bold">
@@ -1035,7 +1048,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1056,7 +1069,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1077,7 +1090,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1098,7 +1111,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1119,7 +1132,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1140,7 +1153,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1161,7 +1174,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1182,7 +1195,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1203,7 +1216,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1224,7 +1237,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1245,7 +1258,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1266,7 +1279,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1287,7 +1300,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1308,7 +1321,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1329,7 +1342,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1350,7 +1363,7 @@
                 </td>
               </tr>
               <tr
-                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 12px;">
+                style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px; font-size: 10px;">
                 <td
                   style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px">
                   <div style="width:100%;display:flex;justify-content:space-between">
@@ -1374,10 +1387,10 @@
           </div>
         </div>
         <div style="display:flex;flex-direction:row;justify-content:space-between;padding-top:100px">
-          <span style="font-size:12pt">ຜູ້ຮັບຜິດຊອບປ່ອຍລົດ</span>
-          <span style="font-size:12pt">ຜູ້ຂົນສົ່ງສິນຄ້າ</span>
-          <span style="font-size:12pt">ຫົວໜ້າຄຸມງານ</span>
-          <span style="font-size:12pt">ຜູ້ຮັບສິນຄ້າປາຍທາງ</span>
+          <span style="font-size:12px">ຜູ້ຮັບຜິດຊອບປ່ອຍລົດ</span>
+          <span style="font-size:12px">ຜູ້ຂົນສົ່ງສິນຄ້າ</span>
+          <span style="font-size:12px">ຫົວໜ້າຄຸມງານ</span>
+          <span style="font-size:12px">ຜູ້ຮັບສິນຄ້າປາຍທາງ</span>
         </div>
       </div>
     </div>
@@ -1629,9 +1642,10 @@ export default {
       header_ID: '',
       staff_ID_NUM2: '',
       khg_MUE_TIDLOD: '',
-
-
-      test: ''
+      imageStaff: '',
+      imageStaff1: '',
+      imageTruck: null,
+      test: '',
     }
   },
   watch: {
@@ -1684,6 +1698,9 @@ export default {
       const real_money = parseInt(this.money1?.split(',').join('')) - parseInt(newValue ? newValue?.split(',').join('') : 0)
       this.money_still_pay1 = real_money?.toString().replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
+      const money_total = parseInt(this.money_aready_pay?.split(',').join('')) + parseInt(newValue ? newValue?.split(',').join('') : 0)
+      this.money_all = money_total?.toString()?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
       const result = newValue
         .replace(/\D/g, '')
         .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -1694,10 +1711,12 @@ export default {
       const debt = parseFloat(this.priceNamMun?.split(',').join('')) * parseFloat(this.truck_glass?.split(',').join(''))
       this.priceNamMun_Total = debt?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
+      const total = parseFloat(this.priceNamMun_Total?.split(',').join('')) + parseFloat(this.money_all?.split(',').join(''))
+      this.total1 = total?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
       const result = newValue.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       this.priceNamMun = result
     },
-
 
     road_send_km: function (newValue) {
       const result = newValue
@@ -1942,6 +1961,8 @@ export default {
         this.h_VICIVLE_BRANCHTYPE = data[0]?.h_VICIVLE_BRANCHTYPE,
         this.h_VICIVLE_DATEEXPRIRE = data[0]?.h_VICIVLE_DATEEXPRIRE,
         this.kim_KM = data[0]?.kim_KM,
+        this.imageTruck = data[0]?.imageTruck,
+        
         this.ll_TIRE_NO_1 = data[0]?.ll_TIRE_NO_1,
         this.ll_TIRE_NO_2 = data[0]?.ll_TIRE_NO_2,
         this.ll_TIRE_NO_3 = data[0]?.ll_TIRE_NO_3,
@@ -2047,6 +2068,7 @@ export default {
       this.emp_name = data[0]?.realName
       this.emp_mobile = data[0]?.phone
       this.emp_id_card = data[0]?.cardNo
+      this.imageStaff = data[0]?.imageStaff
       this.staff_ID_NUM1 = data[0]?.id
     },
     onGetEmpDetails1(id) {
@@ -2054,6 +2076,7 @@ export default {
       this.emp_name1 = data[0]?.realName
       this.emp_mobile1 = data[0]?.phone
       this.emp_id_card1 = data[0]?.cardNo
+      this.imageStaff1 = data[0]?.imageStaff
       this.staff_ID_NUM2 = data[0]?.id
     },
 
@@ -2115,7 +2138,7 @@ export default {
           this.emplyee_list = data?.data?.map((list) => {
             return {
               'name': `${list?.name} | ${list?.surname}`, 'phone': `${list?.mobile}`, 'cardNo': `${list?.idCard}`, 'id': `${list?.id
-                }`, 'st_id': `${list?.staftId}`, 'realName': `${list?.name}`
+                }`, 'st_id': `${list?.staftId}`, 'realName': `${list?.name}`, 'imageStaff' : `${list?.imageStaff}`
             }
           })
         })

@@ -1,10 +1,10 @@
 <template>
     <div>
         <v-card class="card-shadow" rounded="lg">
-            <v-card-title style="background-color:#558FB3;color:white">
+            <v-card-title style="background-color:#E57373;color:white">
                 <div style="display:flex;align-items:center;width:100%">
-                    <v-btn fab elevation="0" dark width="30" height="30" small color="#338ABF" to="operation-list">
-                        <v-icon color="white">mdi-arrow-left</v-icon>
+                    <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="operation-list">
+                        <v-icon color="#E57373">mdi-arrow-left</v-icon>
                     </v-btn>
                     <v-spacer></v-spacer>
                     <span>ແກ້ໄຂໃບປະຕິບັດງານ</span>
@@ -142,7 +142,7 @@
 
             <v-card-actions class="pr-10 pb-8">
                 <v-spacer></v-spacer>
-                <v-btn @click="onUpdate" width="200" color="green" class="card-shadow">
+                <v-btn @click="onUpdate" width="200" color="#FFB74D" class="card-shadow">
                     <span class="white--text pl-2">ແກ້ໄຂ</span>
                 </v-btn>
             </v-card-actions>

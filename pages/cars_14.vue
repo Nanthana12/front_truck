@@ -22,7 +22,7 @@
       </v-card>
     </v-dialog>
     <v-card class="card-shadow" rounded="lg" style="border:0.2px solid #e0e0e0;border-radius:3px">
-      <v-card-title style="background-color:#558FB3" class="white--text">
+      <v-card-title style="background-color:#E57373" class="white--text">
         ຂໍ້ມູນຫົວລົດ
       </v-card-title>
       <v-card-text>
@@ -32,7 +32,7 @@
           </div>
           <div style="display:flex;align-items:center" class="ml-4">
             <div>
-              <v-btn dark color="#558FB3" to="add_cars_14" class="card-shadow" rounded>
+              <v-btn dark color="#E57373" to="add_cars_14" class="card-shadow" rounded>
                 <v-icon color="white">mdi-plus</v-icon>
                 <span class="white--text">ເພີ່ມຂໍ້ມູນ</span>
               </v-btn>
@@ -55,7 +55,7 @@
             <tr v-if="row?.item.toBatRowStatus === 'W'" style="background-color:#FFF59D">
               <td>
                 <v-avatar>
-                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                  <img :src="row.item.imageTruck">
                 </v-avatar>
               </td>
               <td>{{ row.item.h_VICIVLE_NUMBER }}</td>
@@ -67,9 +67,9 @@
               <td v-if="row?.item.h_STATUS === 'Y'" style="color:#55CE63"><v-icon color="#55CE63">mdi-check</v-icon> ວ່າງ
               </td>
               <td v-else class="red--text"><v-icon color="red">mdi-close</v-icon> ບໍ່ວ່າງ</td>
-              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="edit(row?.item?.key_id)"><v-icon
+              <td><v-btn small color="#FFB74D" class="white--text card-shadow" @click="edit(row?.item?.key_id)"><v-icon
                     color="white">mdi-pencil</v-icon>ແກ້ໄຂ</v-btn></td>
-              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="view(row?.item?.key_id)"><v-icon
+              <td><v-btn small color="#90A4AE" class="white--text card-shadow" @click="view(row?.item?.key_id)"><v-icon
                     color="white">mdi-magnify</v-icon>ເບີ່ງ</v-btn></td>
               <td><v-btn small color="red" class="white--text card-shadow"
                   @click="askBeforeDeleteTruct(row?.item?.key_id)"><v-icon color="white">mdi-delete </v-icon>ລຶບ</v-btn>
@@ -84,7 +84,7 @@
             <tr v-else-if="row?.item.toBatRowStatus === 'E'" style="background-color:#FFCDD2">
               <td>
                 <v-avatar>
-                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                  <img :src="row.item.imageTruck">
                 </v-avatar>
               </td>
               <td>{{ row.item.h_VICIVLE_NUMBER }}</td>
@@ -96,9 +96,9 @@
               <td v-if="row?.item.h_STATUS === 'Y'" style="color:#55CE63"><v-icon color="#55CE63">mdi-check</v-icon> ວ່າງ
               </td>
               <td v-else class="red--text"><v-icon color="red">mdi-close</v-icon> ບໍ່ວ່າງ</td>
-              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="edit(row?.item?.key_id)"><v-icon
+              <td><v-btn small color="#FFB74D" class="white--text card-shadow" @click="edit(row?.item?.key_id)"><v-icon
                     color="white">mdi-pencil</v-icon>ແກ້ໄຂ</v-btn></td>
-              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="view(row?.item?.key_id)"><v-icon
+              <td><v-btn small color="#90A4AE" class="white--text card-shadow" @click="view(row?.item?.key_id)"><v-icon
                     color="white">mdi-magnify</v-icon>ເບີ່ງ</v-btn></td>
               <td><v-btn small color="red" class="white--text card-shadow"
                   @click="askBeforeDeleteTruct(row?.item?.key_id)"><v-icon color="white">mdi-delete </v-icon>ລຶບ</v-btn>
@@ -113,7 +113,7 @@
             <tr v-else>
               <td>
                 <v-avatar>
-                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                  <img :src="row.item.imageTruck">
                 </v-avatar>
               </td>
               <td>{{ row.item.h_VICIVLE_NUMBER }}</td>
@@ -125,9 +125,9 @@
               <td v-if="row?.item.h_STATUS === 'Y'" style="color:#55CE63"><v-icon color="#55CE63">mdi-check</v-icon> ວ່າງ
               </td>
               <td v-else class="red--text"><v-icon color="red">mdi-close</v-icon> ບໍ່ວ່າງ</td>
-              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="edit(row?.item?.key_id)"><v-icon
+              <td><v-btn small color="#FFB74D" class="white--text card-shadow" @click="edit(row?.item?.key_id)"><v-icon
                     color="white">mdi-pencil</v-icon>ແກ້ໄຂ</v-btn></td>
-              <td><v-btn small color="#338ABF" class="white--text card-shadow" @click="view(row?.item?.key_id)"><v-icon
+              <td><v-btn small color="#90A4AE" class="white--text card-shadow" @click="view(row?.item?.key_id)"><v-icon
                     color="white">mdi-magnify</v-icon>ເບີ່ງ</v-btn></td>
               <td><v-btn small color="red" class="white--text card-shadow"
                   @click="askBeforeDeleteTruct(row?.item?.key_id)"><v-icon color="white">mdi-delete </v-icon>ລຶບ</v-btn>

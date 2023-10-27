@@ -6,12 +6,12 @@
             </v-card>
         </v-dialog>
         <v-card class="card-shadow mb-4" rounded="lg">
-            <v-card-title style="border-bottom:0.5px solid #e0e0e0;background-color:#568fb3;color:white">
+            <v-card-title style="border-bottom:0.5px solid #e0e0e0;background-color:#E57373;color:white">
                 ລາຍການປ່ອຍລົດ
             </v-card-title>
             <v-card-text class="px-10 pb-10">
                 <div class="py-4" style="display:flex;align-items:center">
-                    <v-btn rounded color="#558FB3" class="white--text card-shadow"
+                    <v-btn rounded color="#E57373" class="white--text card-shadow"
                         to="/leave-cars"><v-icon>mdi-plus</v-icon>ອອກໃບປ່ອຍລົດ</v-btn>
                     <div class="pl-4">
                         <h3>ທັງໝົດ: <span class="green--text">{{ report_leave_car_list?.length }}</span></h3>
@@ -47,7 +47,7 @@
                                 <td class="green--text">
 
                                     <div class="d-flex algin-center">
-                                        <v-btn block small class="card-shadow" color="#4CAF50" @click="onPrintAgain(
+                                        <v-btn block small class="card-shadow" color="#FFB74D" @click="onPrintAgain(
                                             row?.item?.lahud_POYLOD,
                                             row?.item?.customer_ID,
                                             row?.item?.product_ID,

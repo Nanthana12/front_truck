@@ -58,6 +58,7 @@ export default {
               localStorage.setItem('USER_ID', data?.data?.staftId)
               localStorage.setItem('USER_NAME', data?.data?.staftName)
               localStorage.setItem('USER_ROLE', data?.data?.role)
+              // localStorage.srtItem('TOKEN', data?.data?.toKen)
               this.loadingLogin = false
               this.$router.push('/customer')
             } else {

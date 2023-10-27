@@ -6,8 +6,8 @@
             </v-card>
         </v-dialog>
         <v-card class="card-shadow mb-6" rounded="lg">
-            <v-card-title
-                style="border-bottom:0.5px solid #e0e0e0;background-color:#568fb3;color:white">ລາຍງານລາຍຮັບ - ລາຍຈ່າຍຂອງລົດ</v-card-title>
+            <v-card-title style="border-bottom:0.5px solid #e0e0e0;background-color:#E57373;color:white">ລາຍງານລາຍຮັບ -
+                ລາຍຈ່າຍຂອງລົດ</v-card-title>
             <v-form ref="form" v-model="valid" lazy-validation>
                 <v-card-text>
                     <div class="row">
@@ -43,46 +43,43 @@
                                 </div>
 
                                 <div style="margin-top:-25px" class="ml-2">
-                                    <v-btn color="green" class="white--text" elevation="0"
+                                    <v-btn color="#90A4AE" class="white--text" elevation="0"
                                         @click="onSearcReport"><v-icon>mdi-magnify</v-icon>ຄົ້ນຫາ</v-btn>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="d-flex align-center">
-                            <div class="" style="width: 400px;">
-                        <v-text-field background-color="#f5f5f5" solo flat dense label="ຄົ້ນຫາ..." v-model="search"
-                            prepend-inner-icon="mdi-magnify" clearable> </v-text-field>
-                    </div>
-                    </div>
+                                <div class="" style="width: 400px;">
+                                    <v-text-field background-color="#f5f5f5" solo flat dense label="ຄົ້ນຫາ..."
+                                        v-model="search" prepend-inner-icon="mdi-magnify" clearable> </v-text-field>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
-                  
+
                     <div style="margin-top:-15px">
                         <h3>ທັງໝົດ: <span class="green--text">{{ staft_data_list.length }}</span></h3>
                     </div>
                     <div>
-                        <v-data-table :items="staft_data_list" :headers="staft_headers" :search="search" >
+                        <v-data-table :items="staft_data_list" :headers="staft_headers" :search="search">
                             <template v-slot:item="row">
                                 <tr>
                                     <td><span>{{ row?.index + 1 }}</span></td>
-                                    <td><span>{{ row?.item?.staffName }}</span> <span class="ml-2">{{
-                                        row?.item?.staffSurname
-                                    }}</span></td>
-                                    <td>{{ row?.item?.totalRow }} ທ່ຽວ</td>
-                                    <td>{{ row?.item?.staff02_PayAll?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}
-                                    </td>
-                                    <td class="green--text">{{
-                                        row?.item?.staff02_Beforepay?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}
+                                    <td><span>{{ row?.item?.carTabienLod }}</span></td>
+                                    <td>{{ row?.item?.carModel }}</td>
+                                    <td>{{ row?.item?.carType }}</td>
+                                    <td class="green--text">{{ row?.item?.carGive?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}
                                     </td>
                                     <td class="red--text">{{
-                                        row?.item?.staff02_Notpay?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
-                                            <td class="red--text">{{
-                                        row?.item?.staff02_Notpay?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
+                                        row?.item?.carPay?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}
+                                    </td>
+                                    <td class="orgen--text">{{
+                                        row?.item?.kumLaiy?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                                     <td class="red--text">
-                                        <v-btn small color="#1976D2" class="white--text card-shadow"
-                                            @click="edit(row?.item?.staffID)"><v-icon
+                                        <v-btn small color="primary" class="white--text card-shadow"
+                                            @click="edit(row?.item?.carTabienLod)"><v-icon
                                                 color="white">mdi-pencil</v-icon>ລາຍລະອຽດ</v-btn>
 
                                     </td>
@@ -118,7 +115,7 @@ export default {
             search: '',
             staft_data_list: [],
             staft_headers: [
-                { text: 'ລ/ດ', value: ''},
+                { text: 'ລ/ດ', value: '' },
                 { text: 'ທະບຽນລົດ', value: '' },
                 { text: 'ຍີ່ຫໍ້', value: '' },
                 { text: 'ປະເພດລົດ', value: '' },
@@ -136,9 +133,9 @@ export default {
     },
     methods: {
         edit(key) {
-      // this.$router.push({path: '/edit_cars_head', params: {key: 'he'}});
-      this.$router.push({ path: '/report_income_empeanses_car', query: { key: key } })
-    },
+            // this.$router.push({path: '/edit_cars_head', params: {key: 'he'}});
+            this.$router.push({ path: '/report_income_empeanses_car', query: { key: key } })
+        },
         onSearcReport() {
 
             this.loading_processing = true;
@@ -148,7 +145,7 @@ export default {
                     endDate: this.end_date
                 }
                 // this.$axios.$post('/ReportStaff.service', data).then((data) => {
-                this.$axios.$post('/ReportListStaffPay.service', data).then((data) => {
+                this.$axios.$post('/ReportGiveCarAll', data).then((data) => {
                     console.log("staft:", data)
                     if (data?.status === '00') {
                         this.staft_data_list = data?.data;

@@ -6,7 +6,7 @@
             </v-card>
         </v-dialog>
         <v-card  class="card-shadow mb-6" rounded="lg">
-            <v-card-title style="border-bottom:0.5px solid #e0e0e0;background-color:#568fb3;color:white">ລາຍງານລູກຄ້າ</v-card-title>
+            <v-card-title style="border-bottom:0.5px solid #e0e0e0;background-color:#E57373;color:white">ລາຍງານລູກຄ້າ</v-card-title>
             <!-- <v-divider></v-divider> -->
             <v-card-text>
                 <div class="d-flex align-center pt-6" >
@@ -37,7 +37,7 @@
                         </v-menu>
                     </div>
                     <div style="margin-top:-25px" class="ml-2">
-                        <v-btn color="green" class="white--text" elevation="0" height="38"
+                        <v-btn color="#90A4AE" class="white--text" elevation="0" height="38"
                             @click="onSearchLeaveCarReport"><v-icon>mdi-magnify</v-icon>ຄົ້ນຫາ</v-btn>
                     </div>
                 </div>

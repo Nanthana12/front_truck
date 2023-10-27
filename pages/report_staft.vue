@@ -7,7 +7,7 @@
         </v-dialog>
         <v-card class="card-shadow mb-6" rounded="lg">
             <v-card-title
-                style="border-bottom:0.5px solid #e0e0e0;background-color:#568fb3;color:white">ລາຍງານພະນັກງານ</v-card-title>
+                style="border-bottom:0.5px solid #e0e0e0;background-color:#E57373;color:white">ລາຍງານພະນັກງານ</v-card-title>
             <v-form ref="form" v-model="valid" lazy-validation>
                 <v-card-text>
                     <div class="row">
@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div style="margin-top:-25px" class="ml-2">
-                                    <v-btn color="green" class="white--text" elevation="0"
+                                    <v-btn color="#90A4AE" class="white--text" elevation="0"
                                         @click="onSearcReport"><v-icon>mdi-magnify</v-icon>ຄົ້ນຫາ</v-btn>
                                 </div>
                             </div>

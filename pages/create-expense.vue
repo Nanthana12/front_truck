@@ -21,7 +21,7 @@
                         </v-date-picker>
                     </v-menu>
                     <div>
-                        <v-btn elevation="0" block color="#4AAF41" class="white--text" @click="onSave">ເພີ່ມ</v-btn>
+                        <v-btn elevation="0" block color="#448AFF" class="white--text" @click="onSave">ເພີ່ມ</v-btn>
                     </div>
                 </div>
             </v-form>
@@ -51,7 +51,7 @@
                                 <v-spacer></v-spacer>
                                 <v-btn elevation="0" color="red" class="white--text mr-2"
                                     @click="updateDia = false">ຍົກເລຶກ</v-btn>
-                                <v-btn elevation="0" color="#4AAF41" class="white--text" @click="onUpdate">ອັບເດດ</v-btn>
+                                <v-btn elevation="0" color="#FFB74D" class="white--text" @click="onUpdate">ອັບເດດ</v-btn>
                             </div>
                         </div>
                     </v-card-text>
@@ -59,7 +59,7 @@
             </v-dialog>
             <div style="width:100%;height:80vh;border:1px solid #e0e0e0;border-radius:5px" class="ml-2">
                 <div style="">
-                    <v-card-title style="background-color:#568fb3;color:white">ຂໍ້ມູນລາຍຈ່າຍ</v-card-title>
+                    <v-card-title style="background-color:#E57373;color:white">ຂໍ້ມູນລາຍຈ່າຍ</v-card-title>
                     <v-card-text class="pt-3">
                         <div style="padding-bottom:10px">
                             <span>ທັງໝົດ:
@@ -81,7 +81,7 @@
                                         <td>{{ row?.item?.cdate }}</td>
                                         <td>{{ row?.item?.expDate }}</td>
                                         <td>
-                                            <v-btn color="#338ABF" small elevation="0"
+                                            <v-btn color="#FFB74D" small elevation="0"
                                                 @click="onGetDaForUp(row?.item?.key_id, row?.item?.exPType, row?.item?.amount, row?.item?.perAmount, row?.item?.toTal, row?.item?.expDate)">
                                                 <v-icon color="white">mdi-pencil</v-icon>
                                                 <span class="white--text">ແກ້ໄຂ</span>

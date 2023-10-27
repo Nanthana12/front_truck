@@ -7,12 +7,12 @@
         </v-dialog>
 
         <v-card class="card-shadow mb-6" rounded="lg">
-            <v-card-title style="background-color:#568fb3">
+            <v-card-title style="background-color:#E57373">
                 <div style="display:flex;justify-content:space-between;width:100%">
                     <span class="white--text">ລາຍລະອຽດຂໍ້້ມູນຜູ້ໃຊ້ລະບົບ</span>
                     <v-btn color="#fff" @click="showModalAddUser = true" elevation="0" rounded>
-                        <v-icon color="#568fb3">mdi-plus</v-icon>
-                        <span style="color: #568fb3;">ເພີ່ມຂໍ້ມູນ</span>
+                        <v-icon color="#E57373">mdi-plus</v-icon>
+                        <span style="color: #E57373;">ເພີ່ມຂໍ້ມູນ</span>
                     </v-btn>
                 </div>
                 <v-spacer></v-spacer>
@@ -41,7 +41,7 @@
                             <td>{{ row.item.userLogin }}</td>
                             <td>{{ row.item.role }}</td>
                             <!-- <td>{{ row.item.passWord }}</td> -->
-                            <td v-if="row?.item.status === 'A'" style="color:#55CE63">
+                            <td v-if="row?.item.status === 'A'" >
                                 <v-chip class="ma-2" color="green" text-color="white">
                                     Action
                                 </v-chip>
@@ -52,7 +52,7 @@
                                 </v-chip>
                             </td>
                             <td>
-                                <v-btn color="#338ABF" small @click="
+                                <v-btn color="#FFB74D" small @click="
                                     onGetDataForUpdate(
                                         row.item.key_Id,
                                         row.item.userLogin,
@@ -83,13 +83,13 @@
         <!-- Modal add user -->
         <v-dialog v-model="showModalAddUser" persistent width="400">
             <v-card>
-                <v-card-title style="display:flex;background-color:#568fb3;color:white">
+                <v-card-title style="display:flex;background-color:#E57373;color:white">
 
                     <v-spacer></v-spacer>
                     ເພີ່ມຂໍ້ມູນຜູ້ໃຊ້ລະບົບ
                     <v-spacer></v-spacer>
                     <v-btn fab elevation="0" dark width="30" height="30" small color="white" @click="onCloseDialogAdd">
-                        <v-icon color="#338ABF">mdi-close</v-icon>
+                        <v-icon color="#E57373">mdi-close</v-icon>
                     </v-btn>
                 </v-card-title>
                 <Height />
@@ -135,7 +135,7 @@
                         <span class="white--text">clear ຂໍ້ມູນ</span>
                     </v-btn>
 
-                    <v-btn color="#338ABF" @click="onInsertUserInfo">
+                    <v-btn color="#448AFF" @click="onInsertUserInfo">
                         <v-icon color="white">mdi-check</v-icon>
                         <span class="white--text">ບັນທຶກ</span>
                     </v-btn>
@@ -151,13 +151,13 @@
         <!-- Modal Update user -->
         <v-dialog v-model="showModalUpdateuser" persistent width="400">
             <v-card>
-                <v-card-title style="display:flex;background-color:#568fb3;color:white">
+                <v-card-title style="display:flex;background-color:#E57373;color:white">
                     <v-spacer></v-spacer>
                     ແກ້ໄຂຂໍ້ມູນຜູ້ໃຊ້ລະບົບ
                     <v-spacer></v-spacer>
                     <v-btn fab elevation="0" dark width="30" height="30" small color="white"
                         @click="showModalUpdateuser = false">
-                        <v-icon color="#338ABF">mdi-close</v-icon>
+                        <v-icon color="#E57373">mdi-close</v-icon>
                     </v-btn>
                 </v-card-title>
                 <Height />
@@ -202,7 +202,7 @@
                         <v-icon color="white">mdi-close</v-icon>
                         <span class="white--text">ຍົກເລິກ</span>
                     </v-btn>
-                    <v-btn color="#0B9BDF" @click="onUpdateUser">
+                    <v-btn color="#FFB74D" @click="onUpdateUser">
                         <v-icon color="white">mdi-check</v-icon>
                         <span class="white--text">ແກ້ໄຂ</span>
                     </v-btn>

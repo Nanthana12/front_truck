@@ -7,7 +7,7 @@
         </v-dialog>
 
         <v-card class="card-shadow mb-6" rounded="lg">
-            <v-card-title style="background-color:#568fb3">
+            <v-card-title style="background-color:#E57373">
                 <div style="display:flex;justify-content:space-between;width:100%">
                     <span class="white--text">ລາຍລະອຽດຄ່າບ້ຽງລ້ຽງທີ່ຄ້າງຊໍາລະ</span>
                     <!-- <v-btn color="#fff" @click="showModalAddexchang = true" elevation="0" rounded>
@@ -46,7 +46,7 @@
                         </v-menu>
                     </div>
                     <div class="ml-2 pt-1">
-                        <v-btn color="green" class="white--text" elevation="0"
+                        <v-btn color="#90A4AE" class="white--text" elevation="0"
                             @click="onSearchallowance"><v-icon>mdi-magnify</v-icon>ຄົ້ນຫາ</v-btn>
                     </div>
                     <v-spacer></v-spacer>
@@ -113,7 +113,7 @@
                                 </div>
                             </td>
                             <td>
-                                <v-btn color="#F9A825" small @click="
+                                <v-btn color="#7CB342" small @click="
                                     onGetDataForUpdatestaft1(
                                         row.item.h_VICIVLE_NUMBER,
                                         row.item.h_VICIVLE_BRANCHTYPE,
@@ -142,53 +142,9 @@
                                         row.item.detail,
                                     )
                                     ">
-                                    <!-- <i class="fas fa-dollar-sign"></i> -->
-                                    <!-- <i class="fa-sharp fa-light fa-money-check-dollar-pen"></i> -->
-                                    <!-- <v-icon color="white">mdi-money-dollar-sign</v-icon> -->
                                     <span class="white--text">ຊໍາລະຄ່າບ້ຽງລ້ຽງ</span>
                                 </v-btn>
-                                <!-- <v-btn v-if="row.item.staff02_notpay != '0'" color="#F9A825" small @click="
-                                    onGetDataForUpdatestaft2(
-                                        row.item.h_VICIVLE_NUMBER,
-                                        row.item.h_VICIVLE_BRANCHTYPE,
-                                        row.item.f_BRANCH,
-                                        row.item.f_CAR_TYPE,
-                                        row.item.currency,
-                                        row.item.staff_Cur,
-                                        row.item.staffPaystatus01,
-                                        row.item.staffPaystatus02,
-                                        row.item.lahudPoyLod,
-                                        row.item.staft_NAME02,
-                                        row.item.staft_SURNAME02,
-                                        row.item.staft_ID02,
-                                        row.item.staff02_payAll,
-                                        row.item.staff02_beforepay,
-                                        row.item.staff02_notpay,
-                                        row.item.staff_BIALIENG,
-                                        row.item.staff_BIALIENG_FRIST,
-                                        row.item.staff_BIALINEG_KANGJAIY,
-                                        row.item.out_DATE,
-                                        row.item.in_DATE,
-                                        row.item.staft_ID,
-                                        row.item.staft_NAME,
-                                        row.item.staft_SURNAME,
-                                        row.item.province,
-                                        row.item.detail,
-                                    )
-                                    ">
-                                     <i class="fas fa-dollar-sign"></i> -->
-                                <!-- <i class="fa-sharp fa-light fa-money-check-dollar-pen"></i> -->
-                                <!-- <v-icon color="white">mdi-money-dollar-sign</v-icon> -->
-                                <!-- <span class="white--text">ຊໍາລະຄ່າບ້ຽງລ້ຽງ</span>
-                                </v-btn>  -->
                             </td>
-
-                            <!-- <td>
-                                <v-btn class="red" small @click="askBeforeDeleteexchangInfo(row.item.key_Id)">
-                                    <v-icon color="white">mdi-delete</v-icon>
-                                    <span class="white--text">ລຶບ</span>
-                                </v-btn>
-                            </td> -->
                         </tr>
                     </template>
                 </v-data-table>
@@ -197,13 +153,13 @@
         <!-- Modal Update staff -->
         <v-dialog v-model="showModalupdatestaft1" persistent width="850">
             <v-card>
-                <v-card-title style="display:flex;background-color:#568fb3;color:white">
+                <v-card-title style="display:flex;background-color:#E57373;color:white">
 
                     <v-spacer></v-spacer>
                     ຊໍາລະຄ່າບ້ຽງລ້ຽງ
                     <v-spacer></v-spacer>
                     <v-btn fab elevation="0" dark width="30" height="30" small color="white" @click="onCloseDialogAdd">
-                        <v-icon color="#338ABF">mdi-close</v-icon>
+                        <v-icon color="#E57373">mdi-close</v-icon>
                     </v-btn>
                 </v-card-title>
                 <v-container>
@@ -303,20 +259,16 @@
 
                             </div>
                         </div>
-
-
-
                     </v-card-text>
                     <v-divider></v-divider>
 
                     <v-card-actions>
                         <v-spacer></v-spacer>
-
                         <!-- <v-btn color="red" @click="showModalUpdateuser = false">
                             <v-icon color="white">mdi-close</v-icon>
                             <span class="white--text">ຍົກເລິກ</span>
                         </v-btn> -->
-                        <v-btn color="#0B9BDF" @click="onCheckMoneyPayment">
+                        <v-btn color="#7CB342" @click="onCheckMoneyPayment">
                             <v-icon color="white">mdi-check</v-icon>
                             <span class="white--text">ຊໍາລະ</span>
                         </v-btn>
@@ -917,6 +869,7 @@ export default {
         async onUpdatestaff1() {
             try {
                 let data = {
+                    key_Id: this.lahudPoyLod,
                     payDate: this.now_date,
                     staffID01: this.staft_ID,
                     staffID02: this.staft_ID02,

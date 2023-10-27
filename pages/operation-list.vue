@@ -6,12 +6,12 @@
             </v-card>
         </v-dialog>
         <v-card class="card-shadow" rounded="lg">
-            <v-card-title class="px-10" style="background-color:#568fb3;color:white">
+            <v-card-title class="px-10" style="background-color:#E57373;color:white">
                 <span>ລາຍການໃບປະຕິບັດ</span>
             </v-card-title>
             <v-card-text class="px-10 pb-10">
                 <div class="py-4" style="display:flex;align-items:center">
-                    <v-btn rounded color="#558FB3" class="white--text card-shadow"
+                    <v-btn rounded color="#E57373" class="white--text card-shadow"
                         to="/leave-operation"><v-icon>mdi-plus</v-icon>ອອກໃບປະຕີບັດງານ</v-btn>
                     <h3 class="ml-4">ທັງໝົດ: <span class="green--text">{{ report_peration_list?.length }}</span></h3>
                 </div>
@@ -48,7 +48,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <v-btn @click="onGoToEdit(row?.item?.key_ID)" block small class="card-shadow" color="#4CAF50"><v-icon
+                                    <v-btn @click="onGoToEdit(row?.item?.key_ID)" block small class="card-shadow" color="#FFB74D"><v-icon
                                             color="white">mdi-pencil</v-icon>
                                         <span class="white--text">ແກ້ໄຂ</span><v-spacer></v-spacer>
                                     </v-btn>

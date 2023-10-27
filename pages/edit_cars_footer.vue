@@ -7,9 +7,9 @@
         </v-dialog>
         <!-- General car info -->
         <v-card class="card-shadow mx-auto" width="1400">
-            <v-card-title style="display:flex;background-color:#568fb3;color:white">
+            <v-card-title style="display:flex;background-color:#E57373;color:white">
                 <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="cars_footer">
-                    <v-icon color="#338ABF">mdi-arrow-left</v-icon>
+                    <v-icon color="#E57373">mdi-arrow-left</v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
                 ແກ້ໄຂຂໍ້ມູນຫາງລົດ
@@ -429,7 +429,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
 
-                        <v-btn color="#338ABF" @click="onInserTruct">
+                        <v-btn color="#FFB74D" @click="onInserTruct">
                             <v-icon color="white">mdi-check</v-icon>
                             <span class="white--text">ບັນທຶກ</span>
                         </v-btn>

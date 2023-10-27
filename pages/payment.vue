@@ -8,7 +8,7 @@
     <div style="display:flex;flex-direction:row;justify-content:space-between" class="pb-5">
       <v-card class="card-shadow" rounded="lg" style="width:50%">
         <!-- <h3></h3><br /> -->
-        <v-card-title style="background-color:#568fb3;color:white">ຮັບເງິນ</v-card-title>
+        <v-card-title style="background-color:#E57373;color:white">ຮັບເງິນ</v-card-title>
         <v-card-text class="pt-8">
           <div style="display:flex;justify-content:center;flex-direction:row;align-items:center">
 
@@ -16,11 +16,11 @@
               @keyup.enter="onGetDataForPayment"></v-text-field>
 
             <div style="margin-top:-26px;margin-left:-3px">
-              <v-btn elevation="0" style="border-radius:0px" height="40" color="#4AAF41" class="white--text"
+              <v-btn elevation="0" style="border-radius:0px" height="40" color="#90A4AE" class="white--text"
                 @click="onGetDataForPayment"><v-icon color="white">mdi-magnify</v-icon>ຄົ້ນຫາ</v-btn>
             </div>
             <div style="margin-top:-26px;">
-              <v-btn elevation="0" style="border-radius:0px;border-left:1px solid white" height="40" color="#4AAF41"
+              <v-btn elevation="0" style="border-radius:0px;border-left:1px solid white" height="40" color="#448AFF"
                 class="white--text" @click="showBillList = true">ເລືອກ<v-icon
                   color="white">mdi-arrow-right-thin</v-icon></v-btn>
             </div>
@@ -83,7 +83,7 @@
       <div style="width:20px"></div>
       <v-card rounded="lg" style="width:100%;display:flex;flex-direction:column;border-radius:5px;margin-right:20px"
         class="card-shadow">
-        <v-card-title style="background-color:#568fb3;color:white">ລາຍການ</v-card-title>
+        <v-card-title style="background-color:#E57373;color:white">ລາຍການ</v-card-title>
         <v-card-text>
           <table style="padding:2px;width:100%;border-radius:10px;border-collapse: collapse;" class="mt-4">
             <tr style="padding:5px">
@@ -145,9 +145,10 @@
     </div>
     <v-dialog v-model="showBillList" max-width="1000">
       <v-card>
-        <v-card-title style="background-color:#568fb3;color:white">
+        <v-card-title style="background-color:#E57373;color:white">
           <div style="display:flex;align-items:center;width:100%">
-            <span>ລາຍການບິນລໍຖ້າຊຳລະ {{ report_invoice_list?.length?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }} ລາຍການ</span>
+            <span>ລາຍການບິນລໍຖ້າຊຳລະ {{ report_invoice_list?.length?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}
+              ລາຍການ</span>
             <v-spacer></v-spacer>
             <v-btn icon @click="showBillList = false"><v-icon color="white">mdi-close</v-icon></v-btn>
           </div>
@@ -176,7 +177,7 @@
                       </v-btn>
                     </div>
                   </td>
-                  <td><v-btn small color="green " class="card-shadow white--text"
+                  <td><v-btn small color="#448AFF" class="card-shadow white--text"
                       @click="onChoose(row?.item?.inVoiceID)"><v-icon>mdi-check</v-icon>ເລືອກ</v-btn>
                   </td>
                 </tr>
@@ -197,55 +198,70 @@
         </v-btn>
       </template>
     </v-snackbar>
-    <!-- component for print -->
+    <!-- component for print   -->
     <div style="display:none;">
       <div id="modalInvoice">
+        <v-row>
+          <v-col cols="3">
+            <img class="mx-auto" src="../assets/images/khounkham.png" height="70px" cover />
+          </v-col>
+          <v-col cols="9">
+            <div style="display:flex;justify-content:start;flex-direction:column;align-items:start">
+              <span style="font-size:14px"><b>ບໍລິສັດ ຄູນຄໍາ ຂຸດຄົ້ນຫີນກາວ ດົງເຫັນ </b> </span>
+              <span style="font-size:12px">ສໍານັກງານຕັ້ງຢູ່ ອາຄານ ສະໜາມຍິງປືນ 20 ມັງກອນ, ສະໜາມກີລາກອງທັບ,
+                ບ້ານຈອມມະນີ, ເມືອງ ໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ</span>
+              <span style="font-size:12px">ໂທລະສັບ: 020 92661111, 020 98753888 | ອີເມວ: kounkham@Mining |
+                ເວັບໄຊ: kounkham</span>
+            </div>
+          </v-col>
+        </v-row>
+        <br>
         <div class="text-center pb-10 pt-10 font-weight-bold" style="display:flex;justify-content:center;font-size:14pt">
-          ໃບບິນຮັບເງິນ</div>
+         <b>ໃບບິນຮັບເງິນ</b> </div>
         <div class="text-center pb-10 pt-10 font-weight-bold" style="display:flex;justify-content:center;font-size:12pt">
-          RECIIPT</div>
-        <div style="display:flex;flex-direction:row;justify-content:end;padding-top:50px">
-          <span style="font-size:12pt">ເລກປະຈຳຕົວຜູ້ເສຍພາສີ</span>
+          <b>RECIIPT</b></div>
+        <div style="display:flex;flex-direction:row;justify-content:space-between;padding-top:50px">
+          <span style="font-size:12px">ເລກປະຈຳຕົວຜູ້ເສຍພາສີ</span>
           <div style="width:50px"></div>
-          <span style="font-size:12pt">(ສຳນັກງານໃຫຍ່)</span>
+          <span style="font-size:12px">(ສຳນັກງານໃຫຍ່)</span>
         </div>
         <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:10px;width:100%">
           <div
             style="width:100%;display:flex;flex-direction:column;border:0.5px solid #999;padding:5px;border-radius:3px;margin-right:50px">
-            <span style="font-size:12pt">ລະຫັດລູກຄ້າ: {{ data_for_print_header?.cusId }}</span>
-            <span style="font-size:12pt">ຊື່ລູກຄ້າ: {{ data_for_print_header?.cusName }}</span>
-            <span style="font-size:12pt">{{ data_for_print_header?.location }}</span>
+            <span style="font-size:12px">ລະຫັດລູກຄ້າ: {{ data_for_print_header?.cusId }}</span>
+            <span style="font-size:12px">ຊື່ລູກຄ້າ: {{ data_for_print_header?.cusName }}</span>
+            <span style="font-size:12px">{{ data_for_print_header?.location }}</span>
           </div>
           <div
             style="width:50%;display:flex;flex-direction:column;justify-content:center;border:0.5px solid #999;padding:5px;border-radius:3px">
-            <span style="font-size:12pt">ວັນທີ: {{ data_for_print_header?.printDate }}</span>
-            <span style="font-size:12pt">ເລກທີບິນ: {{ data_for_print_header?.billNo }}</span>
+            <span style="font-size:12px">ວັນທີ: {{ data_for_print_header?.printDate }}</span>
+            <span style="font-size:12px">ເລກທີບິນ: {{ data_for_print_header?.billNo }}</span>
           </div>
         </div>
 
         <div style="margin-top:20px">
           <table style="padding:2px;border-collapse: collapse;width:100%">
             <tr style="padding:5px;">
-              <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">ລຳດັບ</td>
-              <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">ລະຫັດສິນຄ້າ</td>
-              <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">ລາຍລະອຽດ</td>
+              <td style="border: 0.5px solid #999;padding:5px;font-size:12px">ລຳດັບ</td>
+              <td style="border: 0.5px solid #999;padding:5px;font-size:12px">ລະຫັດສິນຄ້າ</td>
+              <td style="border: 0.5px solid #999;padding:5px;font-size:12px">ລາຍລະອຽດ</td>
               <!-- <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">ຈຳນວນ</td> -->
               <!-- <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">ລາຄາ</td> -->
-              <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">ລາຄາລວມ</td>
+              <td style="border: 0.5px solid #999;padding:5px;font-size:12px">ລາຄາລວມ</td>
               <!-- <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">ຊຳລະ</td>
               <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">ຄ້າງຊຳລະ</td> -->
             </tr>
-            <tr style="padding:5px;font-size:12pt;border: 0.5px solid #999;" v-for="(d, i) in data_for_print_bill"
+            <tr style="padding:5px;font-size:12px;border: 0.5px solid #999;" v-for="(d, i) in data_for_print_bill"
               :key="i">
-              <td style="padding:5px;font-size:12pt;display:flex;justify-content:center;width:100%;align-items:center">{{
+              <td style="padding:5px;font-size:12px;display:flex;justify-content:center;width:100%;align-items:center">{{
                 i + 1 }}</td>
-              <td style="border: 0.5px solid #999;padding:5px;font-size:12pt"> {{ d?.proId }} </td>
-              <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">{{ d?.proName_type }}</td>
+              <td style="border: 0.5px solid #999;padding:5px;font-size:12px"> {{ d?.proId }} </td>
+              <td style="border: 0.5px solid #999;padding:5px;font-size:12px">{{ d?.proName_type }}</td>
               <!-- <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">{{
                 d?.priceUnit?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td> -->
               <!-- <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">{{
                 d?.proTotal?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }} {{ d?.currency }}</td> -->
-              <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">{{
+              <td style="border: 0.5px solid #999;padding:5px;font-size:12px">{{
                 d?.amountTotalS?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }} {{ d?.currency }}</td>
 
               <!-- <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">{{
@@ -254,36 +270,37 @@
                 d?.noPayAmount?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }} </td> -->
 
             </tr>
-            
-              <tr style="padding:5px">
-                <td style="padding:5px;font-size:12pt" colspan="3">
-                  <div style="width:100%;display:flex;justify-content:end">ລາຄາລວມທັງໝົດ:</div>
-                </td>
-                <td style="padding:5px;display:flex;justify-content:end;width:100%;align-items:end">
-                  {{ data_for_print_footer?.totalAmount }} {{ data_for_print_bill[0]?.currency }}
-                </td>
-              </tr>
-              <tr style="padding:5px">
 
-                <td style="padding:5px;font-size:12pt" colspan="3">
-                  <div style="width:100%;display:flex;justify-content:end">ຈຳນວນເງິນທີຊຳລະແລ້ວ:</div>
-                </td>
-                <td style="padding:5px;display:flex;justify-content:end;width:100%;align-items:end">
-                  {{ data_for_print_footer?.sumPayamount }} {{ data_for_print_bill[0]?.currency }}
-                </td>
-              </tr>
-              <tr style="padding:5px">
-                <!-- <td style="padding:5px"></td> -->
-                <td style="padding:5px"></td>
-                <td style="padding:5px"></td>
-                <td style="padding:5px;font-size:12pt" class="text-right">
-                  <div style="width:100%;display:flex;justify-content:end">ຈຳນວນເງິນທີ່ຄ້າງຊຳລະ:</div>
-                </td>
-                <td style="padding:5px;display:flex;justify-content:end;width:100%;align-items:end">
-                  {{ data_for_print_footer?.sumNoPayAmount ? data_for_print_footer?.sumNoPayAmount : 0 }} {{ data_for_print_bill[0]?.currency }}
-                </td>
-              </tr>
-            
+            <tr style="padding:5px">
+              <td style="padding:5px;font-size:12px" colspan="3">
+                <div style="width:100%;display:flex;justify-content:end">ລາຄາລວມທັງໝົດ:</div>
+              </td>
+              <td style="padding:5px;display:flex;justify-content:end;width:100%;align-items:end; font-size:12px">
+                {{ data_for_print_footer?.totalAmount }} {{ data_for_print_bill[0]?.currency }}
+              </td>
+            </tr>
+            <tr style="padding:5px">
+
+              <td style="padding:5px;font-size:12px" colspan="3">
+                <div style="width:100%;display:flex;justify-content:end">ຈຳນວນເງິນທີຊຳລະແລ້ວ:</div>
+              </td>
+              <td style="padding:5px;display:flex;justify-content:end;width:100%;align-items:end; font-size:12px">
+                {{ data_for_print_footer?.sumPayamount }} {{ data_for_print_bill[0]?.currency }}
+              </td>
+            </tr>
+            <tr style="padding:5px">
+              <!-- <td style="padding:5px"></td> -->
+              <td style="padding:5px"></td>
+              <td style="padding:5px"></td>
+              <td style="padding:5px;font-size:12px" class="text-right">
+                <div style="width:100%;display:flex;justify-content:end">ຈຳນວນເງິນທີ່ຄ້າງຊຳລະ:</div>
+              </td>
+              <td style="padding:5px;display:flex;justify-content:end;width:100%;align-items:end; font-size:12px">
+                {{ data_for_print_footer?.sumNoPayAmount ? data_for_print_footer?.sumNoPayAmount : 0 }} {{
+                  data_for_print_bill[0]?.currency }}
+              </td>
+            </tr>
+
 
           </table>
         </div>
@@ -292,21 +309,21 @@
         </div>
         <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:120px">
           <div style="width:100%;display:flex;flex-direction:column;justify-content:start;align-items:center">
-            <div style="font-size:12pt">ບັນຊີຄັງເງິນ</div>
+            <div style="font-size:12px">ບັນຊີຄັງເງິນ</div>
 
             <div style="display:flex;justify-content:space-between;margin-top:20px">
               ...........................................
             </div>
-            <div style="margin-top:30px;font-size:12pt">
+            <div style="margin-top:30px;font-size:12px">
               ວັນທີ:......................................
             </div>
           </div>
           <div style="width:100%;display:flex;flex-direction:column;justify-content:end;align-items:center">
-            <div style="font-size:12pt">ທ່ານປະທານບໍລິສັດຄູນຄຳ</div>
+            <div style="font-size:12px">ທ່ານປະທານບໍລິສັດຄູນຄຳ</div>
             <div style="display:flex;justify-content:space-between;margin-top:20px">
               ............................................
             </div>
-            <div style="margin-top:30px;font-size:12pt">
+            <div style="margin-top:30px;font-size:12px">
               ວັນທີ:........................................
             </div>
           </div>
@@ -482,7 +499,7 @@ export default {
       }
     },
     onCheckMoneyPayment() {
-     
+
       const debt = parseFloat(this.sum?.amountTotal?.split(',').join('')) - parseFloat(this.amount?.split(',').join(''))
       this.totalDebt = debt
       if (this.cash === true) {

@@ -2,10 +2,10 @@
     <div>
         <v-card class="card-shadow" rounded="lg">
             <v-card-title
-                style="border-bottom:0.5px solid #e0e0e0;background-color:#568fb3;color:white">ລາຍການໃບບິນສິນຄ້າ</v-card-title>
+                style="border-bottom:0.5px solid #e0e0e0;background-color:#E57373;color:white">ລາຍການໃບບິນສິນຄ້າ</v-card-title>
             <v-card-text class="px-8">
                 <div style="display:flex;align-items:center" class="py-4">
-                    <v-btn rounded color="#558FB3" class="white--text card-shadow"
+                    <v-btn rounded color="#E57373" class="white--text card-shadow"
                         to="/create-invoice"><v-icon>mdi-plus</v-icon>ອອກໃບບິນຂົນສົ່ງ</v-btn>
                     <h3 class="ml-4">ທັງໝົດ: <span class="green--text">{{ report_invoice_list?.length }}</span></h3>
                 </div>

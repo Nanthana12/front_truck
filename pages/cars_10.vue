@@ -7,7 +7,7 @@
     </v-dialog>
     <v-row>
       <v-col cols="12" md="6" sm="4">
-        <v-btn color="#338ABF" elevation="0" to="add_cars_10">
+        <v-btn color="#E57373" elevation="0" to="add_cars_10">
           <v-icon color="white">mdi-plus</v-icon>
           <span class="white--text">ເພີ່ມຂໍ້ມູນລົດ 10 ລໍ້</span>
         </v-btn>

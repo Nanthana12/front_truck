@@ -6,9 +6,9 @@
       </v-card>
     </v-dialog>
     <v-card class="card-shadow mx-auto" width="1000">
-      <v-card-title style="display:flex;background-color:#568fb3;color:white">
+      <v-card-title style="display:flex;background-color:#E57373;color:white">
         <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="customer">
-          <v-icon color="#338ABF">mdi-arrow-left</v-icon>
+          <v-icon color="#E57373">mdi-arrow-left</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
         ເພີ່ມຂໍ້ມູນລູກຄ້າ
@@ -75,7 +75,7 @@
           <span class="white--text">ລ້າງຂໍ້ມູນ</span>
         </v-btn>
         <div style="width:20px"></div>
-        <v-btn color="#0B9BDF" @click="onInsertCusIngo">
+        <v-btn color="#448AFF" @click="onInsertCusIngo">
           <v-icon color="white">mdi-check</v-icon>
           <span class="white--text">ບັນທຶກ</span>
         </v-btn>

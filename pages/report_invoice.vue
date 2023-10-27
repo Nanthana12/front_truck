@@ -6,7 +6,7 @@
             </v-card>
         </v-dialog>
         <v-card class="card-shadow mb-6" rounded="lg">
-            <div style="display:flex;align-items:center;border-bottom:0.5px solid #e0e0e0;background-color:#568fb3;color:white"
+            <div style="display:flex;align-items:center;border-bottom:0.5px solid #e0e0e0;background-color:#E57373;color:white"
                 class="px-4">
                 <span>ລາຍງານໃບບິນຂົນສົ່ງສິນຄ້າ</span>
                 <v-spacer></v-spacer>
@@ -55,7 +55,7 @@
                         </v-menu>
                     </div>
                     <div class="ml-2 pt-1">
-                        <v-btn color="green" class="white--text card-shadow"
+                        <v-btn color="#90A4AE" class="white--text card-shadow"
                             @click="onGetAllInvoice"><v-icon>mdi-magnify</v-icon>ຄົ້ນຫາ</v-btn>
                     </div>
                     <v-spacer></v-spacer>
@@ -115,9 +115,24 @@
         <!-- component for print -->
         <div style="display:none;">
             <div id="modalInvoice">
+                <v-row>
+                    <v-col cols="3">
+                        <img class="mx-auto" src="../assets/images/khounkham.png" height="70px" cover />
+                    </v-col>
+                    <v-col cols="9">
+                        <div style="display:flex;justify-content:start;flex-direction:column;align-items:start">
+                            <span style="font-size:14px"><b>ບໍລິສັດ ຄູນຄໍາ ຂຸດຄົ້ນຫີນກາວ ດົງເຫັນ </b> </span>
+                            <span style="font-size:12px">ສໍານັກງານຕັ້ງຢູ່ ອາຄານ ສະໜາມຍິງປືນ 20 ມັງກອນ, ສະໜາມກີລາກອງທັບ,
+                                ບ້ານຈອມມະນີ, ເມືອງ ໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ</span>
+                            <span style="font-size:12px">ໂທລະສັບ: 020 92661111, 020 98753888 | ອີເມວ: kounkham@Mining |
+                                ເວັບໄຊ: kounkham</span>
+                        </div>
+                    </v-col>
+                </v-row>
+                <br>
                 <div class="text-center pb-10 pt-10 font-weight-bold"
-                    style="display:flex;justify-content:center;font-size:12pt">ໃບບິນຂົນສົ່ງສິນຄ້າ</div>
-                <div style="display:flex;justify-content:end;flex-direction:column;align-items:end;padding-top:50px">
+                    style="display:flex;justify-content:center;font-size:18px"><b>ໃບບິນຂົນສົ່ງສິນຄ້າ</b></div>
+                <div style="display:flex;justify-content:end;flex-direction:column;align-items:end;padding-top:10px">
                     <div style="border:0.5px solid #999;display:flex;flex-direction:column;padding:10px;border-radius:3px">
                         <span style="font-size:12pt">ເລກທີ: {{ data_header_print?.invoice_ID }}</span>
                         <span style="font-size:12pt">ວັນທີ: {{ data_header_print?.printDate }} </span>
@@ -133,7 +148,7 @@
                         <span>(ສຳນັກງານໃຫຍ່)</span>
                     </div>
                 </div>
-                <div style="margin-top:80px">
+                <div style="margin-top:20px; font-size: 12px">
                     <span>ຜູ້ຕິດຕໍ່:</span>
                 </div>
                 <div style="margin-top:20px">
@@ -250,15 +265,30 @@
         <!-- component for print all invoices -->
         <div style="display:none">
             <div id="modalInvoices">
-                <div class="text-center" style="display:flex;justify-content:center;font-size:12pt;font-weight:bold">
+                <v-row>
+                    <v-col cols="3">
+                        <img class="mx-auto" src="../assets/images/khounkham.png" height="70px" cover />
+                    </v-col>
+                    <v-col cols="9">
+                        <div style="display:flex;justify-content:start;flex-direction:column;align-items:start">
+                            <span style="font-size:14px"><b>ບໍລິສັດ ຄູນຄໍາ ຂຸດຄົ້ນຫີນກາວ ດົງເຫັນ </b> </span>
+                            <span style="font-size:12px">ສໍານັກງານຕັ້ງຢູ່ ອາຄານ ສະໜາມຍິງປືນ 20 ມັງກອນ, ສະໜາມກີລາກອງທັບ,
+                                ບ້ານຈອມມະນີ, ເມືອງ ໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ</span>
+                            <span style="font-size:12px">ໂທລະສັບ: 020 92661111, 020 98753888 | ອີເມວ: kounkham@Mining |
+                                ເວັບໄຊ: kounkham</span>
+                        </div>
+                    </v-col>
+                </v-row>
+                <br>
+
+                <div class="text-center" style="display:flex;justify-content:center;font-size:20px;font-weight:bold">
                     ລາຍງານໃບບິນສິນຄ້າ</div>
-                 <div style="padding-top:50px;padding-bottom: 20px;">
+                 <div style="padding-top:10px;padding-bottom: 20px;">
                     ທັງໝົດ: {{ report_invoice_list?.length }} ລາຍການ <span v-if="start_date !== null">ແຕ່ວັນທີ: {{ start_date }}
                         ຫາ {{ end_date }}</span>
                 </div>
-                <table style="padding:2px;border: 0.5px solid #999;border-collapse: collapse;width:100%">
+                <table style="padding:2px;border: 0.5px solid #999;border-collapse: collapse;width:100%; font-size: 12px">
                     <tr style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;border-radius:10px">
-
                         <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                             class=" font-weight-bold">ລຳດັບ</td>
                         <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
@@ -298,7 +328,7 @@
                         </div>
                     </div>
                     <div
-                        style="width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding-left:20px">
+                        style="width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding-left:20px; font-size: 12px">
                         <div>ບັນຊີຂົນສົ່ງ</div>
                         <div style="height: 50px;"></div>
                         <div style="display:flex;justify-content:space-between">
@@ -308,7 +338,7 @@
                         </div>
                     </div>
                     <div
-                        style="width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding-left:20px;padding-right:20px">
+                        style="width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding-left:20px;padding-right:20px; font-size: 12px">
                         <div>ບັນຊີຄັງເງິນ</div>
                         <div style="height: 50px;"></div>
                         <div style="display:flex;justify-content:space-between">
@@ -317,7 +347,7 @@
 
                         </div>
                     </div>
-                    <div style="width:1000px;display:flex;flex-direction:column;justify-content:center;align-items:center">
+                    <div style="width:1000px;display:flex;flex-direction:column;justify-content:center;align-items:center; font-size: 12px">
                         <div>ອຳນວຍການ</div>
                         <div style="height: 50px;"></div>
                         <div style="display:flex;justify-content:space-between">

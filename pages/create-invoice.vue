@@ -6,7 +6,7 @@
             </v-card>
         </v-dialog>
         <v-card class="card-shadow" rounded="lg">
-            <v-card-title style="background-color:#568fb3">
+            <v-card-title style="background-color:#E57373">
                 <div style="display:flex;width:100%;align-items:center">
                     <div class=" d-flex align-center">
                         <div>
@@ -31,13 +31,14 @@
                             ລາຍການ</span></span>
                 </div>
                 <div>
-                    <v-data-table :items="report_peration_list" :headers="report_operation_header" :search="search"
-                        >
+                    <v-data-table :items="report_peration_list" :headers="report_operation_header" :search="search">
 
                         <template v-slot:item="row">
-                            <tr @click="onChooseForBill(row?.item?.performancebillno, row?.item?.customer_ID, row?.item?.currency)">
+                            <tr
+                                @click="onChooseForBill(row?.item?.performancebillno, row?.item?.customer_ID, row?.item?.currency)">
                                 <td>
-                                    <v-btn fab elevation="0" width="25" height="25" class="card-shadow" outlined color="green" small
+                                    <v-btn fab elevation="0" width="25" height="25" class="card-shadow" outlined
+                                        color="green" small
                                         @click="onChooseForBill(row?.item?.performancebillno, row?.item?.customer_ID, row?.item?.currency)">
                                         <v-icon v-if="row?.item?.check === 'true'" color="green">mdi-check</v-icon>
                                     </v-btn>
@@ -61,7 +62,7 @@
                     </v-data-table>
                     <div class="d-flex pb-2 pt-4" v-if="report_peration_list?.length > 0">
                         <v-spacer></v-spacer>
-                        <v-btn color="#4AAF41" width="200" class="white--text card-shadow"
+                        <v-btn color="#448AFF" width="200" class="white--text card-shadow"
                             @click="onShowDialogInvoice">ສ້າງໃບບິນ</v-btn>
                     </div>
                 </div>
@@ -75,17 +76,18 @@
                 </v-snackbar>
             </v-card-text>
         </v-card>
-        
+
         <!-- dialog invoice -->
         <v-dialog v-model="invoice" fullscreen>
             <v-card class="mx-auto">
                 <v-card-text>
-                
+
                     <div style="display:flex;justify-content:center;flex-direction:column;align-items:centerborder-radius:5px"
                         class="pt-10 px-10">
                         <div style="width:100%;border-radius:5px" class="pa-5 pb-10 card-shadow">
-                            <div style="background-color:#568fb3;color:white;height:50px;display:flex;align-items:center;border-radius:5px" class="pl-4">
-                            <h3>ລາຍທີ່ເລືອກເພື່ອສ້າງບິນ</h3>    
+                            <div style="background-color:#E57373;color:white;height:50px;display:flex;align-items:center;border-radius:5px"
+                                class="pl-4">
+                                <h3>ລາຍທີ່ເລືອກເພື່ອສ້າງບິນ</h3>
                             </div>
                             <div class="d-flex align-center">
                                 <div style="background-color:#f5f5f5;border-radius:3px"
@@ -102,17 +104,19 @@
                                 <div class="pt-4">
                                     <div style="width:100%;display:flex" class="mt-2 ">
                                         <v-spacer></v-spacer>
-                                        <div 
-                                            class="d-flex align-center pl-2">
+                                        <div class="d-flex align-center pl-2">
                                             <span><span class="font-weight-bold">ວັນທີອອກບິນ:</span></span>
                                             <div class="d-flex align-center pl-2" style="width: 258px;">
                                                 <v-menu ref="end_menu" v-model="end_menu" :close-on-content-click="false"
-                                                    :return-value.sync="end_date" transition="scale-transition" offset-y min-width="auto">
+                                                    :return-value.sync="end_date" transition="scale-transition" offset-y
+                                                    min-width="auto">
                                                     <template v-slot:activator="{ on, attrs }">
-                                                        <v-text-field dense outlined v-model="end_date" required 
-                                                            append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
+                                                        <v-text-field dense outlined v-model="end_date" required
+                                                            append-icon="mdi-calendar" readonly v-bind="attrs"
+                                                            v-on="on"></v-text-field>
                                                     </template>
-                                                    <v-date-picker v-model="end_date" no-title scrollable @input="$refs.end_menu.save(end_date)">
+                                                    <v-date-picker v-model="end_date" no-title scrollable
+                                                        @input="$refs.end_menu.save(end_date)">
                                                         <v-spacer></v-spacer>
                                                     </v-date-picker>
                                                 </v-menu>
@@ -186,7 +190,8 @@
                                         <td style="border: 0.5px solid #999;border-collapse: collapse;color:#000;border-top-right-radius:3px"
                                             class="pa-1 px-2">
                                             <div style="border:0.5px solid #999;height:30px;border-radius:3px"
-                                                class="d-flex align-center pl-2 green--text">{{ d?.total_price }} {{ d?.currency }}</div>
+                                                class="d-flex align-center pl-2 green--text">{{ d?.total_price }} {{
+                                                    d?.currency }}</div>
                                         </td>
                                     </tr>
                                 </table>
@@ -194,9 +199,9 @@
                             <!--  -->
                             <div class="d-flex align-center">
                                 <div style="display:flex;justify-content:end;align-items:end">
-                                    <v-btn  color="red" outlined @click="onCloseDialog"
+                                    <v-btn color="red" outlined @click="onCloseDialog"
                                         class="white--text"><v-icon>mdi-close</v-icon>ປິດ</v-btn>
-                                    <v-btn elevation="0" color="#4AAF41" @click="onCreateInvoice"
+                                    <v-btn elevation="0" color="#448AFF" @click="onCreateInvoice"
                                         class="white--text ml-4"><v-icon>mdi-check-circle</v-icon>ສ້າງໃບບິນ</v-btn>
                                 </div>
                                 <v-spacer></v-spacer>
@@ -205,7 +210,8 @@
                                         <span class="font-weight-bold" style="font-size:16pt">ລາຄາລວມທັງໝົດ:</span>
                                         <div style="height:40px;border-radius:3px;width:300px;background-color:#000;font-size:18pt"
                                             class="d-flex align-center pl-2 ml-2 red--text">
-                                            {{ sumTotalPrice?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }} {{ data_for_create_invoice[0]?.currency }}</div>
+                                            {{ sumTotalPrice?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }} {{
+                                                data_for_create_invoice[0]?.currency }}</div>
                                     </div>
 
                                 </div>
@@ -218,21 +224,36 @@
                 </v-card-text>
             </v-card>
         </v-dialog>
-        <!-- component for print -->
+        <!-- component for print  -->
         <div style="display:none;">
             <div id="modalInvoice">
+                <v-row>
+                    <v-col cols="3">
+                        <img class="mx-auto" src="../assets/images/khounkham.png" height="70px" cover />
+                    </v-col>
+                    <v-col cols="9">
+                        <div style="display:flex;justify-content:start;flex-direction:column;align-items:start">
+                            <span style="font-size:14px"><b>ບໍລິສັດ ຄູນຄໍາ ຂຸດຄົ້ນຫີນກາວ ດົງເຫັນ </b> </span>
+                            <span style="font-size:12px">ສໍານັກງານຕັ້ງຢູ່ ອາຄານ ສະໜາມຍິງປືນ 20 ມັງກອນ, ສະໜາມກີລາກອງທັບ,
+                                ບ້ານຈອມມະນີ, ເມືອງ ໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ</span>
+                            <span style="font-size:12px">ໂທລະສັບ: 020 92661111, 020 98753888 | ອີເມວ: kounkham@Mining |
+                                ເວັບໄຊ: kounkham</span>
+                        </div>
+                    </v-col>
+                </v-row>
+                <br>
                 <div class="text-center pb-10 pt-10 font-weight-bold"
-                    style="display:flex;justify-content:center;font-size:12pt">
-                    ໃບບິນຂົນສົ່ງສິນຄ້າ</div>
+                    style="display:flex;justify-content:center;font-size:20px">
+                    <b>ໃບບິນຂົນສົ່ງສິນຄ້າ</b> </div>
                 <div style="display:flex;justify-content:end;flex-direction:column;align-items:end;padding-top:50px">
                     <div style="border:0.5px solid #999;display:flex;flex-direction:column;padding:10px;border-radius:3px">
-                        <span style="font-size:12pt">ເລກທີ: {{ data_header_print?.invoice_ID }}</span>
-                        <span style="font-size:12pt">ວັນທີ:
+                        <span style="font-size:12px">ເລກທີ: {{ data_header_print?.invoice_ID }}</span>
+                        <span style="font-size:12px">ວັນທີ:
                             {{ data_header_print?.printDate
                             }} </span>
                     </div>
                 </div>
-                <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:20px">
+                <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:20px; font-size:12px">
                     <div style="width:100%;display:flex;flex-direction:column">
                         <span>ລະຫັດລູກຄ້າ: {{ data_for_print[0]?.cusID }}</span>
                         <span>ຊື່ລູກຄ້າ: {{ data_for_print[0]?.cusName }}</span>
@@ -242,10 +263,10 @@
                         <span>(ສຳນັກງານໃຫຍ່)</span>
                     </div>
                 </div>
-                <div style="margin-top:80px">
+                <div style="margin-top:10px; font-size:12px">
                     <span>ຜູ້ຕິດຕໍ່:</span>
                 </div>
-                <div style="margin-top:20px">
+                <div style="margin-top:20px; font-size:12px">
                     <table style="padding:2px;border: 0.5px solid #FFF;border-collapse: collapse;width:100%">
                         <tr style="padding:5px;border: 0.5px solid #999;">
                             <td style="border: 0.5px solid #999;padding:5px">ລຳດັບ</td>
@@ -287,10 +308,10 @@
                         </tr> -->
                     </table>
                 </div>
-                <div>
+                <div style="font-size:12px">
                     ໝາຍເຫດ
                 </div>
-                <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:120px">
+                <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:120px; font-size:12px">
                     <div style="width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center">
                         <div>ເຊັນຜູ້ວ່າຈ້າງ</div>
 
@@ -571,9 +592,9 @@ export default {
                     if (data?.data) {
                         this.loading_processing = false
                         let push = { 'check': 'false' }
-                            this.report_peration_list = data?.data?.map((list) => {
-                                return { ...list, ...push }
-                            })
+                        this.report_peration_list = data?.data?.map((list) => {
+                            return { ...list, ...push }
+                        })
                     } else {
                         this.report_peration_list = []
                         this.loading_processing = false
@@ -648,5 +669,4 @@ export default {
         right: 0px;
         left: 0px;
     }
-}
-</style>
+}</style>

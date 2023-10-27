@@ -6,10 +6,10 @@
       </v-card>
     </v-dialog>
     <v-card class="card-shadow mb-6" rounded="lg">
-      <v-card-title style="background-color:#568fb3">
+      <v-card-title style="background-color:#E57373">
         <div class="d-flex align-center px-4" style="background-color:#f5f5f5;height:50px;border-radius:3px">
           <div>
-            <v-btn color="#338ABF" to="add_employee" elevation="0" rounded>
+            <v-btn color="#E57373" to="add_employee" elevation="0" rounded>
               <v-icon color="white">mdi-plus</v-icon>
               <span class="white--text">ເພີ່ມຂໍ້ມູນ</span>
             </v-btn>
@@ -30,24 +30,22 @@
         <v-data-table :headers="emp_table_headers" :items="emp_data_list" :search="emp_search">
           <template v-slot:item="row">
             <tr>
-              <td>{{ row.item.staftId }}</td>
               <td><v-avatar>
-      <img
-        src="https://cdn.vuetifyjs.com/images/john.jpg"
-        alt="John"
-      >
-    </v-avatar></td>
+                  <img :src="row.item.imageStaff">
+                </v-avatar></td>
+              <td>{{ row.item.staftId }}</td>
               <td>{{ row.item.name }} {{ row.item.surname }}</td>
               <td>{{ row.item.vaillage }}</td>
               <td>{{ row.item.district }}</td>
               <td>{{ row.item.province }}</td>
               <td>{{ row.item.gender }}</td>
-              <td>{{ row.item.genderStatus }}</td>
+              <!-- <td>{{ row.item.genderStatus }}</td> -->
 
               <td>
-                <v-btn color="#338ABF" small @click="
+                <v-btn color="#FFB74D" small @click="
                   onGetDataForUpdate(
                     row.item.id,
+                    row.item.imageStaff,
                     row.item.staftId,
                     row.item.name,
                     row.item.surname,
@@ -106,16 +104,16 @@
 
     </v-card>
     <!-- Modal Update Employee -->
-    <v-dialog v-model="showModalUpdateEmployee" persistent width="1000">
+    <v-dialog v-model="showModalUpdateEmployee" persistent width="950">
       <v-card>
-        <v-card-title style="display:flex;background-color:#568fb3;color:white">
+        <v-card-title style="display:flex;background-color:#E57373;color:white">
 
           <v-spacer></v-spacer>
           ແກ້ໄຂຂໍ້ມູນພະນັກງານ
           <v-spacer></v-spacer>
           <v-btn fab elevation="0" dark width="30" height="30" small color="white"
             @click="showModalUpdateEmployee = false">
-            <v-icon color="#338ABF">mdi-close</v-icon>
+            <v-icon color="#E57373">mdi-close</v-icon>
           </v-btn>
         </v-card-title>
 
@@ -123,33 +121,48 @@
           <v-card-text>
             <v-row>
               <v-col cols="3">
-                <div class="text-center">
-                  <div v-if="imagePreview == ''">
-                    <img src="../assets/images/profile.png" class="preview-image" v-on:click="openUpload">
-                  </div>
-                  <div v-else>
-                    <img v-bind:src="imagePreview" class="preview-image" v-on:click="openUpload">
-                  </div>
-                </div>
-                  <input name="image" type="file" id="file-field" v-on:change="updagePreview" style="display: none;">
-              
+                <v-avatar size="175"> <img :src="imageStaffold" cover height="160px" width="160px">
+                </v-avatar>
+
+                <v-text-field label="" outlined dense readonly v-model="imageStaffold"
+                  style="display: none;"></v-text-field>
               </v-col>
               <v-col cols="9">
                 <v-row>
-                  <v-col cols="6" md="6" sm="6">
+                  <v-col cols="6" md="5" sm="5">
                     <v-text-field label="ລະຫັດພະນັກງານ" outlined dense readonly v-model="up_emp_id"></v-text-field>
                     <div class="tops">
                     </div>
                   </v-col>
+                  <v-col clos="6" md="7" sm="7">
+                    <v-file-input label="ອັບໂຫຼດຮູູບ" outlined dense prepend-icon="mdi-camera" v-model="imageStaff"
+                      id="file-field" @change="onGetEmpImage"></v-file-input>
+                    <div class="tops">
+                      <span class="red--text">{{ id_mess }}</span>
+                    </div>
+                  </v-col>
                 </v-row>
                 <v-row>
-                  <v-col cols="6" md="6" sm="6">
+                  <v-col cols="6" md="4" sm="4">
                     <v-text-field label="ຊື່" outlined dense v-model="up_emp_name"></v-text-field>
                     <div class="tops">
                     </div>
                   </v-col>
-                  <v-col cols="6" md="6" sm="6">
+                  <v-col cols="6" md="4" sm="4">
                     <v-text-field label="ນາມສະກຸນ" outlined dense v-model="up_emp_surname"></v-text-field>
+                    <div class="tops">
+                    </div>
+                  </v-col>
+                  <v-col cols="6" md="4" sm="4">
+                    <v-radio-group inline v-model="up_emp_gender">
+                      <v-row class="pl-3">
+                        <span class="mt-1">ເພດ:</span>
+                        <Width />
+                        <v-radio label="ຊາຍ" value="ຊາຍ" class="mt-1"></v-radio>
+                        <Width />
+                        <v-radio label="ຍິງ" value="ຍິງ"></v-radio>
+                      </v-row>
+                    </v-radio-group>
                     <div class="tops">
                     </div>
                   </v-col>
@@ -172,57 +185,45 @@
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col cols="6" md="4" sm="4" >
-                     <v-radio-group inline v-model="up_emp_gender">
-                    <v-row class="pl-3">
-                      <span class="mt-1">ເພດ:</span>
-                      <Width />
-                      <v-radio label="ຊາຍ" value="ຊາຍ" class="mt-1"></v-radio>
-                      <Width />
-                      <v-radio label="ຍິງ" value="ຍິງ"></v-radio>
-                    </v-row>
-                  </v-radio-group>
-                  <div class="tops">
-                    </div>
-                  </v-col>
-                  <v-col cols="6" md="4" sm="4">
-                    <v-text-field label="ສະຖານະ" outlined dense
-                    v-model="up_emp_gen_status"></v-text-field>
+
+                  <!-- <v-col cols="6" md="4" sm="4">
+                    <v-text-field label="ສະຖານະ" outlined dense v-model="up_emp_gen_status"></v-text-field>
                     <div class="tops">
                     </div>
-                  </v-col>
-                  <v-col cols="6" md="4" sm="4">
-                    <v-text-field label="ເລກທີໃບຂັບຂີ່" outlined dense
-                    v-model="up_emp_licence_id"></v-text-field>
-                    <div class="tops">
-                    </div>
-                  </v-col>
-                </v-row>       
+                  </v-col> -->
+
+                </v-row>
               </v-col>
+
             </v-row>
             <v-row>
-                  <v-col cols="6" md="3" sm="3">
-                    <v-text-field label="ໃບຂັບຂີ່ອອກທີ" outlined dense v-model="up_emp_verBy"></v-text-field>
-                    <div class="tops">
-                    </div>
-                  </v-col>
-                  <v-col cols="6" md="3" sm="3">
-                    <v-text-field label="ໃບຂັບຂີ່ໝົດອາຍຸ" outlined dense v-model="up_emp_licence_exp_date"></v-text-field>
-                    <div class="tops">
-                    </div>
-                  </v-col>
-                  <v-col cols="6" md="3" sm="3">
-                    <v-text-field label="ເບີໂທ1" outlined dense type="number" v-model="up_emp_mobile"></v-text-field>
-                    <div class="tops">
-                    </div>
-                  </v-col>
-                  <v-col cols="6" md="3" sm="3">
-                    <v-text-field label="ເບີໂທ2" outlined dense type="number" v-model="up_emp_mobile1"></v-text-field>
-                    <div class="tops">
-                    </div>
-                  </v-col>
-                </v-row>
-          
+              <v-col cols="6" md="4" sm="4">
+                <v-text-field label="ເລກທີໃບຂັບຂີ່" outlined dense v-model="up_emp_licence_id"></v-text-field>
+                <div class="tops">
+                </div>
+              </v-col>
+              <v-col cols="6" md="4" sm="4">
+                <v-text-field label="ໃບຂັບຂີ່ອອກທີ" outlined dense v-model="up_emp_verBy"></v-text-field>
+                <div class="tops">
+                </div>
+              </v-col>
+              <v-col cols="6" md="4" sm="4">
+                <v-text-field label="ໃບຂັບຂີ່ໝົດອາຍຸ" outlined dense v-model="up_emp_licence_exp_date"></v-text-field>
+                <div class="tops">
+                </div>
+              </v-col>
+              <v-col cols="6" md="4" sm="4">
+                <v-text-field label="ເບີໂທ1" outlined dense type="number" v-model="up_emp_mobile"></v-text-field>
+                <div class="tops">
+                </div>
+              </v-col>
+              <v-col cols="6" md="4" sm="4">
+                <v-text-field label="ເບີໂທ2" outlined dense type="number" v-model="up_emp_mobile1"></v-text-field>
+                <div class="tops">
+                </div>
+              </v-col>
+            </v-row>
+
             <!-- <div class="margintops">
               <v-row>
                 <v-col cols="6" md="4" sm="4">
@@ -245,7 +246,7 @@
             <v-btn color="#DE3333" @click="showModalUpdateEmployee = false"><v-icon color="white">mdi-close</v-icon>
               <span class="white--text">ຍົກເລິກ</span>
             </v-btn>
-            <v-btn color="primary" @click="onUpdateEmpInfo"><v-icon color="white">mdi-check</v-icon> ແກ້ໄຂ
+            <v-btn color="#FFB74D" @click="onUpdateEmpInfo"><v-icon color="white">mdi-check</v-icon> <span style="color: white;">ແກ້ໄຂ</span> 
             </v-btn>
           </v-card-actions>
         </v-container>
@@ -368,14 +369,14 @@ export default {
       loading_processing: false,
       up_emp_menu: false,
       emp_table_headers: [
-        { text: 'ລະຫັດ', value: 'staftId' },
         { text: 'ຮູບພາບ', value: '' },
+        { text: 'ລະຫັດ', value: 'staftId' },
         { text: 'ຊື່ ແລະ ນາມສະກຸນ', value: 'name surname' },
         { text: 'ບ້ານ', value: 'vaillage' },
         { text: 'ເມືອງ', value: 'licenceId' },
         { text: 'ແຂວງ', value: 'licenceExp' },
         { text: 'ເພດ', value: '' },
-        { text: 'ສະຖານະ', value: '' },
+        // { text: 'ສະຖານະ', value: '' },
         { text: '', value: '' },
         // { text: '', value: '' },
         { text: '', value: '' },
@@ -398,7 +399,8 @@ export default {
       up_emp_mobile: '',
       up_emp_mobile1: '',
       up_emp_verBy: '',
-      image:'',
+      imageStaff: null,
+      url: null,
       ////////////////
       up_emp_dateTime: '',
       up_created_emp_id: '',
@@ -409,37 +411,19 @@ export default {
     this.onGetEmployeeList()
   },
   methods: {
-    openUpload() {
-      document.getElementById('file-field').click()
-    },
-
-    updagePreview (e, file) {
-      var reader, files = e.target.files
-
-      if(files.length === 0){
-        console.log('empty')
-      }
-
-      reader = new FileReader()
-
-      reader.onload = (e) => {
-        this.imagePreview = e.target.result
-      }
-
-      reader.readAsDataURL(files[0])
-
+    onGetEmpImage(file) {
       if (file) {
-        this.image = URL.createObjectURL(this.image)
-        console.log(this.image)
+        this.url = URL.createObjectURL(this.imageStaff)
+        console.log(this.url)
       } else {
-        this.image = null
+        this.url = null
       }
     },
 
     async onGetEmployeeList() {
       try {
         this.loading_processing = true
-        await this.$axios.$post('getAllStaft').then((data) => {
+        await this.$axios.$post('getChooseStaft01.service').then((data) => {
           console.log('staffList:', data)
           if (data?.data == null || data?.data == '') {
             this.loading_processing = false
@@ -463,6 +447,7 @@ export default {
     },
     onGetDataForUpdate(
       key,
+      imageStaff,
       id,
       name,
       surname,
@@ -479,6 +464,8 @@ export default {
       verBy
     ) {
       this.key_up_emp = key
+      this.imageStaff = imageStaff
+      this.imageStaffold = imageStaff
       this.up_emp_id = id
       this.up_emp_name = name
       this.up_emp_surname = surname
@@ -495,115 +482,69 @@ export default {
       this.up_emp_verBy = verBy
       this.showModalUpdateEmployee = true
     },
-    onViewEmployeeInfo(
-      id,
-      name,
-      surname,
-      vill,
-      dist,
-      prov,
-      gender,
-      genStatus,
-      idCard,
-      licenceId,
-      licence_exp_date,
-      mobile,
-      mobile1,
-      verBy,
-      date,
-      userId
-    ) {
-      this.up_emp_id = id
-      this.up_emp_name = name
-      this.up_emp_surname = surname
-      this.up_emp_village = vill
-      this.up_emp_dist = dist
-      this.up_emp_province = prov
-      this.up_emp_gender = gender
-      this.up_emp_gen_status = genStatus
-      this.up_emp_id_card = idCard
-      this.up_emp_licence_id = licenceId
-      this.up_emp_licence_exp_date = licence_exp_date
-      this.up_emp_mobile = mobile
-      this.up_emp_mobile1 = mobile1
-      this.up_emp_verBy = verBy
-      this.up_emp_dateTime = date
-      this.up_created_emp_id = userId
-      this.showModalEmployeeDetails = true
-    },
+
+    // onViewEmployeeInfo(
+    //   id,
+    //   name,
+    //   surname,
+    //   vill,
+    //   dist,
+    //   prov,
+    //   gender,
+    //   genStatus,
+    //   idCard,
+    //   licenceId,
+    //   licence_exp_date,
+    //   mobile,
+    //   mobile1,
+    //   verBy,
+    //   date,
+    //   userId
+    // ) {
+    //   this.up_emp_id = id
+    //   this.up_emp_name = name
+    //   this.up_emp_surname = surname
+    //   this.up_emp_village = vill
+    //   this.up_emp_dist = dist
+    //   this.up_emp_province = prov
+    //   this.up_emp_gender = gender
+    //   this.up_emp_gen_status = genStatus
+    //   this.up_emp_id_card = idCard
+    //   this.up_emp_licence_id = licenceId
+    //   this.up_emp_licence_exp_date = licence_exp_date
+    //   this.up_emp_mobile = mobile
+    //   this.up_emp_mobile1 = mobile1
+    //   this.up_emp_verBy = verBy
+    //   this.up_emp_dateTime = date
+    //   this.up_created_emp_id = userId
+    //   this.showModalEmployeeDetails = true
+    // },
+
     async onUpdateEmpInfo() {
       try {
-        // if (
-        //   this.up_emp_mobile.length != 11 ||
-        //   this.up_emp_mobile.length != 8 ||
-        //   this.up_emp_mobile.length != 10 ||
-        //   this.up_emp_mobile.length != 7 ||
-        //   (this.up_emp_mobile.length != 9 )
-        // ) {
-        //   if(this.up_emp_mobile.length != 0){
-        //   swal.fire({
-        //     title: 'ແຈ້ງເຕືອນ',
-        //     text: 'ເບີໂທລະສັບ1ບໍ່ຖຶກຕ້ອງ',
-        //     icon: 'info',
-        //     allowOutsideClick: false,
-        //     confirmButtonColor: '#3085d6',
-        //     confirmButtonText: 'OK',
-        //   })
-        //   return
-        // }
-        // }
-        // if (
-        //   this.up_emp_mobile1.length != 11 ||
-        //   this.up_emp_mobile1.length != 8 ||
-        //   this.up_emp_mobile1.length != 10 ||
-        //   this.up_emp_mobile1.length != 7 ||
-        //   this.up_emp_mobile1.length != 9
-        // ) {
-        //   if (this.up_emp_mobile1.length != 0) {
-        //     swal.fire({
-        //       title: 'ແຈ້ງເຕືອນ',
-        //       text: 'ເບີໂທລະສັບ2ບໍ່ຖຶກຕ້ອງ',
-        //       icon: 'info',
-        //       allowOutsideClick: false,
-        //       confirmButtonColor: '#3085d6',
-        //       confirmButtonText: 'OK',
-        //     })
-        //     return
-        //   }
-        // }
-        // if (this.up_emp_id_card.length > 11 && this.up_emp_id_card.length < 8) {
-        //   swal.fire({
-        //     title: 'ແຈ້ງເຕືອນ',
-        //     text: 'ເລກບັດປະຈຳຕົວບໍ່ຖຶກ',
-        //     icon: 'info',
-        //     allowOutsideClick: false,
-        //     confirmButtonColor: '#3085d6',
-        //     confirmButtonText: 'OK',
-        //   })
-        //   return
-        // }
-        let datas = {
-          id: this.key_up_emp,
-          staftId: this.up_emp_id,
-          name: this.up_emp_name,
-          surname: this.up_emp_surname,
-          idCard: this.up_emp_id_card,
-          licenceId: this.up_emp_licence_id,
-          verBy: this.up_emp_verBy,
-          licenceExp: this.up_emp_licence_exp_date,
-          vaillage: this.up_emp_village,
-          district: this.up_emp_dist,
-          province: this.up_emp_province,
-          mobile: this.up_emp_mobile,
-          mobile1: this.up_emp_mobile1,
-          gender: this.up_emp_gender,
-          genderStatus: this.up_emp_gen_status,
-          userId: localStorage.getItem('USER_ID'),
-        }
+        const formdata = new FormData();
+        formdata.append('id', this.key_up_emp)
+        formdata.append('files', this.imageStaff != null ? this.imageStaff : null)
+        formdata.append('staftId', this.up_emp_id)
+        formdata.append('name', this.up_emp_name)
+        formdata.append('surname', this.up_emp_surname)
+        formdata.append('idCard', this.up_emp_id_card)
+        formdata.append('licenceId', this.up_emp_licence_id)
+        formdata.append('verBy', this.up_emp_verBy)
+        formdata.append('licenceExp', this.up_emp_licence_exp_date)
+        formdata.append('vaillage', this.up_emp_village)
+        formdata.append('district', this.up_emp_dist)
+        formdata.append('province', this.up_emp_province)
+        formdata.append('mobile', this.up_emp_mobile)
+        formdata.append('gender', this.up_emp_gender)
+        formdata.append('userId', localStorage.getItem('USER_ID'))
+        formdata.append('mobile1', this.up_emp_mobile1)
+        formdata.append('imageStaff', null)
+
         // console.log(datas)
         this.loading_processing = true
-        await this.$axios.$post('updateStaft', datas).then((data) => {
-          console.log('send:', datas)
+        await this.$axios.$post('updateStaft', formdata).then((data) => {
+          // console.log('send:', datas)
           if (data?.status == '00') {
             this.loading_processing = false
             this.onGetEmployeeList()
@@ -612,7 +553,6 @@ export default {
               title: 'ສຳເລັດ',
               icon: 'success',
               allowOutsideClick: false,
-
             })
           } else {
             this.loading_processing = false
@@ -711,7 +651,7 @@ export default {
   font-weight: bold;
 }
 
-.preview-image{
+.preview-image {
   width: 220px;
   height: 220px;
 }

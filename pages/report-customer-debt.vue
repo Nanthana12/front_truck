@@ -6,7 +6,7 @@
             </v-card>
         </v-dialog>
         <v-card class="card-shadow mb-6" rounded="lg">
-            <div style="display:flex;align-items:center;border-bottom:0.5px solid #e0e0e0;background-color:#568fb3;color:white"
+            <div style="display:flex;align-items:center;border-bottom:0.5px solid #e0e0e0;background-color:#E57373;color:white"
                 class="px-4 py-4">
                 <span>ລາຍງານວິເຄາະອາຍຸໜີ້</span>
             </div>
@@ -37,7 +37,7 @@
                     </v-menu>
                 </div>
                 <div style="margin-top:-25px" class="ml-2">
-                    <v-btn color="green" height="40" class="white--text" elevation="0"
+                    <v-btn color="#90A4AE" height="40" class="white--text" elevation="0"
                         @click="onGetAll"><v-icon>mdi-magnify</v-icon>ຄົ້ນຫາ</v-btn>
                 </div>
                 <v-spacer></v-spacer>
@@ -156,8 +156,23 @@
         <!-- component for print -->
         <div style="display:none;">
             <div id="modalInvoice">
+                <v-row>
+                    <v-col cols="3">
+                        <img class="mx-auto" src="../assets/images/khounkham.png" height="70px" cover />
+                    </v-col>
+                    <v-col cols="9">
+                        <div style="display:flex;justify-content:start;flex-direction:column;align-items:start">
+                            <span style="font-size:14px"><b>ບໍລິສັດ ຄູນຄໍາ ຂຸດຄົ້ນຫີນກາວ ດົງເຫັນ </b> </span>
+                            <span style="font-size:12px">ສໍານັກງານຕັ້ງຢູ່ ອາຄານ ສະໜາມຍິງປືນ 20 ມັງກອນ, ສະໜາມກີລາກອງທັບ,
+                                ບ້ານຈອມມະນີ, ເມືອງ ໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ</span>
+                            <span style="font-size:12px">ໂທລະສັບ: 020 92661111, 020 98753888 | ອີເມວ: kounkham@Mining |
+                                ເວັບໄຊ: kounkham</span>
+                        </div>
+                    </v-col>
+                </v-row>
+                <br>
                 <div class="text-center pb-10 pt-10 font-weight-bold"
-                    style="display:flex;justify-content:center;font-size:12pt;padding-bottom: 30px;font-weight: bold;">
+                    style="display:flex;justify-content:center;font-size:20px;padding-bottom: 30px;font-weight: bold;">
                     ລາຍງານໜີ້ຍັງຄ້າງ</div>
                 <!-- <div style="width:100%" class="pr-2">
                     <div v-if="start_date != null" style="display:flex;justify-content: end;">ແຕ່ວັນທີ: {{ start_date }} - {{
@@ -167,46 +182,46 @@
                 <div>
                     <table style="padding:2px;border: 0.5px solid #FFF;border-collapse: collapse;width:100%">
                         <tr style="padding:5px;border: 0.5px solid #999;">
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" rowspan="2"
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px" rowspan="2"
                                 class="font-weight-bold">ຊື່ລູກຄ້າ</td>
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" rowspan="2"
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px" rowspan="2"
                                 class="font-weight-bold">ຈຳນວນມື້</td>
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" rowspan="2"
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px" rowspan="2"
                                 class="font-weight-bold">ເລກທີບິນ</td>
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" rowspan="2"
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px" rowspan="2"
                                 class="font-weight-bold">ວັນທີ</td>
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" colspan="4"
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px" colspan="4"
                                 class="text-center font-weight-bold">ອາຍຸໜີ້</td>
                         </tr>
                         <tr style="padding:5px;border: 0.5px solid #999;">
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" class="font-weight-bold">1-30
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px" class="font-weight-bold">1-30
                                 ວັນ</td>
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" class="font-weight-bold">31-60
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px" class="font-weight-bold">31-60
                                 ວັນ</td>
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" class="font-weight-bold">61-90
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px" class="font-weight-bold">61-90
                                 ວັນ</td>
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt" class="font-weight-bold">
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px" class="font-weight-bold">
                                 ເກີນກວ່າ 90 ວັນ</td>
                         </tr>
                         <tr style="padding:5px;border: 0.5px solid #999;" v-for="(item, i) in this.report_payment_debt"
                             :key="i">
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">{{ item?.cusName }}</td>
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">{{ item?.calTotalDate }}</td>
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px">{{ item?.cusName }}</td>
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px">{{ item?.calTotalDate }}</td>
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px">
                                 <div class="px-2 py-1" style="display:flex;flex-direction:column"
                                     v-for="(d, i) in item?.listOwePayDetails" :key="i">
                                     {{ d?.billNo }}
                                 </div>
                                 <!-- <div class="white--text">000</div> -->
                             </td>
-                            <td style="border: 0.5px solid #999;padding:5px;font-size:12pt">
+                            <td style="border: 0.5px solid #999;padding:5px;font-size:12px">
                                 <div class="px-2 py-1" style="display:flex;flex-direction:column"
                                     v-for="(d, i) in item?.listOwePayDetails" :key="i">
                                     {{ d?.payDate }}
                                 </div>
                                 <!-- <div class="white--text">000</div> -->
                             </td>
-                            <td style="border: 0.5px solid #999;font-size:12pt">
+                            <td style="border: 0.5px solid #999;font-size:12px">
                                 <div class=" px-2 py-1 red--text" style="display:flex;flex-direction:column"
                                     v-for="(d, i) in item?.listOwePayDetails" :key="i">
                                     {{ d?.dayAmountCheck01?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }} {{
@@ -214,7 +229,7 @@
                                 </div>
                                 <!-- <div style="border-top:0.5px solid #999" class="px-2 font-weight-bold">{{ item?.sumFooter[0]?.sumPayAmount01?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</div> -->
                             </td>
-                            <td style="border: 0.5px solid #999;font-size:12pt">
+                            <td style="border: 0.5px solid #999;font-size:12px">
                                 <div class="px-2 py-1 red--text" style="display:flex;flex-direction:column;"
                                     v-for="(d, i) in item?.listOwePayDetails" :key="i">
                                     {{ d?.dayAmountCheck02?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }} {{
@@ -223,7 +238,7 @@
                                 </div>
                                 <!-- <div style="border-top:0.5px solid #999" class="px-2 font-weight-bold"></div> -->
                             </td>
-                            <td style="border: 0.5px solid #999;font-size:12pt">
+                            <td style="border: 0.5px solid #999;font-size:12px">
                                 <div class="px-2 py-1 red--text" style="display:flex;flex-direction:column"
                                     v-for="(d, i) in item?.listOwePayDetails" :key="i">
                                     {{ d?.dayAmountCheck03?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }} {{
@@ -231,7 +246,7 @@
                                 </div>
                                 <!-- <div style="border-top:0.5px solid #999" class="px-2 font-weight-bold">{{ item?.sumFooter[0]?.sumPayAmount03?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</div> -->
                             </td>
-                            <td style="border: 0.5px solid #999;font-size:12pt">
+                            <td style="border: 0.5px solid #999;font-size:12px">
                                 <div class="px-2 py-1 red--text" style="display:flex;flex-direction:column"
                                     v-for="(d, i) in item?.listOwePayDetails" :key="i">
                                     {{ d?.dayAmountCheck04?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }} {{
@@ -242,7 +257,7 @@
                         </tr>
 
                     </table>
-                    <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:120px">
+                    <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:120px; font-size: 12px">
 
                         <div
                             style="width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center">

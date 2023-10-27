@@ -6,7 +6,7 @@
             </v-card>
         </v-dialog>
         <v-card class="card-shadow mb-6" rounded="lg">
-            <v-card-title style="background-color:#568fb3;color:white">ລາຍງານໃບປະຕິບັດງານ</v-card-title>
+            <v-card-title style="background-color:#E57373;color:white">ລາຍງານໃບປະຕິບັດງານ</v-card-title>
             <v-card-text>
                 <v-form ref="form" lazy-validation v-model="valid">
                     <div style="width:100%;display:flex" class="pt-4">
@@ -40,7 +40,7 @@
                             </v-menu>
                         </div>
                         <div class="ml-2 pt-1">
-                            <v-btn color="green" elevation="0" class="white--text"
+                            <v-btn color="#90A4AE" elevation="0" class="white--text"
                                 @click="onSeachPermance"><v-icon>mdi-magnify</v-icon>ຄົ້ນຫາ</v-btn>
                         </div>
                         <v-spacer></v-spacer>
@@ -116,27 +116,43 @@
             </v-card-text>
 
         </v-card>
-        <!-- component for print -->
+        <!-- component for print  -->
         <div style="display:none;">
             <div id="modalInvoice">
+                <v-row>
+                    <v-col cols="3">
+                        <img class="mx-auto" src="../assets/images/khounkham.png" height="70px" cover />
+                    </v-col>
+                    <v-col cols="9">
+                        <div style="display:flex;justify-content:start;flex-direction:column;align-items:start">
+                            <span style="font-size:14px"><b>ບໍລິສັດ ຄູນຄໍາ ຂຸດຄົ້ນຫີນກາວ ດົງເຫັນ </b> </span>
+                            <span style="font-size:12px">ສໍານັກງານຕັ້ງຢູ່ ອາຄານ ສະໜາມຍິງປືນ 20 ມັງກອນ, ສະໜາມກີລາກອງທັບ,
+                                ບ້ານຈອມມະນີ, ເມືອງ ໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ</span>
+                            <span style="font-size:12px">ໂທລະສັບ: 020 92661111, 020 98753888 | ອີເມວ: kounkham@Mining |
+                                ເວັບໄຊ: kounkham</span>
+                        </div>
+                    </v-col>
+                </v-row>
+                <br>
+
                 <div class="text-center pb-10 pt-10 font-weight-bold"
-                    style="display:flex;justify-content:center;font-size:12pt">
-                    ໃບປະຕິບັດງານ</div>
+                    style="display:flex;justify-content:center;font-size:18px">
+                    <b>ໃບປະຕິບັດງານ</b></div>
                 <div style="height:20px"></div>
 
                 <div style="display:flex;justify-content:end;flex-direction:column;align-items:end">
                     <!-- <span style="font-size:12pt">ໜ້າທີ: 01</span> -->
                     <div style="border:0.5px solid #999;display:flex;flex-direction:column;padding:10px;border-radius:3px">
-                        <span style="font-size:12pt">ເລກທີ: {{ performanceSmallHeaderGruops?.keyId }}</span>
-                        <span style="font-size:12pt">ວັນທີ:
+                        <span style="font-size:12px">ເລກທີ: {{ performanceSmallHeaderGruops?.keyId }}</span>
+                        <span style="font-size:12px">ວັນທີ:
                             {{ performanceSmallHeaderGruops?.printDate }}</span>
                     </div>
                 </div>
-                <div style="display:flex;flex-direction:row;">
+                <div style="display:flex;flex-direction:row;font-size:12px">
                     <span>ທະບຽນລົດ: {{ performanceheaderGruops?.h_VICIVLE_NUMBER }}</span>
                     <!-- <span style="margin-left:10px">ທະບຽນຫາງລົດ: B102145</span> -->
                 </div>
-                <div style="display:flex;flex-direction:row;justify-content:space-between">
+                <div style="display:flex;flex-direction:row;justify-content:space-between; font-size:12px">
                     <div>
                         <span>ພະນັກງານຂັບ1: {{ performanceheaderGruops?.staffname }}</span>
                         <span style="margin-left:5px">ພະນັກງານຂັບ2:
@@ -144,11 +160,11 @@
                     </div>
 
                 </div>
-                <div>
+                <div style="font-size:12px">
                     ວັນທີກັບ: {{ performaceGroupDetails?.perFORMANCEREDATE }}
                 </div>
                 <div style="padding-top:10px">
-                    <table style="padding:2px;border: 0.5px solid #FFF;border-collapse: collapse;width:100%">
+                    <table style="padding:2px;border: 0.5px solid #FFF;border-collapse: collapse;width:100%; font-size:12px">
                         <tr style="padding:5px;border: 0.5px solid #999;">
                             <td style="border: 0.5px solid #999;padding:5px">ລຳດັບ</td>
                             <td style="border: 0.5px solid #999;padding:5px">ວັນທີສົ່ງ</td>
@@ -182,7 +198,7 @@
                         </tr>
                     </table>
                 </div>
-                <div style="padding-top:20px;display:flex;flex-direction:row;justify-content:space-between">
+                <div style="padding-top:20px;display:flex;flex-direction:row;justify-content:space-between; font-size:12px">
                     <div>
                         <table style="padding:2px;border: 0.5px solid #FFF;border-collapse: collapse;width:100%">
                             <tr style="padding:5px;border: 0.5px solid #999;">
@@ -259,6 +275,12 @@
                                 <td style="border: 0.5px solid #999;padding:5px">{{
                                     performaceGroupFee?.performancefeeoutcontainer }}</td>
                             </tr>
+                            <tr style="padding:5px;border: 0.5px solid #999;">
+                                <td style="border: 0.5px solid #999;padding:5px">ລວມລາຍຈ່າຍທັງໝົດ</td>
+                                <td style="border: 0.5px solid #999;padding:5px">{{
+                                    performaceGroupFee?.feetotal?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                                }}</td>
+                            </tr>
 
                         </table>
                     </div>
@@ -328,12 +350,7 @@
                         </div>
                     </div>
                 </div>
-
-
-
                 <!-- customer -->
-
-
             </div>
         </div>
     </div>

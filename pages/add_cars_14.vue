@@ -10,9 +10,9 @@
 
 
     <v-card class="card-shadow mx-auto" width="1400">
-      <v-card-title style="display:flex;background-color:#568fb3;color:white">
+      <v-card-title style="display:flex;background-color:#E57373;color:white">
         <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="cars_14">
-          <v-icon color="#338ABF">mdi-arrow-left</v-icon>
+          <v-icon color="#E57373">mdi-arrow-left</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
         ເພີ່ມຂໍ້ມູນຫົວລົດ
@@ -21,37 +21,42 @@
       <v-card-text class="pa-8 mx-auto" width="1400" style="border:0px solid #e0e0e0">
         <v-form v-model="valid" lazy-validation ref="form">
           <v-row>
-            <v-col cols="3">
+            <!-- <v-col cols="3">
               <Height />
-                <div>
-                  <div v-if="imagePreview == ''">
-                    <img src="../assets/images/cargo-truck.png" class="preview-image" v-on:click="openUpload">
-                  </div>
-                  <div v-else>
-                    <img v-bind:src="imagePreview" class="preview-image" v-on:click="openUpload">
-                  </div>
+              <div>
+                <div v-if="imagePreview == ''">
+                  <img src="../assets/images/cargo-truck.png" class="preview-image" v-on:click="openUpload">
                 </div>
-                  <input name="image" type="file" id="file-field" v-on:change="updagePreview" style="display: none;">
-              
-            </v-col>
-            <v-col cols="9">
+                <div v-else>
+                  <img v-bind:src="imagePreview" class="preview-image" v-on:click="openUpload">
+                </div>
+              </div>
+              <input name="IMAGE_TRUK" type="file" id="file-field" v-on:change="updagePreview" style="display: none;">
+            </v-col> -->
+            <v-col cols="12">
               <v-row>
                 <v-col clos="6" md="4" sm="4">
+                  <v-file-input label="ອັບໂຫຼດຮູູບ" outlined dense prepend-icon="mdi-camera" background-color="#f5f5f5"
+                    v-model="imageaddcar"></v-file-input>
+                  <div class="tops">
+                  </div>
+                </v-col>
+                <v-col>
                   <v-text-field :rules="nameRules" label="ປ້ອນທະບຽນລົດ" dense outlined background-color="#f5f5f5"
                     v-model="h_VICIVLE_NUMBER"></v-text-field>
                   <div class="tops">
                   </div>
                 </v-col>
                 <v-col clos="6" md="4" sm="4">
-                  <v-menu ref="end_number" v-model="end_number" :close-on-content-click="false"
-                    :return-value.sync="end_h_VICIVLE_number" transition="scale-transition" offset-y min-width="auto">
+                  <v-menu ref="end_cardate" v-model="end_cardate" :close-on-content-click="false"
+                    :return-value.sync="exCarDate" transition="scale-transition" offset-y min-width="auto">
                     <template v-slot:activator="{ on, attrs }">
-                      <v-text-field dense outlined v-model="end_h_VICIVLE_number" background-color="#f5f5f5" required
+                      <v-text-field dense outlined v-model="exCarDate" background-color="#f5f5f5" required
                         label="ວັນໝົດອາຍຸທະບຽນລົດ" append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
                         :rules="nameRules"></v-text-field>
                     </template>
-                    <v-date-picker v-model="end_h_VICIVLE_number" no-title scrollable
-                      @input="$refs.end_number.save(end_h_VICIVLE_number)">
+                    <v-date-picker v-model="exCarDate" no-title scrollable
+                      @input="$refs.end_cardate.save(exCarDate)">
                       <v-spacer></v-spacer>
                     </v-date-picker>
                   </v-menu>
@@ -61,15 +66,15 @@
                   <div class="tops">
                   </div>
                 </v-col>
-                <v-col clos="6" md="4" sm="4">
+              </v-row>
+              <v-row>
+                <v-col clos="6" md="3" sm="3">
                   <v-text-field :rules="nameRules" label="ປ້ອນເລກປະກັນໄພ" dense outlined background-color="#f5f5f5"
                     v-model="h_VICIVLE_GALATY"></v-text-field>
                   <div class="tops">
                   </div>
                 </v-col>
-              </v-row>
-              <v-row>
-                <v-col clos="6" md="4" sm="4">
+                <v-col clos="6" md="3" sm="3">
                   <v-menu ref="start_galaty" v-model="start_galaty" :close-on-content-click="false"
                     :return-value.sync="h_VICIVLE_DATE_GALATY" transition="scale-transition" offset-y min-width="auto">
                     <template v-slot:activator="{ on, attrs }">
@@ -85,13 +90,13 @@
                   <div class="tops">
                   </div>
                 </v-col>
-                <v-col clos="6" md="4" sm="4">
+                <v-col clos="6" md="3" sm="3">
                   <v-text-field :rules="nameRules" label="ປ້ອນຍີ່ຫໍ້ລົດ" dense outlined background-color="#f5f5f5"
                     v-model="h_VICIVLE_BRANCH"></v-text-field>
                   <div class="tops">
                   </div>
                 </v-col>
-                <v-col clos="6" md="4" sm="4">
+                <v-col clos="6" md="3" sm="3">
                   <v-text-field :rules="nameRules" label="ປ້ອນລົດປີ" dense outlined background-color="#f5f5f5"
                     v-model="h_VICIVLE_YEARLEVEL"></v-text-field>
                   <div class="tops">
@@ -99,49 +104,45 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col clos="6" md="4" sm="4">
+                <v-col clos="6" md="3" sm="3">
                   <v-text-field :rules="nameRules" label="ປ້ອນປະເພດລົດ" dense outlined background-color="#f5f5f5"
                     v-model="h_VICIVLE_BRANCHTYPE"></v-text-field>
                   <div class="tops">
                   </div>
                 </v-col>
-                <v-col clos="6" md="4" sm="4">
+                <v-col clos="6" md="3" sm="3">
                   <v-text-field :rules="nameRules" label="ປ້ອນສີລົດ" dense outlined background-color="#f5f5f5"
-                    v-model="silad"></v-text-field>
+                    v-model="exCarColor"></v-text-field>
                   <div class="tops">
                   </div>
                 </v-col>
-                <v-col clos="6" md="4" sm="4">
+                <v-col clos="6" md="3" sm="3">
                   <v-text-field :rules="nameRules" label="ປ້ອນເລກໄມປະຈຸບັນ" dense outlined background-color="#f5f5f5"
                     v-model="kim_KM"></v-text-field>
                   <div class="tops">
                   </div>
                 </v-col>
-              </v-row>
-              <v-row>
-                <v-col clos="6" md="4" sm="4">
+                <v-col clos="6" md="3" sm="3">
                   <v-text-field :rules="nameRules" label="ປ້ອນເລກຈັກ" dense outlined background-color="#f5f5f5"
                     v-model="h_VICIVLE_LEKJUK"></v-text-field>
                   <div class="tops">
                   </div>
                 </v-col>
-                <v-col clos="6" md="4" sm="4">
+              </v-row>
+              <v-row>
+
+                <v-col clos="6" md="3" sm="3">
                   <v-text-field :rules="nameRules" label="ປ້ອນເລກຖັງ" dense outlined background-color="#f5f5f5"
                     v-model="h_VICIVLE_LEKTHUNG"></v-text-field>
                   <div class="tops">
                   </div>
                 </v-col>
-                <v-col clos="6" md="4" sm="4">
+                <v-col clos="6" md="3" sm="3">
                   <v-text-field :rules="nameRules" label="ປ້ອນເລກໄມປ່ຽນນໍ້າມັນເຄື່ອງຮອບຕໍ່ໄປ" dense outlined
                     background-color="#f5f5f5" v-model="h_LEK_NUMMUNKHG"></v-text-field>
                   <div class="tops">
                   </div>
                 </v-col>
-              </v-row>
-             
-            </v-col>
-          </v-row>
-          <v-row>
                 <v-col clos="6" md="3" sm="3">
                   <v-text-field :rules="nameRules" label="ປ້ອນGPS" dense outlined background-color="#f5f5f5"
                     v-model="h_VICIVLE_GPS"></v-text-field>
@@ -154,13 +155,40 @@
                   <div class="tops">
                   </div>
                 </v-col>
-                <v-col clos="6" md="3" sm="3">
-                  <v-text-field :rules="nameRules" label="ປ້ອນໝໍ້ໄຟ" dense outlined background-color="#f5f5f5"
-                    v-model="h_VICIVLE_MORFAI"></v-text-field>
-                  <div class="tops">
-                  </div>
-                </v-col>
-                <v-col clos="6" md="3" sm="3">
+              </v-row>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col clos="6" md="3" sm="3">
+              <div>
+                <v-row>
+                  <v-col clos="6" md="2" sm="2">
+                    <div v-if="keyId == ''">
+                      <img src="../assets/images/morfai.jpg" cover height="40px" width="40px">
+                    </div>
+                    <div v-else>
+                      <img :src="imageBatery" cover height="40px" width="40px">
+                    </div>
+                    <!-- <img :src="imageBatery" cover height="40px" width="40px"> -->
+                  </v-col>
+                  <v-col clos="6" md="10" sm="10">
+                    <v-autocomplete outlined dense label="ເລືອກໝໍ້ໄຟ" :items="morfai_data_list" item-text="batNo"
+                      item-value="keyId" background-color="#f5f5f5" @change="onGetmorfaiDetails"
+                      :rules="nameRules"></v-autocomplete>
+                  </v-col>
+                </v-row>
+
+              </div>
+              <div class="tops" style="display:flex;align-items:center">
+                <span> ຂະໜາດ: {{ sizeMorfai }} || ອາຍຸການໃຊ້ງານ: {{ serviceLife }} ປີ </span>
+                <span class="ml-4"></span>
+              </div>
+              <!-- <v-text-field :rules="nameRules" label="ປ້ອນໝໍ້ໄຟ" dense outlined background-color="#f5f5f5"
+                v-model="h_VICIVLE_MORFAI"></v-text-field>
+              <div class="tops">
+              </div> -->
+            </v-col>
+            <v-col clos="6" md="3" sm="3">
               <v-menu ref="start_bat" v-model="start_bat" :close-on-content-click="false"
                 :return-value.sync="start_bat_date" transition="scale-transition" offset-y min-width="auto">
                 <template v-slot:activator="{ on, attrs }">
@@ -175,8 +203,6 @@
               <div class="tops">
               </div>
             </v-col>
-              </v-row>
-          <v-row>  
             <v-col clos="6" md="3" sm="3">
               <v-menu ref="end_bat" v-model="end_bat" :close-on-content-click="false" :return-value.sync="end_bat_date"
                 transition="scale-transition" offset-y min-width="auto">
@@ -198,6 +224,8 @@
               <div class="tops">
               </div>
             </v-col>
+          </v-row>
+          <v-row style="margin-top: -10px;">
             <v-col clos="6" md="3" sm="3">
               <v-text-field :rules="nameRules" label="ປ້ອນຈານລາກ" dense outlined background-color="#f5f5f5"
                 v-model="h_VICIVLE_JANLARK"></v-text-field>
@@ -206,12 +234,10 @@
             </v-col>
             <v-col clos="6" md="3" sm="3">
               <v-text-field :rules="nameRules" label="ປ້ອນແຮງມ້າ" dense outlined background-color="#f5f5f5"
-                v-model="lad"></v-text-field>
+                v-model="exHangMar"></v-text-field>
               <div class="tops">
               </div>
             </v-col>
-          </v-row>
-          <v-row>
             <v-col clos="6" md="3" sm="3">
               <v-text-field :rules="nameRules" label="ປ້ອນໄຟໜ້າ" dense outlined background-color="#f5f5f5"
                 v-model="h_VICIVLE_FAINAR"></v-text-field>
@@ -224,6 +250,8 @@
               <div class="tops">
               </div>
             </v-col>
+          </v-row>
+          <v-row>
             <v-col clos="6" md="3" sm="3">
               <v-text-field :rules="nameRules" label="ປ້ອນໄຟຂ້າງ" dense outlined background-color="#f5f5f5"
                 v-model="h_VICIVLE_FAIYKHANG"></v-text-field>
@@ -236,9 +264,6 @@
               <div class="tops">
               </div>
             </v-col>
-          </v-row>
-          
-          <v-row>
             <v-col clos="6" md="3" sm="3">
               <v-text-field :rules="nameRules" label="ປ້ອນແວ່ນມອງຫຼັງ" dense outlined background-color="#f5f5f5"
                 v-model="h_VICIVLE_VENMONGLHG"></v-text-field>
@@ -253,6 +278,8 @@
             </v-col>
           </v-row>
           <v-row>
+          </v-row>
+          <v-row>
             <v-col clos="6" md="4" sm="4">
               <v-radio-group inline v-model="h_VICIVLE_GLASS">
                 <v-row class="pl-3">
@@ -263,40 +290,38 @@
                   <v-radio label="ກະຊວນ" color="green" value="ກະຊວນ"></v-radio>
                 </v-row>
               </v-radio-group>
-              
+
               <div class="tops">
               </div>
             </v-col>
           </v-row>
-          <Height /> 
-          <Height /> 
+          <Height />
+          <Height />
           <Height />
           <v-divider></v-divider>
-          <Height /> 
-          <Height /> 
+          <Height />
+          <Height />
           <div>
             <span style="font-size:20px">ຂໍ້ມູນຢາງລົດ:</span>
-              <div class="d-flex">
-                
-                <div class="pt-3 pl-3">
-                  <v-row>
-                    <v-radio-group inline v-model="chooseCarType">
-                      <v-row class="pl-3">
-                        <span>ເລືອກປະເພດລົດ:</span>
-                        <Width />
-                        <v-radio label="ລົດ 11 ລໍ້" value="10" class="mt-1"></v-radio>
-                        <Width />
-                        <v-radio label="ລົດ 13 ລໍ້" value="12"></v-radio>
-                      </v-row>
-                    </v-radio-group>
-                  </v-row>
-                </div>
+            <div class="d-flex">
+              <div class="pt-3 pl-3">
+                <v-row>
+                  <v-radio-group inline v-model="chooseCarType">
+                    <v-row class="pl-3">
+                      <span>ເລືອກປະເພດລົດ:</span>
+                      <Width />
+                      <v-radio label="ລົດ 11 ລໍ້" value="10" class="mt-1"></v-radio>
+                      <Width />
+                      <v-radio label="ລົດ 13 ລໍ້" value="12"></v-radio>
+                    </v-row>
+                  </v-radio-group>
+                </v-row>
               </div>
-              <Height /> 
-          <Height /> 
-              <div class="d-flex align-center">
+            </div>
+            <Height />
+            <Height />
+            <div class="d-flex align-center">
               <div style="width:100%">
-
                 <!-- Left -->
                 <div style="background-color:#f2ebeb;height:80px;padding-top:5px;border-radius:5px" class="px-2">
                   <div class="d-flex">
@@ -407,12 +432,12 @@
                 <div style="background-color:#f2ebeb;height:80px;padding-top:5px;border-radius:5px" class="mt-1 px-2">
                   <div style="margin-top: 0px" class="d-flex">
                     <v-text-field :rules="nameRules" rounded dense background-color="#fff" label="ລະຫັດຢາງລົດ"
-                      v-model="ll_TIRE_NO_7"></v-text-field>
+                      v-model="r_TIRE_NO_7"></v-text-field>
 
                     <v-text-field :rules="nameRules" rounded dense background-color="#fff" label="ວັນທີປ່ຽນຢາງ"
-                      v-model="ll_TIRE_DATE_7"></v-text-field>
+                      v-model="r_TIRE_DATE_7"></v-text-field>
                     <v-text-field :rules="nameRules" rounded dense background-color="#fff" label="ກຳນົດແລ່ນໄດ້ km"
-                      v-model="ll_TIRE_KM_7"></v-text-field>
+                      v-model="r_TIRE_KM_7"></v-text-field>
                   </div>
                   <div class="d-flex" style="margin-top:-12px">
                     <div style="width:100%"><v-text-field :rules="nameRules" rounded dense background-color="#fff"
@@ -546,22 +571,22 @@
 
               </div>
             </div>
-            </div>
+          </div>
         </v-form>
 
         <Height />
         <Height />
         <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="red" elevation="0" @click="onClearData">
-          <v-icon color="white">mdi-close</v-icon>
-          <span class="white--text">ລ້າງຂໍ້ມູນ</span>
-        </v-btn>
-        <v-btn elevation="0" color="#338ABF" @click="onInserTruct">
-          <v-icon color="white">mdi-check</v-icon>
-          <span class="white--text">ບັນທຶກ</span>
-        </v-btn>
-      </v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="red" elevation="0" @click="onClearData">
+            <v-icon color="white">mdi-close</v-icon>
+            <span class="white--text">ລ້າງຂໍ້ມູນ</span>
+          </v-btn>
+          <v-btn elevation="0" color="#448AFF" @click="onInserTruct">
+            <v-icon color="white">mdi-check</v-icon>
+            <span class="white--text">ບັນທຶກ</span>
+          </v-btn>
+        </v-card-actions>
       </v-card-text>
     </v-card>
 
@@ -570,7 +595,7 @@
 
     <Height />
 
-    
+
     <Height />
   </div>
 </template>
@@ -584,12 +609,16 @@ export default {
       valid: true,
       nameRules: [(v) => !!v || ''],
       // state save data
-      imagePreview: '',
+      imageaddcar: null,
       h_VICIVLE_GLASS: 'ກະຊວນ',
       h_VICIVLE_NUMBER: '',
       h_VICIVLE_GALATY: '',
       start_galaty: false,
       h_VICIVLE_DATE_GALATY: null,
+      end_date: false,
+      END_DATE_REGISCAR: null,
+      exHangMar: '',
+      COLOR_CAR: '',
       h_VICIVLE_TNGLOD: '',
       h_VICIVLE_BRANCH: '',
       h_VICIVLE_YEARLEVEL: '',
@@ -605,7 +634,10 @@ export default {
       end_bat: false,
       start_bat_date: null,
       end_bat_date: null,
+      exCarDate: null,
+      end_cardate: null,
       h_VICIVLE_BGTOM: '',
+      exCarColor: '',
       h_VICIVLE_JANLARK: '',
       h_VICIVLE_FAINAR: '',
       h_VICIVLE_FAITHAIY: '',
@@ -638,6 +670,7 @@ export default {
       ll_TIRE_NO_5: '',
       ll_TIRE_KM_1: '',
       ll_TIRE_NO_4: '',
+      ll_TIRE_NO_7: '',
       ll_TIRE_DATE_1: '',
       ll_TIRE_DATE_3: '',
       ll_TIRE_DATE_5: '',
@@ -651,6 +684,11 @@ export default {
       ll_TIRE_KM_6: '',
       ll_TIRE_KM_4: '',
       ll_TIRE_KM_5: '',
+      lL_TIRE_DATE_7: '',
+      lL_TIRE_KM_7: '',
+      r_TIRE_KM_7: '',
+      r_TIRE_DATE_7: '',
+      r_TIRE_NO_7: '',
 
       //left last and now
       h_KM1: '',
@@ -665,6 +703,7 @@ export default {
       h_KM10: '',
       h_KM11: '',
       h_KM12: '',
+      h_KM13: '',
       //right last and now
       h_KML_1: '',
       h_KML_2: '',
@@ -678,7 +717,15 @@ export default {
       h_KML_10: '',
       h_KML_11: '',
       h_KML_12: '',
-      image: ''
+      h_KML_13: '',
+      IMAGE_TRUK: '',
+
+      morfai_data_list: [],
+      modalMorfai: '',
+      sizeMorfai: '',
+      serviceLife: '',
+      imageBatery: '',
+      keyId: '',
 
     }
   },
@@ -705,6 +752,7 @@ export default {
       this.h_KML_10 = result
       this.h_KML_11 = result
       this.h_KML_12 = result
+      this.h_KML_13 = result 
     },
     h_LEK_NUMMUNKHG: function (value) {
 
@@ -735,6 +783,10 @@ export default {
       const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       this.ll_TIRE_KM_6 = result
     },
+    ll_TIRE_KM_7: function (value) {
+      const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      this.ll_TIRE_KM_7 = result
+    },
 
 
     r_TIRE_KM_1: function (value) {
@@ -761,16 +813,23 @@ export default {
       const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       this.r_TIRE_KM_6 = result
     },
+    r_TIRE_KM_7: function (value) {
+      const result = value?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      this.r_TIRE_KM_7 = result
+    },
+  },
+  mounted() {
+    this.onGetmorfaiList()
   },
   methods: {
     openUpload() {
       document.getElementById('file-field').click()
     },
 
-    updagePreview (e, file) {
+    updagePreview(e, file) {
       var reader, files = e.target.files
 
-      if(files.length === 0){
+      if (files.length === 0) {
         console.log('empty')
       }
 
@@ -783,10 +842,44 @@ export default {
       reader.readAsDataURL(files[0])
 
       if (file) {
-        this.image = URL.createObjectURL(this.image)
-        console.log(this.image)
+        this.IMAGE_TRUK = URL.createObjectURL(this.IMAGE_TRUK)
+        console.log(this.IMAGE_TRUK)
       } else {
-        this.image = null
+        this.IMAGE_TRUK = null
+      }
+    },
+
+    onGetmorfaiDetails(id) {
+      let data = this.morfai_data_list.filter((el => el.keyId === id));
+      this.modalMorfai = data[0]?.modalMorfai
+      this.sizeMorfai = data[0]?.sizeMorfai
+      this.serviceLife = data[0]?.serviceLife
+      this.imageBatery = data[0]?.imageBatery
+      this.keyId = data[0]?.keyId
+    },
+
+    async onGetmorfaiList() {
+      try {
+        // this.loading_processing = true
+        let data = { "keyId": "" }
+        await this.$axios.$post('getBateryAll', data).then((data) => {
+          if (data?.status == '00') {
+            this.morfai_data_list = data?.data
+            // this.loading_processing = false
+            console.log('morfai_data_list:', data)
+          }
+        })
+      } catch (error) {
+        this.loading_processing = false
+        console.log(error)
+        swal.fire({
+          title: 'ແຈ້ງເຕືອນ',
+          text: error,
+          icon: 'error',
+          allowOutsideClick: false,
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK',
+        })
       }
     },
 
@@ -800,104 +893,202 @@ export default {
       }
       this.loading_processing = true
       try {
-        let data = {
+        const formdata = new FormData();
+        formdata.append('files', this.imageaddcar)
+        formdata.append('h_VICIVLE_NUMBER', this.h_VICIVLE_NUMBER)
+        formdata.append('h_VICIVLE_GALATY', this.h_VICIVLE_GALATY)
+        formdata.append('h_VICIVLE_DATE_GALATY', this.h_VICIVLE_DATE_GALATY)
+        formdata.append('h_VICIVLE_TNGLOD', this.h_VICIVLE_TNGLOD)
+        formdata.append('h_VICIVLE_BRANCH', this.h_VICIVLE_BRANCH)
+        formdata.append('h_VICIVLE_YEARLEVEL', this.h_VICIVLE_YEARLEVEL)
+        formdata.append('h_VICIVLE_BRANCHTYPE', this.h_VICIVLE_BRANCHTYPE)
+        formdata.append('h_VICIVLE_DATEEXPRIRE', this.h_VICIVLE_DATEEXPRIRE)
+        formdata.append('h_VICIVLE_LEKJUK', this.h_VICIVLE_LEKJUK)
+        formdata.append('h_VICIVLE_LEKTHUNG', this.h_VICIVLE_LEKTHUNG)
+        formdata.append('h_VICIVLE_GPS', this.h_VICIVLE_GPS)
+        formdata.append('h_VICIVLE_POYPUDNUMFON', this.h_VICIVLE_POYPUDNUMFON)
+        formdata.append('h_VICIVLE_MORFAI', this.keyId)
+        formdata.append('h_VICIVLE_BGTOM', this.h_VICIVLE_BGTOM)
+        formdata.append('h_VICIVLE_JANLARK', this.h_VICIVLE_JANLARK)
+        formdata.append('h_VICIVLE_FAINAR', this.h_VICIVLE_FAINAR)
+        formdata.append('h_VICIVLE_FAITHAIY', this.h_VICIVLE_FAITHAIY)
+        formdata.append('h_VICIVLE_FAIYKHANG', this.h_VICIVLE_FAIYKHANG)
+        formdata.append('h_VICIVLE_VENMONGNAR', this.h_VICIVLE_VENMONGNAR)
+        formdata.append('h_VICIVLE_VENMONGLHG', this.h_VICIVLE_VENMONGLHG)
+        formdata.append('h_VICIVLE_VENKHANG', this.h_VICIVLE_VENKHANG)
+        formdata.append('h_VICIVLE_GLASS', this.h_VICIVLE_GLASS)
+        formdata.append('lL_TIRE_NO_1', this.ll_TIRE_NO_1)
+        formdata.append('lL_TIRE_NO_2', this.ll_TIRE_NO_2)
+        formdata.append('lL_TIRE_NO_3', this.ll_TIRE_NO_3)
+        formdata.append('lL_TIRE_NO_4', this.ll_TIRE_NO_4)
+        formdata.append('lL_TIRE_NO_5', this.ll_TIRE_NO_5)
+        formdata.append('lL_TIRE_NO_6', this.ll_TIRE_NO_6)
+        formdata.append('lL_TIRE_NO_7', this.r_TIRE_NO_7)
+        formdata.append('lL_TIRE_DATE_1', this.ll_TIRE_DATE_1)
+        formdata.append('lL_TIRE_DATE_2', this.ll_TIRE_DATE_2)
+        formdata.append('lL_TIRE_DATE_3', this.ll_TIRE_DATE_3)
+        formdata.append('lL_TIRE_DATE_4', this.ll_TIRE_DATE_4)
+        formdata.append('lL_TIRE_DATE_5', this.ll_TIRE_DATE_5)
+        formdata.append('lL_TIRE_DATE_6', this.ll_TIRE_DATE_6)
+        formdata.append('lL_TIRE_DATE_7', this.r_TIRE_DATE_7)
+        formdata.append('lL_TIRE_KM_1', this.ll_TIRE_KM_1)
+        formdata.append('lL_TIRE_KM_2', this.ll_TIRE_KM_2)
+        formdata.append('lL_TIRE_KM_3', this.ll_TIRE_KM_3)
+        formdata.append('lL_TIRE_KM_4', this.ll_TIRE_KM_4)
+        formdata.append('lL_TIRE_KM_5', this.ll_TIRE_KM_5)
+        formdata.append('lL_TIRE_KM_6', this.ll_TIRE_KM_6)
+        formdata.append('lL_TIRE_KM_7', this.r_TIRE_KM_7)
+        formdata.append('r_TIRE_NO_1', this.r_TIRE_NO_1)
+        formdata.append('r_TIRE_NO_2', this.r_TIRE_NO_2)
+        formdata.append('r_TIRE_NO_3', this.r_TIRE_NO_3)
+        formdata.append('r_TIRE_NO_4', this.r_TIRE_NO_4)
+        formdata.append('r_TIRE_NO_5', this.r_TIRE_NO_5)
+        formdata.append('r_TIRE_NO_6', this.r_TIRE_NO_6)
+        formdata.append('r_TIRE_NO_7', this.r_TIRE_NO_7)
+        formdata.append('r_TIRE_DATE_1', this.r_TIRE_DATE_1)
+        formdata.append('r_TIRE_DATE_2', this.r_TIRE_DATE_2)
+        formdata.append('r_TIRE_DATE_3', this.r_TIRE_DATE_3)
+        formdata.append('r_TIRE_DATE_4', this.r_TIRE_DATE_4)
+        formdata.append('r_TIRE_DATE_5', this.r_TIRE_DATE_5)
+        formdata.append('r_TIRE_DATE_6', this.r_TIRE_DATE_6)
+        formdata.append('r_TIRE_DATE_7', this.r_TIRE_DATE_7)
+        formdata.append('r_TIRE_KM_1', this.r_TIRE_KM_1)
+        formdata.append('r_TIRE_KM_2', this.r_TIRE_KM_2)
+        formdata.append('r_TIRE_KM_3', this.r_TIRE_KM_3)
+        formdata.append('r_TIRE_KM_4', this.r_TIRE_KM_4)
+        formdata.append('r_TIRE_KM_5', this.r_TIRE_KM_5)
+        formdata.append('r_TIRE_KM_6', this.r_TIRE_KM_6)
+        formdata.append('r_TIRE_KM_7', this.r_TIRE_KM_7)
+        formdata.append('h_LEK', this.h_LEK_NUMMUNKHG)
+        formdata.append('kim_KM', this.kim_KM)
+        formdata.append('h_KM1', this.h_KM1)
+        formdata.append('h_KM2', this.h_KM2)
+        formdata.append('h_KM3', this.h_KM3)
+        formdata.append('h_KM4', this.h_KM4)
+        formdata.append('h_KM5', this.h_KM5)
+        formdata.append('h_KM6', this.h_KM6)
+        formdata.append('h_KM7', this.h_KM7)
+        formdata.append('h_KM8', this.h_KM8)
+        formdata.append('h_KM9', this.h_KM9)
+        formdata.append('h_KM10', this.h_KM10)
+        formdata.append('h_KM11', this.h_KM11)
+        formdata.append('h_KM12', this.h_KM12)
+        formdata.append('h_KM13', this.h_KM13)
+        formdata.append('h_KML_1', this.h_KML_1)
+        formdata.append('h_KML_2', this.h_KML_2)
+        formdata.append('h_KML_3', this.h_KML_3)
+        formdata.append('h_KML_4', this.h_KML_4)
+        formdata.append('h_KML_5', this.h_KML_5)
+        formdata.append('h_KML_6', this.h_KML_6)
+        formdata.append('h_KML_7', this.h_KML_7)
+        formdata.append('h_KML_8', this.h_KML_8)
+        formdata.append('h_KML_9', this.h_KML_9)
+        formdata.append('h_KML_10', this.h_KML_10)
+        formdata.append('h_KML_11', this.h_KML_11)
+        formdata.append('h_KML_12', this.h_KML_12)
+        formdata.append('h_KML_13', this.h_KML_13)
+        formdata.append('bat_StartDate', this.start_bat_date)
+        formdata.append('bat_EndDate', this.end_bat_date)
+        formdata.append('exCarDate', this.exCarDate)
+        formdata.append('exCarColor', this.exCarColor)
+        formdata.append('exHangMar', this.exHangMar)
+        formdata.append('batNo', this.keyId)
+        // let data = {
 
-          h_VICIVLE_NUMBER: this.h_VICIVLE_NUMBER,
-          h_VICIVLE_GALATY: this.h_VICIVLE_GALATY,
-          h_VICIVLE_DATE_GALATY: this.h_VICIVLE_DATE_GALATY,
-          h_VICIVLE_TNGLOD: this.h_VICIVLE_TNGLOD,
-          h_VICIVLE_BRANCH: this.h_VICIVLE_BRANCH,
-          h_VICIVLE_YEARLEVEL: this.h_VICIVLE_YEARLEVEL,
-          h_VICIVLE_BRANCHTYPE: this.h_VICIVLE_BRANCHTYPE,
-          h_VICIVLE_DATEEXPRIRE: this.h_VICIVLE_DATEEXPRIRE,
-          h_VICIVLE_LEKJUK: this.h_VICIVLE_LEKJUK,
-          h_VICIVLE_LEKTHUNG: this.h_VICIVLE_LEKTHUNG,
-          h_VICIVLE_GPS: this.h_VICIVLE_GPS,
-          h_VICIVLE_POYPUDNUMFON: this.h_VICIVLE_POYPUDNUMFON,
-          h_VICIVLE_MORFAI: this.h_VICIVLE_MORFAI,
-          //insert start and end bat
-          bat_StartDate: this.start_bat_date,
-          bat_EndDate: this.end_bat_date,
-          //////
-          h_VICIVLE_BGTOM: this.h_VICIVLE_BGTOM,
-          h_VICIVLE_JANLARK: this.h_VICIVLE_JANLARK,
-          h_VICIVLE_FAINAR: this.h_VICIVLE_FAINAR,
-          h_VICIVLE_FAITHAIY: this.h_VICIVLE_FAITHAIY,
-          h_VICIVLE_FAIYKHANG: this.h_VICIVLE_FAIYKHANG,
-          h_VICIVLE_VENMONGNAR: this.h_VICIVLE_VENMONGNAR,
-          h_VICIVLE_VENMONGLHG: this.h_VICIVLE_VENMONGLHG,
-          h_VICIVLE_VENKHANG: this.h_VICIVLE_VENKHANG,
-          h_VICIVLE_GLASS: this.h_VICIVLE_GLASS,
-          h_LEK_NUMMUNKHG: this.h_LEK_NUMMUNKHG,
-          kim_KM: this.kim_KM,
-          r_TIRE_NO_1: this.r_TIRE_NO_1,
-          r_TIRE_NO_2: this.r_TIRE_NO_2,
-          r_TIRE_NO_3: this.r_TIRE_NO_3,
-          r_TIRE_NO_4: this.r_TIRE_NO_4,
-          r_TIRE_NO_5: this.r_TIRE_NO_5,
-          r_TIRE_NO_6: this.r_TIRE_NO_6,
-          r_TIRE_DATE_1: this.r_TIRE_DATE_1,
-          r_TIRE_DATE_2: this.r_TIRE_DATE_2,
-          r_TIRE_DATE_3: this.r_TIRE_DATE_3,
-          r_TIRE_DATE_4: this.r_TIRE_DATE_4,
-          r_TIRE_DATE_5: this.r_TIRE_DATE_5,
-          r_TIRE_DATE_6: this.r_TIRE_DATE_6,
-          r_TIRE_KM_1: this.r_TIRE_KM_1,
-          r_TIRE_KM_2: this.r_TIRE_KM_2,
-          r_TIRE_KM_3: this.r_TIRE_KM_3,
-          r_TIRE_KM_4: this.r_TIRE_KM_4,
-          r_TIRE_KM_5: this.r_TIRE_KM_5,
-          r_TIRE_KM_6: this.r_TIRE_KM_6,
-          ll_TIRE_NO_1: this.ll_TIRE_NO_1,
-          ll_TIRE_NO_2: this.ll_TIRE_NO_2,
-          ll_TIRE_NO_5: this.ll_TIRE_NO_5,
-          ll_TIRE_KM_1: this.ll_TIRE_KM_1,
-          ll_TIRE_NO_4: this.ll_TIRE_NO_4,
-          ll_TIRE_DATE_1: this.ll_TIRE_DATE_1,
-          ll_TIRE_DATE_3: this.ll_TIRE_DATE_3,
-          ll_TIRE_DATE_5: this.ll_TIRE_DATE_5,
-          ll_TIRE_KM_2: this.ll_TIRE_KM_2,
-          ll_TIRE_NO_3: this.ll_TIRE_NO_3,
-          ll_TIRE_NO_6: this.ll_TIRE_NO_6,
-          ll_TIRE_DATE_2: this.ll_TIRE_DATE_2,
-          ll_TIRE_KM_3: this.ll_TIRE_KM_3,
-          ll_TIRE_DATE_6: this.ll_TIRE_DATE_6,
-          ll_TIRE_DATE_4: this.ll_TIRE_DATE_4,
-          ll_TIRE_KM_6: this.ll_TIRE_KM_6,
-          ll_TIRE_KM_4: this.ll_TIRE_KM_4,
-          ll_TIRE_KM_5: this.ll_TIRE_KM_5,
-          h_KM1: this.h_KM1,
-          h_KM2: this.h_KM2,
-          h_KM3: this.h_KM3,
-          h_KM4: this.h_KM4,
-          h_KM5: this.h_KM5,
-          h_KM6: this.h_KM6,
-          h_KM7: this.h_KM7,
-          h_KM8: this.h_KM8,
-          h_KM9: this.h_KM9,
-          h_KM10: this.h_KM10,
-          h_KM11: this.h_KM11,
-          h_KM12: this.h_KM12,
-          //right last and now
-          h_KML_1: this.h_KML_1,
-          h_KML_2: this.h_KML_2,
-          h_KML_3: this.h_KML_3,
-          h_KML_4: this.h_KML_4,
-          h_KML_5: this.h_KML_5,
-          h_KML_6: this.h_KML_6,
-          h_KML_7: this.h_KML_7,
-          h_KML_8: this.h_KML_8,
-          h_KML_9: this.h_KML_9,
-          h_KML_10: this.h_KML_10,
-          h_KML_11: this.h_KML_11,
-          h_KML_12: this.h_KML_12
+        //   h_VICIVLE_NUMBER: this.h_VICIVLE_NUMBER,
+        //   h_VICIVLE_GALATY: this.h_VICIVLE_GALATY,
+        //   h_VICIVLE_DATE_GALATY: this.h_VICIVLE_DATE_GALATY,
+        //   h_VICIVLE_TNGLOD: this.h_VICIVLE_TNGLOD,
+        //   h_VICIVLE_BRANCH: this.h_VICIVLE_BRANCH,
+        //   h_VICIVLE_YEARLEVEL: this.h_VICIVLE_YEARLEVEL,
+        //   h_VICIVLE_BRANCHTYPE: this.h_VICIVLE_BRANCHTYPE,
+        //   h_VICIVLE_DATEEXPRIRE: this.h_VICIVLE_DATEEXPRIRE,
+        //   h_VICIVLE_LEKJUK: this.h_VICIVLE_LEKJUK,
+        //   h_VICIVLE_LEKTHUNG: this.h_VICIVLE_LEKTHUNG,
+        //   h_VICIVLE_GPS: this.h_VICIVLE_GPS,
+        //   h_VICIVLE_POYPUDNUMFON: this.h_VICIVLE_POYPUDNUMFON,
+        //   h_VICIVLE_MORFAI: this.h_VICIVLE_MORFAI,
+        //   //insert start and end bat
+        //   bat_StartDate: this.start_bat_date,
+        //   bat_EndDate: this.end_bat_date,
+        //   //////
+        //   h_VICIVLE_BGTOM: this.h_VICIVLE_BGTOM,
+        //   h_VICIVLE_JANLARK: this.h_VICIVLE_JANLARK,
+        //   h_VICIVLE_FAINAR: this.h_VICIVLE_FAINAR,
+        //   h_VICIVLE_FAITHAIY: this.h_VICIVLE_FAITHAIY,
+        //   h_VICIVLE_FAIYKHANG: this.h_VICIVLE_FAIYKHANG,
+        //   h_VICIVLE_VENMONGNAR: this.h_VICIVLE_VENMONGNAR,
+        //   h_VICIVLE_VENMONGLHG: this.h_VICIVLE_VENMONGLHG,
+        //   h_VICIVLE_VENKHANG: this.h_VICIVLE_VENKHANG,
+        //   h_VICIVLE_GLASS: this.h_VICIVLE_GLASS,
+        //   h_LEK_NUMMUNKHG: this.h_LEK_NUMMUNKHG,
+        //   kim_KM: this.kim_KM,
+        //   r_TIRE_NO_1: this.r_TIRE_NO_1,
+        //   r_TIRE_NO_2: this.r_TIRE_NO_2,
+        //   r_TIRE_NO_3: this.r_TIRE_NO_3,
+        //   r_TIRE_NO_4: this.r_TIRE_NO_4,
+        //   r_TIRE_NO_5: this.r_TIRE_NO_5,
+        //   r_TIRE_NO_6: this.r_TIRE_NO_6,
+        //   r_TIRE_DATE_1: this.r_TIRE_DATE_1,
+        //   r_TIRE_DATE_2: this.r_TIRE_DATE_2,
+        //   r_TIRE_DATE_3: this.r_TIRE_DATE_3,
+        //   r_TIRE_DATE_4: this.r_TIRE_DATE_4,
+        //   r_TIRE_DATE_5: this.r_TIRE_DATE_5,
+        //   r_TIRE_DATE_6: this.r_TIRE_DATE_6,
+        //   r_TIRE_KM_1: this.r_TIRE_KM_1,
+        //   r_TIRE_KM_2: this.r_TIRE_KM_2,
+        //   r_TIRE_KM_3: this.r_TIRE_KM_3,
+        //   r_TIRE_KM_4: this.r_TIRE_KM_4,
+        //   r_TIRE_KM_5: this.r_TIRE_KM_5,
+        //   r_TIRE_KM_6: this.r_TIRE_KM_6,
+        //   ll_TIRE_NO_1: this.ll_TIRE_NO_1,
+        //   ll_TIRE_NO_2: this.ll_TIRE_NO_2,
+        //   ll_TIRE_NO_5: this.ll_TIRE_NO_5,
+        //   ll_TIRE_KM_1: this.ll_TIRE_KM_1,
+        //   ll_TIRE_NO_4: this.ll_TIRE_NO_4,
+        //   ll_TIRE_DATE_1: this.ll_TIRE_DATE_1,
+        //   ll_TIRE_DATE_3: this.ll_TIRE_DATE_3,
+        //   ll_TIRE_DATE_5: this.ll_TIRE_DATE_5,
+        //   ll_TIRE_KM_2: this.ll_TIRE_KM_2,
+        //   ll_TIRE_NO_3: this.ll_TIRE_NO_3,
+        //   ll_TIRE_NO_6: this.ll_TIRE_NO_6,
+        //   ll_TIRE_DATE_2: this.ll_TIRE_DATE_2,
+        //   ll_TIRE_KM_3: this.ll_TIRE_KM_3,
+        //   ll_TIRE_DATE_6: this.ll_TIRE_DATE_6,
+        //   ll_TIRE_DATE_4: this.ll_TIRE_DATE_4,
+        //   ll_TIRE_KM_6: this.ll_TIRE_KM_6,
+        //   ll_TIRE_KM_4: this.ll_TIRE_KM_4,
+        //   ll_TIRE_KM_5: this.ll_TIRE_KM_5,
+        //   h_KM1: this.h_KM1,
+        //   h_KM2: this.h_KM2,
+        //   h_KM3: this.h_KM3,
+        //   h_KM4: this.h_KM4,
+        //   h_KM5: this.h_KM5,
+        //   h_KM6: this.h_KM6,
+        //   h_KM7: this.h_KM7,
+        //   h_KM8: this.h_KM8,
+        //   h_KM9: this.h_KM9,
+        //   h_KM10: this.h_KM10,
+        //   h_KM11: this.h_KM11,
+        //   h_KM12: this.h_KM12,
+        //   //right last and now
+        //   h_KML_1: this.h_KML_1,
+        //   h_KML_2: this.h_KML_2,
+        //   h_KML_3: this.h_KML_3,
+        //   h_KML_4: this.h_KML_4,
+        //   h_KML_5: this.h_KML_5,
+        //   h_KML_6: this.h_KML_6,
+        //   h_KML_7: this.h_KML_7,
+        //   h_KML_8: this.h_KML_8,
+        //   h_KML_9: this.h_KML_9,
+        //   h_KML_10: this.h_KML_10,
+        //   h_KML_11: this.h_KML_11,
+        //   h_KML_12: this.h_KML_12
 
-        }
-
-
-        console.log('Data Send:', data)
+        // }
+        // console.log('Data Send:', data)
         // return;
-        await this.$axios.$post('/saveVicicleHeaderByID.service', data).then((data) => {
+        await this.$axios.$post('/saveVicicleHeaderByID.service', formdata).then((data) => {
           console.log("saveStatus:", data)
           if (data?.status == '00') {
             this.loading_processing = false
@@ -962,7 +1153,12 @@ export default {
   font-size: 14px;
 }
 
-.preview-image{
+.tops1 {
+  margin-top: -20px;
+  font-size: 12px;
+}
+
+.preview-image {
   width: 300px;
   height: 200px;
 }

@@ -6,14 +6,14 @@
             </v-card>
         </v-dialog>
         <v-card class="card-shadow" rounded="lg" style="border:0.5px solid #e0e0e0;border-radius:3px">
-            <v-card-title style="background-color:#558FB3" class="white--text">
+            <v-card-title style="background-color:#E57373" class="white--text">
                 ຂໍ້ມູນຫາງລົດ
             </v-card-title>
             <div style="display:flex;align-items:center;height: 90px;">
                 <div class="pl-4 pr-4"><span>ທັງໝົດ: <span class="green--text">{{ truck_data_list.length }}</span></span>
                 </div>
                 <div class="d-flex align-center">
-                    <v-btn dark color="#558FB3" class="card-shadow" to="add_cars_back" rounded>
+                    <v-btn dark color="#E57373" class="card-shadow" to="add_cars_back" rounded>
                         <v-icon color="white">mdi-plus</v-icon>
                         <span class="white--text">ເພີ່ມຂໍ້ມູນ</span>
                     </v-btn>
@@ -44,10 +44,10 @@
                                     color="#55CE63">mdi-check</v-icon>
                                 ວ່າງ</td>
                             <td v-else class="red--text"><v-icon color="red">mdi-close</v-icon> ບໍ່ວ່າງ</td>
-                            <td><v-btn small  color="#338ABF" class="white--text card-shadow"
+                            <td><v-btn small  color="#FFB74D" class="white--text card-shadow"
                                     @click="edit(row?.item?.key_id)"><v-icon color="white">mdi-pencil</v-icon>ແກ້ໄຂ</v-btn>
                             </td>
-                            <td><v-btn small  color="#338ABF" class="white--text card-shadow"
+                            <td><v-btn small  color="#90A4AE" class="white--text card-shadow"
                                     @click="view(row?.item?.key_id)"><v-icon color="white">mdi-magnify</v-icon>ເບີ່ງ</v-btn>
                             </td>
                             <td><v-btn  small color="red" class="white--text card-shadow"

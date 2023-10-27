@@ -1,13 +1,13 @@
 <template>
     <div>
         <v-card width="500" class="mx-auto card-shadow">
-            <v-card-title style="background-color:#568fb3;color:white">ປະເພດລາຍຈ່າຍ</v-card-title>
+            <v-card-title style="background-color:#E57373;color:white">ປະເພດລາຍຈ່າຍ</v-card-title>
             <v-card-text class="pt-4">
                 <div style="display:flex">
                     <v-text-field outlined label="ປ້ອນປະເພດລາຍຈ່າຍ" dense v-model="typeName"></v-text-field>
-                    <v-btn v-if="!checkbtn" elevation="0" height="40" color="#4AAF41" class="white--text ml-2"
+                    <v-btn v-if="!checkbtn" elevation="0" height="40" color="#448AFF" class="white--text ml-2"
                         @click="onSave">ເພີ່ມ</v-btn>
-                    <v-btn v-else elevation="0" height="40" color="#4AAF41" class="white--text ml-2"
+                    <v-btn v-else elevation="0" height="40" color="#FFB74D" class="white--text ml-2"
                         @click="onUpdate">ອັບເດດ</v-btn>
                 </div>
                 <div>
@@ -16,7 +16,7 @@
                             <tr>
                                 <td>{{ row?.item?.typeName }}</td>
                                 <td>
-                                    <v-btn color="#338ABF" small elevation="0"
+                                    <v-btn color="#FFB74D" small elevation="0"
                                         @click="onGetforUp(row?.item?.key_id, row?.item?.typeName)">
                                         <v-icon color="white">mdi-pencil</v-icon>
                                         <span class="white--text">ແກ້ໄຂ</span>

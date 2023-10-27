@@ -7,7 +7,7 @@
     </v-dialog>
     <v-card class="card-shadow mb-6" rounded="lg">
       <!-- <div style="background-color:#568fb3;color:white" class="py-2 pl-4"></div> -->
-      <v-card-title style="background-color:#568fb3;color:white">ລາຍງານລາຍຮັບ</v-card-title>
+      <v-card-title style="background-color:#E57373;color:white">ລາຍງານລາຍຮັບ</v-card-title>
       <v-card-text>
         <div class="d-flex align-center pt-4" style="width:100%">
 
@@ -36,7 +36,7 @@
             </v-menu>
           </div>
           <div style="margin-top:-25px" class="ml-2">
-            <v-btn color="green" height="40" class="white--text" elevation="0"
+            <v-btn color="#90A4AE" height="40" class="white--text" elevation="0"
               @click="onGetIncomeAll"><v-icon>mdi-magnify</v-icon>ຄົ້ນຫາ</v-btn>
           </div>
           <v-spacer></v-spacer>
@@ -198,6 +198,21 @@
     <!-- component for print -->
     <div style="display:none;">
       <div id="modalInvoice">
+        <v-row>
+          <v-col cols="3">
+            <img class="mx-auto" src="../assets/images/khounkham.png" height="70px" cover />
+          </v-col>
+          <v-col cols="9">
+            <div style="display:flex;justify-content:start;flex-direction:column;align-items:start">
+              <span style="font-size:14px"><b>ບໍລິສັດ ຄູນຄໍາ ຂຸດຄົ້ນຫີນກາວ ດົງເຫັນ </b> </span>
+              <span style="font-size:12px">ສໍານັກງານຕັ້ງຢູ່ ອາຄານ ສະໜາມຍິງປືນ 20 ມັງກອນ, ສະໜາມກີລາກອງທັບ,
+                ບ້ານຈອມມະນີ, ເມືອງ ໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ</span>
+              <span style="font-size:12px">ໂທລະສັບ: 020 92661111, 020 98753888 | ອີເມວ: kounkham@Mining |
+                ເວັບໄຊ: kounkham</span>
+            </div>
+          </v-col>
+        </v-row>
+        <br>
         <div class="text-center pb-10 pt-10 font-weight-bold"
           style="display:flex;justify-content:center;font-size:12pt;padding-bottom: 30px;font-weight: bold;">ລາຍງານລາຍຮັບ
         </div>
@@ -375,7 +390,7 @@
             <div style="display:flex;justify-content:space-between">
               .....................................
 
-              
+
             </div>
           </div>
           <div style="width:1000px;display:flex;flex-direction:column;justify-content:center;align-items:center">

@@ -6,10 +6,10 @@
             </v-card>
         </v-dialog>
         <v-card class="mb-4 card-shadow" rounded="lg">
-            <v-card-title style="font-size:16pt;background-color:#568fb3;color:white">
+            <v-card-title style="font-size:16pt;background-color:#E57373;color:white">
                 <div style="display:flex;align-items:center">
                     <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="operation-list">
-                        <v-icon color="#338ABF">mdi-arrow-left</v-icon>
+                        <v-icon color="#E57373">mdi-arrow-left</v-icon>
                     </v-btn>
                 </div>
                 <v-spacer></v-spacer>
@@ -25,19 +25,20 @@
 
                     </div>
                     <div style="margin-top:2px">
-                        <v-btn color="green" class="white--text ml-2 mb-0" height="48" style="margin-top:-2px"
+                        <v-btn color="#546E7A" class="white--text ml-2 mb-0" height="48" style="margin-top:-2px"
                             @click="onGetPerformanceData" elevation="0"><v-icon>mdi-magnify</v-icon>ຄົ້ນຫາ</v-btn>
                     </div>
                     <v-spacer></v-spacer>
                     <div style="margin-top:2px">
-                        <v-btn color="green" class="white--text ml-2 mb-0 card-shadow" height="40" width="200" style="margin-top:-2px;"
+                        <v-btn color="#2979FF" class="white--text ml-2 mb-0 card-shadow" height="40" width="200"
+                            style="margin-top:-2px;"
                             @click="showLeavCarDialog = true"><v-icon>mdi-format-list-bulleted</v-icon>ເລືອກລາຍການ</v-btn>
                     </div>
                     <!-- <div class="text-center">
                         <span>ເລກບິນ: {{ perBillNoAuto }}</span>
                     </div> -->
 
-                    
+
                 </div>
                 <v-divider></v-divider>
                 <div style="display:flex;flex-direction:row;" class="pt-2">
@@ -103,12 +104,12 @@
                         </div>
                         <div style="width:100%" class="pl-2">
                             <span>ນໍ້າໜັກລົດ</span>
-                            <v-text-field flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
+                            <v-text-field flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນນ້ຳໜັກລົດ"
                                 v-model="numnuklod"></v-text-field>
                         </div>
                         <div style="width:100%" class="pl-2">
-                            <span>ນໍ້າໜັກລວມ</span>
-                            <v-text-field flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
+                            <span>ນໍ້າໜັກທັງໝົດ</span>
+                            <v-text-field flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນນໍ້າໝັກທັງໝົດ"
                                 v-model="numnuktotal"></v-text-field>
                         </div>
 
@@ -138,7 +139,7 @@
                             <v-select label="ເລືອກສະກຸນເງິນ" style="width:100%" class="pl-2" flat solo dense
                                 background-color="#f5f5f5" :items="currency_items" v-model="currency"></v-select>
                         </div>
-                       
+
                     </div>
                 </div>
                 <div>
@@ -214,9 +215,9 @@
                 </div>
                 <div class="pl-2 d-flex">
                     <v-spacer></v-spacer>
-                        <v-btn color="green" width="200" height="40" class="white--text card-shadow" style=""
-                            @click="onSavePerformance"><v-icon>mdi-printer-pos-check-outline</v-icon> ພີມບິນ</v-btn>
-                    </div>
+                    <v-btn color="#2979FF" width="200" height="40" class="white--text card-shadow" style=""
+                        @click="onSavePerformance"><v-icon>mdi-printer-pos-check-outline</v-icon> ພີມບິນ</v-btn>
+                </div>
                 <v-snackbar :timeout="3000" v-model="showSnakbar" :value="true" centered elevation="0" color="orange">
                     <div class="d-flex align-center">
                         <v-icon color="white" size="40">mdi-alert-outline</v-icon>
@@ -241,7 +242,7 @@
         <v-dialog v-model="showLeavCarDialog" max-width="1200" persistent scrollable>
             <v-card>
 
-                <v-card-title style="background-color:#568fb3;color:white">
+                <v-card-title style="background-color:#E57373;color:white">
                     <div class="d-flex align-center" style="width:100%">
                         ລາຍການປ່ອຍລົດ
                         <v-spacer></v-spacer>
@@ -280,7 +281,7 @@
                                             <span>ສຳເລັດ</span>
                                         </div>
                                     </td>
-                                    <td><v-btn small color="green" class="card-shadow white--text"
+                                    <td><v-btn small color="#2979FF" class="card-shadow white--text"
                                             @click="onChoose(row?.item?.lahud_POYLOD)"><v-icon>mdi-check</v-icon>ເລືອກ</v-btn>
                                     </td>
 
@@ -295,24 +296,37 @@
         <!-- component for print -->
         <div style="display:none;">
             <div id="modalInvoice">
+                <v-row>
+          <v-col cols="3">
+            <img class="mx-auto" src="../assets/images/khounkham.png" height="70px"  cover />
+          </v-col>
+          <v-col cols="9">
+            <div style="display:flex;justify-content:start;flex-direction:column;align-items:start">
+              <span style="font-size:14px"><b>ບໍລິສັດ ຄູນຄໍາ ຂຸດຄົ້ນຫີນກາວ ດົງເຫັນ </b> </span>
+              <span style="font-size:12px">ສໍານັກງານຕັ້ງຢູ່ ອາຄານ ສະໜາມຍິງປືນ 20 ມັງກອນ, ສະໜາມກີລາກອງທັບ, ບ້ານຈອມມະນີ, ເມືອງ ໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ</span>
+              <span style="font-size:12px">ໂທລະສັບ: 020 92661111, 020 98753888 | ອີເມວ: kounkham@Mining | ເວັບໄຊ: kounkham</span>
+            </div>
+          </v-col>
+        </v-row>
+        <br>
                 <div class="text-center pb-10 pt-10 font-weight-bold"
-                    style="display:flex;justify-content:center;font-size:12pt">
-                    ໃບປະຕິບັດງານ</div>
+                    style="display:flex;justify-content:center;font-size:20px">
+                    <b>ໃບປະຕິບັດງານ</b> </div>
                 <div style="height:20px"></div>
 
                 <div style="display:flex;justify-content:end;flex-direction:column;align-items:end">
                     <!-- <span style="font-size:12pt">ໜ້າທີ: 01</span> -->
                     <div style="border:0.5px solid #999;display:flex;flex-direction:column;padding:10px;border-radius:3px">
-                        <span style="font-size:12pt">ເລກທີ: {{ performanceSmallHeaderGruops?.keyId }}</span>
-                        <span style="font-size:12pt">ວັນທີ:
+                        <span style="font-size:12px">ເລກທີ: {{ performanceSmallHeaderGruops?.keyId }}</span>
+                        <span style="font-size:12px">ວັນທີ:
                             {{ performanceSmallHeaderGruops?.printDate }}</span>
                     </div>
                 </div>
-                <div style="display:flex;flex-direction:row;">
+                <div style="display:flex;flex-direction:row; font-size:12px">
                     <span>ທະບຽນລົດ: {{ performanceheaderGruops?.h_VICIVLE_NUMBER }}</span>
                     <!-- <span style="margin-left:10px">ທະບຽນຫາງລົດ: B102145</span> -->
                 </div>
-                <div style="display:flex;flex-direction:row;justify-content:space-between">
+                <div style="display:flex;flex-direction:row;justify-content:space-between; font-size:12px">
                     <div>
                         <span>ພະນັກງານຂັບ1: {{ performanceheaderGruops?.staffname }}</span>
                         <span style="margin-left:5px">ພະນັກງານຂັບ2:
@@ -320,10 +334,10 @@
                     </div>
 
                 </div>
-                <div>
+                <div style="font-size:12px">
                     ວັນທີກັບ: {{ start_go_date }}
                 </div>
-                <div style="padding-top:10px">
+                <div style="padding-top:10px; font-size:12px">
                     <table style="padding:2px;border: 0.5px solid #FFF;border-collapse: collapse;width:100%">
                         <tr style="padding:5px;border: 0.5px solid #999;">
                             <td style="border: 0.5px solid #999;padding:5px">ລຳດັບ</td>
@@ -358,82 +372,103 @@
                         </tr>
                     </table>
                 </div>
-                <div style="padding-top:20px;display:flex;flex-direction:row;justify-content:space-between">
+                <div style="padding-top:20px;display:flex;flex-direction:row;justify-content:space-between; font-size:12px">
                     <div>
                         <table style="padding:2px;border: 0.5px solid #FFF;border-collapse: collapse;width:100%">
                             <tr style="padding:5px;border: 0.5px solid #999;">
-                                <td style="border: 0.5px solid #999;padding:5px">ຄ່າໃຊ້ຈ່າຍ</td>
-                                <td style="border: 0.5px solid #999;padding:5px">ຄົນຂັບ1</td>
+                                <td colspan="2" style="border: 0.5px solid #999;padding:5px">ຄ່າໃຊ້ຈ່າຍ</td>
+                                <!-- <td style="border: 0.5px solid #999;padding:5px">ຄົນຂັບ1</td> -->
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າບ້ຽງລ້ຽງ</td>
-                                <td style="border: 0.5px solid #999;padding:5px">{{ performaceGroupFee?.staff_BIALIENG }}
+                                <td style="border: 0.5px solid #999;padding:5px">{{
+                                    performaceGroupFee?.staff_BIALIENG?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g,
+                                        ',') }}
                                     {{ performaceGroupFee?.staff_Cur }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າຈໍ້າປື້ມຕັ່ງສິດລົດ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancejumpho }}</td>
+                                    performaceGroupFee?.performancejumpho?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າຕຳລວດ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancefeepolish }}</td>
+                                    performaceGroupFee?.performancefeepolish?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າປະຢາງ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancefe_PAYANG }}</td>
+                                    performaceGroupFee?.performancefe_PAYANG?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າຕາຊັ່ງ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancefeetaxung }}</td>
+                                    performaceGroupFee?.performancefeetaxung?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າທ່ຽວ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancefeetiew }}</td>
+                                    performaceGroupFee?.performancefeetiew?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າລ່ວງເວລາຢູ່ຫວຽດນາມ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performanceovervn }}</td>
+                                    performaceGroupFee?.performanceovervn?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າລ່ວງເວລາຢູ່ດ່ານຫຼັກ20</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performanceboderlak20 }}</td>
+                                    performaceGroupFee?.performanceboderlak20?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າປະທັບກາພາສປອດ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancepassport }}</td>
+                                    performaceGroupFee?.performancepassport?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າຊິດຢາຕ້ານເສື້ອ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancevaccine }}</td>
+                                    performaceGroupFee?.performancevaccine?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າແຈ້ງຊີງ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancefeesing }}</td>
+                                    performaceGroupFee?.performancefeesing?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າສະພານ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancefeesaphan }}</td>
+                                    performaceGroupFee?.performancefeesaphan?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າຍົກຕູ້</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancefeeyoktu }}</td>
+                                    performaceGroupFee?.performancefeeyoktu?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
                             </tr>
                             <tr style="padding:5px;border: 0.5px solid #999;">
                                 <td style="border: 0.5px solid #999;padding:5px">ຄ່າເອົາຕູ້ອອກຈາກດ່ານສາວ</td>
                                 <td style="border: 0.5px solid #999;padding:5px">{{
-                                    performaceGroupFee?.performancefeeoutcontainer }}</td>
+                                    performaceGroupFee?.performancefeeoutcontainer?.replace(/\D/g,
+                                        '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
+                            </tr>
+                            <tr style="padding:5px;border: 0.5px solid #999;">
+                                <td style="border: 0.5px solid #999;padding:5px">ລວມລາຍຈ່າຍທັງໝົດ</td>
+                                <td style="border: 0.5px solid #999;padding:5px">{{
+                                    performaceGroupFee?.feetotal?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                                }}</td>
                             </tr>
 
                         </table>
@@ -584,7 +619,7 @@ export default {
     mounted() {
         this.onGetPerIdAutoGenerate()
         this.onGetLeacarList()
-        let test = 25.50*100
+        let test = 25.50 * 100
         console.log(test)
     },
     watch: {
@@ -621,7 +656,7 @@ export default {
             this.proSize = reals?.toString()?.replace(/\D/g, '')?.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
             this.numnuktotal = result
         },
-        
+
     },
     methods: {
         onGetLeacarList() {
@@ -731,7 +766,9 @@ export default {
                             this.price = '',
                             this.price_total = '',
                             this.currency = '',
-                            this.proSize = ''
+                            this.proSize = '',
+                            this.numnuklod = '',
+                            this.numnuktotal = ''
                         this.print()
 
                     }, 1000);
@@ -779,7 +816,7 @@ export default {
 
                 }
                 this.$axios.$post('/savePerformance.service', data).then((data) => {
-                    
+
                     this.onGetDataListForPrint()
 
                 })
@@ -819,5 +856,4 @@ export default {
         right: 0px;
         left: 0px;
     }
-}
-</style>
+}</style>

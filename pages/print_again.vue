@@ -7,9 +7,9 @@
         </v-dialog>
         <v-form ref="form" v-model="valid" lazy-validation>
             <v-card class="mb-8 card-shadow" rounded="lg">
-                <v-card-title style="display:flex;background-color:#568fb3;color:white">
+                <v-card-title style="display:flex;background-color:#E57373;color:white">
                     <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="leave-cars-list">
-                        <v-icon color="#338ABF">mdi-arrow-left</v-icon>
+                        <v-icon color="#E57373">mdi-arrow-left</v-icon>
                     </v-btn>
                     <v-spacer></v-spacer>
                     <span class="ml-2">ແກ້ໄຂໃບປ່ອຍລົດ</span>
@@ -69,7 +69,7 @@
                                     <v-text-field label="ປ້ອນນໍ້າໜັກ" style="width:100%" outlined dense
                                         v-model="product_weight" ></v-text-field>
                                     <div
-                                        style="height:40px;width:45px;margin-top:-26px;display:flex;align-items:center;justify-content:center;background-color:#4AAF41;margin-left:-2px">
+                                        style="height:40px;width:45px;margin-top:-26px;display:flex;align-items:center;justify-content:center;background-color:#448AFF;margin-left:-2px">
                                         <span class="white--text">ໂຕນ</span>
                                     </div>
                                 </div>
@@ -268,7 +268,7 @@
                 </v-card-text>
                 <v-card-actions style="margin-top:-40px" class="pb-8">
                     <v-spacer></v-spacer>
-                    <v-btn color="green" class="card-shadow" @click="onCreateReports" width="200">
+                    <v-btn color="#FFB74D" class="card-shadow" @click="onCreateReports" width="200">
                         <span class="white--text ">ແກ້ໄຂ</span>
                     </v-btn>
                     <v-spacer></v-spacer>

@@ -6,7 +6,7 @@
             </v-card>
         </v-dialog>
         <v-card width="800" class="mx-auto card-shadow mb-6"  rounded="lg" >
-            <v-card-title style="background-color:#568fb3;color:white">ຂໍ້ມູນສະຖານທີ່</v-card-title>
+            <v-card-title style="background-color:#E57373;color:white">ຂໍ້ມູນສະຖານທີ່</v-card-title>
             <v-card-text class="pt-4">
                 <v-form ref="form" v-model="valid" lazy-validation>
                     <div style="display:flex;justify-content:space-between;flex-direction:row">
@@ -14,7 +14,7 @@
 
                         <v-text-field :rules="nameRules" label="ລາຍລະອຽດ" outlined dense v-model="in_details"
                             class="mx-2"></v-text-field>
-                        <v-btn color="#0B9BDF" @click="onInsertLocation" height="40">
+                        <v-btn color="#448AFF" @click="onInsertLocation" height="40">
                             <span class="white--text">ບັນທຶກ</span>
                         </v-btn>
                     </div>
@@ -27,7 +27,7 @@
                             <td>{{ row.item.province }}</td>
                             <td>{{ row.item.detail }}</td>
                             <td>
-                                <v-btn class="primary" small @click="onGetDataForUpdate(
+                                <v-btn color="#FFB74D" small @click="onGetDataForUpdate(
                                     row.item.id,
                                     row.item.province,
                                     row.item.detail
@@ -59,7 +59,7 @@
                         <v-spacer></v-spacer>
                         <v-btn class="mr-4" color="red" @click="onCloseModalUpdateLoca"><span
                                 class="white--text">ຍົກເລິກ</span></v-btn>
-                        <v-btn color="primary" @click="onUpdateLoca"> ແກ້ໄຂ </v-btn>
+                        <v-btn color="#FFB74D" @click="onUpdateLoca"><span style="color: white;"> ແກ້ໄຂ</span> </v-btn>
                     </div>
                 </v-card-text>
             </v-card>

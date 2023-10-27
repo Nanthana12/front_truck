@@ -1,14 +1,14 @@
 <template>
   <v-app dark>
-    <v-app-bar fixed app color="#338ABF">
+    <v-app-bar fixed app color="#E57373">
       <v-dialog v-model="loading_processing" persistent width="55">
         <v-card width="55" height="55" class="pt-3 pl-3">
           <v-progress-circular :width="3" color="primary" indeterminate></v-progress-circular>
         </v-card>
       </v-dialog>
 
-      <v-btn class="mx-2" fab dark small color="pink">
-        <img class="mx-auto" src="../assets/images/logo.png" width="40" />
+      <v-btn class="mx-2" fab dark small color="white">
+        <img class="mx-auto" src="../assets/images/khounkham.png" width="80" />
       </v-btn>
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
@@ -32,6 +32,8 @@
               class="black--text">ເພີ່ມສະຖານທີຈັດສົ່ງ</span><v-spacer></v-spacer></v-btn>
           <v-btn color="white" to="exchang" elevation="0" block><span
               class="black--text">ເພີ່ມອັດຕາການແລກປ່ຽນ</span><v-spacer></v-spacer></v-btn>
+              <v-btn color="white" to="morfai" elevation="0" block><span
+              class="black--text">ເພີ່ມຍີ່ຫໍ້ໝໍ້ໄຟ</span><v-spacer></v-spacer></v-btn>
           <v-btn color="white" to="create-expense-type" elevation="0" block><span
               class="black--text">ເພີ່ມປະເພດລາຍຈ່າຍ</span><v-spacer></v-spacer></v-btn>
           <v-btn color="white" to="create-expense" elevation="0" block><span
@@ -67,7 +69,7 @@
             <v-tab>
               <v-icon color="#fff" size="18">mdi-text-box-check-outline</v-icon>
                 ສ້າງໃບບິນ
-              <v-badge color="red" v-if="TOTAL!= '0'" :content='TOTAL' >
+              <v-badge color="#FF3D00" v-if="TOTAL!= '0'" :content='TOTAL' >
                
               </v-badge>
             </v-tab>

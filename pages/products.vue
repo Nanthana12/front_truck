@@ -8,10 +8,10 @@
 
 
     <v-card class="card-shadow" rounded="lg">
-      <v-card-title style="background-color:#568fb3">
+      <v-card-title style="background-color:#E57373">
         <div class="d-flex align-center px-4" style="background-color:#f5f5f5;height:50px;border-radius:3px">
           <div>
-            <v-btn color="#338ABF" @click="showModalAddProduct = true" rounded elevation="0">
+            <v-btn color="#E57373" @click="showModalAddProduct = true" rounded elevation="0">
               <v-icon color="white">mdi-plus</v-icon>
               <span class="white--text">ເພີ່ມສິນຄ້າ</span>
             </v-btn>
@@ -44,7 +44,7 @@
               <!-- <td>{{ row.item.userId }}</td>
             <td>{{ row.item.proDateTime }}</td> -->
               <td>
-                <v-btn color="#338ABF" elevation="0" small @click="
+                <v-btn color="#FFB74D" elevation="0" small @click="
                   onGetDataForUpdate(
                     row.item.id,
                     row.item.proId,
@@ -71,12 +71,12 @@
     <!-- Modal add products -->
     <v-dialog v-model="showModalAddProduct" persistent width="400">
       <v-card>
-        <v-card-title style="display:flex;background-color:#568fb3;color:white">
+        <v-card-title style="display:flex;background-color:#E57373;color:white">
           <v-spacer></v-spacer>
           ເພີ່ມຂໍ້ມູນສິນຄ້າ
           <v-spacer></v-spacer>
           <v-btn fab elevation="0" dark width="30" height="30" small color="white" @click="onCloseDialogAdd">
-            <v-icon color="#338ABF">mdi-close</v-icon>
+            <v-icon color="#E57373">mdi-close</v-icon>
           </v-btn>
         </v-card-title>
         <v-container>
@@ -108,7 +108,7 @@
               <v-icon color="white">mdi-close</v-icon>
               <span class="white--text">clear ຂໍ້ມູນ</span>
             </v-btn>
-            <v-btn color="#338ABF" @click="onInsertProdInfo">
+            <v-btn color="#448AFF" @click="onInsertProdInfo">
               <v-icon color="white">mdi-check</v-icon>
               <span class="white--text">ບັນທຶກ</span>
             </v-btn>
@@ -122,18 +122,17 @@
     <!-- Modal Update products -->
     <v-dialog v-model="showModalUpdateProd" persistent width="400">
       <v-card>
-        <v-card-title style="display:flex;background-color:#568fb3;color:white">
+        <v-card-title style="display:flex;background-color:#E57373;color:white">
           <v-spacer></v-spacer>
           ແກ້ໄຂຂໍ້ມູນສິນຄ້າ
           <v-spacer></v-spacer>
           <v-btn fab elevation="0" dark width="30" height="30" small color="white" @click="showModalUpdateProd = false">
-            <v-icon color="#338ABF">mdi-close</v-icon>
+            <v-icon color="#E57373">mdi-close</v-icon>
           </v-btn>
         </v-card-title>
 
         <v-container>
           <Height />
-          <v-divider></v-divider>
           <v-card-text>
             <v-text-field label="ລະຫັດສິນຄ້າ" outlined dense v-model="ins_pro_id"></v-text-field>
             <div class="tops">
@@ -163,7 +162,7 @@
               <v-icon color="white">mdi-close</v-icon>
               <span class="white--text">ຍົກເລິກ</span>
             </v-btn>
-            <v-btn color="#0B9BDF" @click="onUpdateProd">
+            <v-btn color="#FFB74D" @click="onUpdateProd">
               <v-icon color="white">mdi-check</v-icon>
               <span class="white--text">ແກ້ໄຂ</span>
             </v-btn>

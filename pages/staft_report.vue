@@ -6,9 +6,9 @@
             </v-card>
         </v-dialog>
         <v-card class="card-shadow mb-6" rounded="lg">
-            <v-card-title style="display:flex;background-color:#568fb3;color:white">
-                <v-btn fab elevation="0" dark width="30" height="30" small color="#338ABF" to="report_staft">
-                    <v-icon color="white">mdi-arrow-left</v-icon>
+            <v-card-title style="display:flex;background-color:#E57373;color:white">
+                <v-btn fab elevation="0" dark width="30" height="30" small color="white" to="report_staft">
+                    <v-icon color="#E57373">mdi-arrow-left</v-icon>
                 </v-btn>
                 <v-spacer></v-spacer>
                 ລາຍງານພະນັກງານ
@@ -62,63 +62,46 @@
                                 <div style="width:100%">
                                     <span>ຊື່</span>
                                     <v-text-field readonly flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
-                                        v-model="name"></v-text-field>
+                                        v-model="staffName"></v-text-field>
                                 </div>
                                 <div style="width:100%" class="pl-2">
                                     <span>ນາມສະກຸນ</span>
                                     <v-text-field readonly flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
-                                        v-model="surname"></v-text-field>
+                                        v-model="staffSurname"></v-text-field>
                                 </div>
                                 <div style="width:100%" class="pl-2">
-                                    <span>ເບີໂທ</span>
-                                    <v-text-field readonly flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
-                                        v-model="mobile"></v-text-field>
-                                </div>
-                                <div style="width:100%" class="pl-2">
-                                    <span>ເລກໃບຂັບຂີ່</span>
+                                    <span>ເລກໃບຂັບຂີ່ </span>
                                     <v-text-field readonly flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
                                         v-model="idCard"></v-text-field>
                                 </div>
                                 <div style="width:100%" class="pl-2">
+                                    <span>ໃບຂັບຂີ່ທີ່ອອກ</span>
+                                    <v-text-field readonly flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
+                                        v-model="licenId"></v-text-field>
+                                </div>
+                                <div style="width:100%" class="pl-2">
                                     <span>ວັນທີໃບຂັບຂີ່ໝົດອາຍຸ</span>
                                     <v-text-field readonly flat solo dense background-color="#f5f5f5" placeholder="ປ້ອນລາຄາ"
-                                        v-model="licenceExp"></v-text-field>
+                                        v-model="idCardExpried"></v-text-field>
                                 </div>
 
                             </div>
                             <h3>ລາຍລະອຽດຂອງແຕ່ລະທ່ຽວ</h3>
                             <v-data-table :items="staft_data_list" :headers="staft_headers" :search="search">
                                 <template v-slot:item="row">
-                                    <tr>
+                                    <tr >
                                         <td><span>{{ row?.index + 1 }}</span></td>
-                                        <td><span>{{ row?.item?.out_DATE }}</span> - <span
-                                                class="ml-2">{{ row?.item?.in_DATE }}</span></td>
-                                        <td>{{ row?.item?.h_VICIVLE_NUMBER }} </td>
-                                        <td>{{ row?.item?.f_BRANCH }}
+                                        <td><span>{{ row?.item?.startDate }}</span> - <span class="ml-2">{{
+                                            row?.item?.endDate }}</span></td>
+                                        <td>{{ row?.item?.headerNo }} </td>
+                                        <td>{{ row?.item?.footerNo }}
                                         </td>
-                                        <td><span>{{ row?.item?.province }}</span> - <span class="ml-2">{{
-                                            row?.item?.detail
+                                        <td>{{ row?.item?.proName }}
+                                        </td>
+                                        <td><span>{{ row?.item?.placeName }}</span> - <span class="ml-2">{{
+                                            row?.item?.provinceName
                                         }}</span>
                                         </td>
-                                        <!-- <td>{{
-                                        row?.item?.staff_BIALIENG?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td> -->
-                                        <!-- <td class="red--text">{{
-                                        row?.item?.staff02_Notpay?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td> -->
-                                        <!-- <td class="red--text">
-                                        <v-btn small color="#1976D2" class="white--text card-shadow"
-                                            @click="edit(row?.item?.staffID)"><v-icon
-                                                color="white">mdi-pencil</v-icon>ລາຍລະອຽດ</v-btn>
-
-                                    </td> -->
-
-                                        <!-- <td><span>{{ row?.item?.staft_NAME }}</span> <span class="ml-2">{{
-                                        row?.item?.staft_SURNAME
-                                    }}</span></td>
-                                    <td>{{ row?.item?.out_DATE }}</td>
-                                    <td>{{ row?.item?.in_DATE }}</td>
-                                    <td class="red--text">{{ row?.item?.staff_BIALIENG_FRIST }} {{ row?.item?.staff_Cur }}</td>
-                                    <td class="red--text">{{ row?.item?.staff_BIALIENG }} {{ row?.item?.staff_Cur }}</td>
-                                    <td class="red--text">{{ row?.item?.staff_BIALINEG_KANGJAIY }} {{ row?.item?.staff_Cur }}</td> -->
                                     </tr>
                                 </template>
                             </v-data-table>
@@ -130,19 +113,19 @@
                 </v-card-text>
             </v-form>
             <div
-                    style="position:fixed;top: 97%;left: 50%;transform: translate(-50%, -50%); width:100%;background-color:#f5f5f5;display:flex;justify-content:center;height:50px;align-items:center">
-                    <v-btn width="200" color="green" class="card-shadow" @click="print">
-                        <v-icon color="white">mdi-printer</v-icon>
-                        <span class="white--text pl-2">ພີມລາຍງານ</span>
-                    </v-btn>
-                </div>
+                style="position:fixed;top: 97%;left: 50%;transform: translate(-50%, -50%); width:100%;background-color:#f5f5f5;display:flex;justify-content:center;height:50px;align-items:center">
+                <v-btn width="200" color="#1565C0" class="card-shadow" @click="print">
+                    <v-icon color="white">mdi-printer</v-icon>
+                    <span class="white--text pl-2">ພີມລາຍງານ</span>
+                </v-btn>
+            </div>
         </v-card>
 
-        <!-- component for print -->
-        <div style="display:none;">
+        <!-- component for print  -->
+        <div style="display:none;" >
             <div id="modalInvoice">
-                <div class="text-center pb-10 font-weight-bold" style="display:flex;justify-content:center;font-size:12pt">
-                    ລາຍງານຂໍ້ມູນພະນັກງານ</div>
+                <div class="text-center pb-10 font-weight-bold" style="display:flex;justify-content:center;font-size:18px">
+                   <h5>ລາຍງານຂໍ້ມູນພະນັກງານ</h5></div>
                 <div style="height:10px"></div>
                 <!-- <div style="display:flex;justify-content:end;flex-direction:column;align-items:end">
                     <div style="display:flex;flex-direction:column;padding:10px;border-radius:3px;border:1px solid #999">
@@ -154,44 +137,45 @@
                 </div> -->
                 <!-- customer -->
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                    <div style="width:100%;display:flex;align-items:end"><span style="font-size:12pt">ຊື່ ແລະ ນາມສະກຸນ: {{
-                        name }} {{ surname }}</span>
+                    <div style="width:100%;display:flex;align-items:end"><span style="font-size:12px">ຊື່ ແລະ ນາມສະກຸນ: {{
+                        staffName }} {{ staffSurname }}</span>
                     </div>
-                    <div style="width:100%"><span style="font-size:12pt">ເບີໂທ: {{ mobile }}; {{ mobile1 }}</span></div>
+                    <div style="width:100%"><span style="font-size:12px">ເລກໃບຂັບຂີ່:  {{ idCard }}</span></div>
 
                 </div>
                 <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                    <div style="width:100%;display:flex;align-items:end"><span style="font-size:12pt">ເລກໃບຂັບຂີ່: {{ idCard
+                    <div style="width:100%;display:flex;align-items:end"><span style="font-size:12px">ໃບຂັບຂີ່ທີ່ອອກ: {{ licenId
                     }}</span>
                     </div>
-                    <div style="width:100%"><span style="font-size:12pt">ວັນທີໃບຂັບຂີ່ໝົດອາຍຸ: {{ licenceExp }} </span>
+                    <div style="width:100%"><span style="font-size:12px">ວັນທີໃບຂັບຂີ່ໝົດອາຍຸ: {{ idCardExpried }} </span>
                     </div>
                 </div>
                 <div>
-                    <div class="py-4 text-center">
-                        <h3>ລາຍລະອຽດຂອງແຕ່ລະທ່ຽວ</h3>
+                    <div class="text-center pb-10 font-weight-bold" style="display:flex;justify-content:center;font-size:18px" >
+                        <h5>ລາຍລະອຽດຂອງແຕ່ລະທ່ຽວ</h5>
                     </div>
                     <table style="padding:2px;border: 0.5px solid #FFF;border-collapse: collapse;width:100%">
-                        <tr style="padding:5px;border: 0.5px solid #999;">
-                            <td style="border: 0.5px solid #999;padding:5px">ລໍາດັບ</td>
+                        <tr style="padding:5px;border: 0.5px solid #999; font-size:12px">
+                            <td style="border: 0.5px solid #999;padding:5px; width: 30px;">ລ/ດ</td>
                             <td style="border: 0.5px solid #999;padding:5px">ວັນທີໄປ - ວັນທີກັບ</td>
                             <td style="border: 0.5px solid #999;padding:5px">ຫົວລົດ</td>
                             <td style="border: 0.5px solid #999;padding:5px">ຫາງລົດ</td>
                             <td style="border: 0.5px solid #999;padding:5px">ສິນຄ້າ</td>
                             <td style="border: 0.5px solid #999;padding:5px">ສະຖານທີ</td>
                         </tr>
-                        <tr style="padding:5px;border: 0.5px solid #999;" v-for="(item, i) in staft_data_list" :key="i">
+                        <tr style="padding:5px;border: 0.5px solid #999; font-size:12px" v-for="(item, i) in staft_data_list" :key="i" >
                             <td style="padding:10px;border: 0.5px solid #999;border-collapse: collapse;color:#000"
                                 class="  text-center">
                                 {{ i + 1 }}
                             </td>
-                            <td style="border: 0.5px solid #999;padding:5px">{{ item?.out_DATE }} - {{ item?.in_DATE }}</td>
-                            <td style="border: 0.5px solid #999;padding:5px">{{ item?.h_VICIVLE_NUMBER }}</td>
-                            <td style="border: 0.5px solid #999;padding:5px">{{ item?.f_BRANCH }}</td>
-                            <td style="border: 0.5px solid #999;padding:5px">{{ item?.staff_BIALIENG }}</td>
-                            <td style="border: 0.5px solid #999;padding:5px">{{ item?.province }} - {{ item?.detail }}</td>
+                            <td style="border: 0.5px solid #999;padding:5px">{{ item?.startDate }} - {{ item?.endDate }}
+                            </td>
+                            <td style="border: 0.5px solid #999;padding:5px">{{ item?.headerNo }}</td>
+                            <td style="border: 0.5px solid #999;padding:5px">{{ item?.footerNo }}</td>
+                            <td style="border: 0.5px solid #999;padding:5px">{{ item?.proName }}</td>
+                            <td style="border: 0.5px solid #999;padding:5px">{{ item?.placeName }} - {{ item?.provinceName }}</td>
                         </tr>
-                       
+
                     </table>
                 </div>
             </div>
@@ -213,11 +197,11 @@ export default {
             search: '',
             staft_data_list: [],
             staft_headers: [
-                { text: 'ລ/ດ', value: ''},
+                { text: 'ລ/ດ', value: '' },
                 { text: 'ວັນທີໄປ - ວັນທີກັບ', value: '' },
                 { text: 'ຫົວລົດ', value: '' },
                 { text: 'ຫາງລົດ', value: '' },
-                // { text: 'ສິນຄ້າ', value: '' },
+                { text: 'ສິນຄ້າ', value: '' },
                 { text: 'ສະຖານທີ', value: '' },
                 // { text: 'ບ້ຽງລ້ຽງທັງໝົດ', value: '' },
                 // { text: '', value: '' }
@@ -225,12 +209,11 @@ export default {
             valid: true,
             nameRules: [(v) => !!v || 'ຕ້ອງເລືອກວັນທີ'],
 
-            name: '',
-            surname: '',
-            mobile: '',
-            mobile1: '',
+            staffName: '',
+            staffSurname: '',
+            licenId: '',
+            idCardExpried: '',
             idCard: '',
-            licenceExp: '',
 
             h_VICIVLE_NUMBER: ''
         }
@@ -238,24 +221,21 @@ export default {
     mounted() {
         if (this.$route.query.key) {
             this.ongetData()
-            this.onGetEmployeeList()
         }
     },
     methods: {
         async ongetData() {
             try {
                 // this.loading_processing = true;
-                await this.$axios.$post('listPaymentStaff.service', { key_id: this.$route.query.key }).then((data) => {
+                await this.$axios.$post('/ReportListStaffPayDetails', { staffID: this.$route.query.key }).then((data) => {
                     // this.loading_processing = false;
                     console.log("dataUpd", data)
-                    this.staft_data_list = data?.data;
-                    this.report_emp_list = data?.data[0];
-                    this.h_VICIVLE_NUMBER = data?.data[0]?.h_VICIVLE_NUMBER;
-                    this.f_BRANCH = data?.data[0]?.f_BRANCH,
-                        this.out_DATE = data?.data[0]?.out_DATE,
-                        this.in_DATE = data?.data[0]?.in_DATE,
-                        this.province = data?.data[0]?.province,
-                        this.detail = data?.data[0]?.detail
+                    this.staft_data_list = data?.data,
+                    this.staffName = data?.staffName;
+                    this.staffSurname = data?.staffSurname;
+                    this.licenId = data?.licenId;
+                    this.idCardExpried = data?.idCardExpried,
+                    this.idCard = data?.idCard
                 })
             } catch (error) {
                 swal.fire({
@@ -266,6 +246,31 @@ export default {
                 console.log(error)
             }
         },
+
+        // async ongetData() {
+        //     try {
+
+        //         // this.loading_processing = true;
+        //         await this.$axios.$post('/ReportListStaffPayDetails', { staffID: this.$route.query.key }).then((data) => {
+        //             // this.loading_processing = false;
+        //             console.log("dataUpd", data)
+        //             this.staft_data_list = data?.data;
+        //             this.staffName = data?.data[0]?.staffName;
+        //             this.staffSurname = data?.data[0]?.staffSurname,
+        //             this.idCard = data?.data[0]?.idCard,
+        //             this.licenId = data?.data[0]?.licenId,
+        //             this.idCardExpried = data?.data[0]?.idCardExpried
+        //             // this.detail = data?.data[0]?.detail
+        //         })
+        //     } catch (error) {
+        //         swal.fire({
+        //             icon: 'error',
+        //             text: error
+        //         })
+        //         this.loading_processing = false
+        //         console.log(error)
+        //     }
+        // },
 
         print() {
             const modal = document.getElementById("modalInvoice")
@@ -280,32 +285,32 @@ export default {
             section.appendChild(cloned);
             window.print();
         },
-        
 
-        async onGetEmployeeList() {
-            try {
-                // this.loading_processing = true;
-                await this.$axios.$post('getChooseStaft01.service', { key_id: this.$route.query.key }).then((data) => {
-                    // this.loading_processing = false;
-                    console.log("dataUpd", data)
-                    // this.staft_data_list = data?.data;
 
-                    this.name = data?.data[0]?.name;
-                    this.surname = data?.data[0]?.surname,
-                        this.mobile = data?.data[0]?.mobile,
-                        this.mobile1 = data?.data[0]?.mobile1,
-                        this.idCard = data?.data[0]?.idCard,
-                        this.licenceExp = data?.data[0]?.licenceExp
-                })
-            } catch (error) {
-                swal.fire({
-                    icon: 'error',
-                    text: error
-                })
-                this.loading_processing = false
-                console.log(error)
-            }
-        },
+        // async onGetEmployeeList() {
+        //     try {
+        //         // this.loading_processing = true;
+        //         await this.$axios.$post('getChooseStaft01.service', { key_id: this.$route.query.key }).then((data) => {
+        //             // this.loading_processing = false;
+        //             console.log("dataUpd", data)
+        //             // this.staft_data_list = data?.data;
+
+        //             this.name = data?.data[0]?.name;
+        //             this.surname = data?.data[0]?.surname,
+        //                 this.mobile = data?.data[0]?.mobile,
+        //                 this.mobile1 = data?.data[0]?.mobile1,
+        //                 this.idCard = data?.data[0]?.idCard,
+        //                 this.licenceExp = data?.data[0]?.licenceExp
+        //         })
+        //     } catch (error) {
+        //         swal.fire({
+        //             icon: 'error',
+        //             text: error
+        //         })
+        //         this.loading_processing = false
+        //         console.log(error)
+        //     }
+        // },
 
         // onSearcReport() {
 
